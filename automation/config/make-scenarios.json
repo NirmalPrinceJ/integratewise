@@ -1,0 +1,207 @@
+{
+  "scenarios": [
+    {
+      "name": "Daily-Todoist-Digest",
+      "id": "daily-todoist-digest",
+      "trigger": {
+        "app": "Schedule",
+        "frequency": "daily",
+        "time": "08:00",
+        "timezone": "Asia/Calcutta"
+      },
+      "modules": [
+        {
+          "module": 1,
+          "app": "Todoist",
+          "action": "List Tasks",
+          "filter": "overdue"
+        },
+        {
+          "module": 2,
+          "app": "Todoist",
+          "action": "List Tasks",
+          "filter": "p1 & today"
+        },
+        {
+          "module": 3,
+          "app": "Code",
+          "language": "javascript",
+          "code_file": "digest-formatter.js"
+        },
+        {
+          "module": 4,
+          "app": "Slack",
+          "action": "Create Message",
+          "channel": "#daily-digest"
+        },
+        {
+          "module": 5,
+          "app": "Gmail",
+          "action": "Send Email",
+          "optional": true
+        }
+      ],
+      "enabled": false,
+      "priority": "medium"
+    },
+    {
+      "name": "Box-File-Change-Notification",
+      "id": "box-file-change-notification",
+      "trigger": {
+        "app": "Box",
+        "event": "File Updated",
+        "folder": "Revenue Models"
+      },
+      "modules": [
+        {
+          "module": 1,
+          "app": "Box",
+          "action": "Get File Info"
+        },
+        {
+          "module": 2,
+          "app": "Router",
+          "condition": "file_name_contains_revenue"
+        },
+        {
+          "module": 3,
+          "app": "Airtable",
+          "action": "Update Record"
+        },
+        {
+          "module": 4,
+          "app": "Gmail",
+          "action": "Send Email"
+        }
+      ],
+      "enabled": false,
+      "priority": "low"
+    },
+    {
+      "name": "Salesforce-Risk-Alert",
+      "id": "salesforce-risk-alert",
+      "trigger": {
+        "app": "Webhook",
+        "event": "Custom Webhook",
+        "url": "https://hook.make.com/{{WEBHOOK_ID}}"
+      },
+      "modules": [
+        {
+          "module": 1,
+          "app": "Webhook",
+          "action": "Receive Webhook"
+        },
+        {
+          "module": 2,
+          "app": "Todoist",
+          "action": "Create Task",
+          "priority": 4
+        },
+        {
+          "module": 3,
+          "app": "Slack",
+          "action": "Create Message",
+          "channel": "#csm-alerts"
+        },
+        {
+          "module": 4,
+          "app": "Coda",
+          "action": "Update Row"
+        }
+      ],
+      "enabled": false,
+      "priority": "critical"
+    },
+    {
+      "name": "Stripe-Payment-Revenue-Update",
+      "id": "stripe-payment-revenue-update",
+      "trigger": {
+        "app": "Stripe",
+        "event": "Payment Succeeded",
+        "filters": {
+          "currency": "INR"
+        }
+      },
+      "modules": [
+        {
+          "module": 1,
+          "app": "Stripe",
+          "action": "Get Payment"
+        },
+        {
+          "module": 2,
+          "app": "Google Sheets",
+          "action": "Add Row",
+          "sheet": "Revenue Tracker"
+        },
+        {
+          "module": 3,
+          "app": "Code",
+          "language": "javascript",
+          "code_file": "revenue-calculator.js"
+        },
+        {
+          "module": 4,
+          "app": "Router",
+          "condition": "milestone_reached"
+        },
+        {
+          "module": 5,
+          "app": "Gmail",
+          "action": "Send Email",
+          "condition": "milestone"
+        }
+      ],
+      "enabled": false,
+      "priority": "high"
+    },
+    {
+      "name": "Weekly-Review-Digest",
+      "id": "weekly-review-digest",
+      "trigger": {
+        "app": "Schedule",
+        "frequency": "weekly",
+        "day": "sunday",
+        "time": "18:00",
+        "timezone": "Asia/Calcutta"
+      },
+      "modules": [
+        {
+          "module": 1,
+          "app": "Todoist",
+          "action": "List Completed Tasks",
+          "filter": "last_7_days"
+        },
+        {
+          "module": 2,
+          "app": "Code",
+          "language": "javascript",
+          "code_file": "weekly-digest-formatter.js"
+        },
+        {
+          "module": 3,
+          "app": "Webhooks",
+          "action": "POST",
+          "url": "https://api.x.ai/v1/chat/completions",
+          "purpose": "Get insights from Grok"
+        },
+        {
+          "module": 4,
+          "app": "Coda",
+          "action": "Update Row",
+          "table": "Project Health Scores"
+        },
+        {
+          "module": 5,
+          "app": "Gmail",
+          "action": "Send Email"
+        }
+      ],
+      "enabled": false,
+      "priority": "medium"
+    }
+  ],
+  "version": "1.0.0",
+  "last_updated": "2024-01-01"
+}
+

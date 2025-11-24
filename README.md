@@ -1,174 +1,312 @@
-# IntegrateWise Website & Business Plan
+# IntegrateWise Website
 
-This directory contains the complete IntegrateWise professional website and business plan ready for deployment.
+> Platform-Agnostic Integration Advisory - Professional Website & Business Platform
 
-## 📁 Files Included
+[![Deploy Status](https://img.shields.io/badge/deploy-ready-success)](https://github.com/integratewise/website)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
-### Website Files
-- `index.html` - Homepage with value proposition and services overview
-- `about.html` - Company story, philosophy, and leadership
-- `services.html` - Detailed service offerings with pricing
-- `case-studies.html` - Success stories from Finance, Logistics, and Healthcare
-- `resources.html` - Platform comparisons, tools, and guides
-- `contact.html` - Contact forms and consultation booking
-- `styles.css` - Complete styling for all pages
-- `script.js` - Interactive functionality
+## 🌐 Live Website
 
-### Business Documents
-- `business-plan.html` - Comprehensive business plan and executive summary
-- `Action_Plan.md` - System setup guide for Notion + Coda
-- `Integratewise_Notion_Schema.md` - Notion database schemas
-- `Integratewise_Coda_Schema.md` - Coda control layer schema
-- `Zapier_Integration_Plan.md` - Integration workflows
+**Production**: [https://integratewise.com](https://integratewise.com)
 
-## 🚀 Quick Deployment
+## 📋 Overview
 
-### Option 1: Vercel (Recommended)
-1. Install Vercel CLI: `npm i -g vercel`
-2. Run `vercel` in this directory
-3. Follow the prompts
-4. Your site will be live at `https://your-project.vercel.app`
+IntegrateWise is a platform-agnostic integration and automation advisory firm serving mid-market enterprises. This repository contains the complete website, business plan, and automation infrastructure.
 
-### Option 2: Netlify
-1. Drag and drop this folder to [Netlify Drop](https://app.netlify.com/drop)
-2. Your site will be instantly deployed
+### Key Features
 
-### Option 3: GitHub Pages
-1. Create a new GitHub repository
-2. Upload all files
-3. Go to Settings → Pages
-4. Select source as "Deploy from a branch"
-5. Choose main branch and root folder
-6. Your site will be live at `https://username.github.io/repository-name`
+- ✅ **Professional Website** - Modern, responsive design
+- ✅ **Business Plan** - Comprehensive strategy documentation
+- ✅ **Automated Deployment** - One-command deployment to cPanel
+- ✅ **Automation Infrastructure** - Integration workflows and sync systems
+- ✅ **Multi-Platform Support** - MuleSoft, Boomi, Workato, Salesforce, Make, n8n, Zapier
 
-### Option 4: Traditional Hosting
-Upload all files to your web hosting provider's public_html or www directory.
+## 🚀 Quick Start
 
-## 🎯 Immediate Next Steps
+### Prerequisites
 
-1. **Update Contact Information**
-   - Replace placeholder phone number in all HTML files
-   - Update email address if different from info@integratewise.com
+- Node.js 18+ (for automation scripts)
+- FTP/SFTP access to hosting server
+- Git (for version control)
 
-2. **Customize Content**
-   - Add actual client testimonials
-   - Update case study details with your specific projects
-   - Add real platform certification badges
+### Installation
 
-3. **Set Up Analytics**
-   - Add Google Analytics or similar tracking code
-   - Set up conversion tracking for contact forms
+```bash
+# Clone repository
+git clone https://github.com/yourusername/integratewise-website.git
+cd integratewise-website
 
-4. **Connect Forms**
-   - Integrate contact forms with your CRM
-   - Set up email notifications
-   - Add form validation and spam protection
+# Install dependencies
+npm install
 
-## 📊 Website Features
-
-- **Responsive Design**: Works on all devices
-- **Fast Loading**: Optimized for performance
-- **SEO Ready**: Proper meta tags and structure
-- **Professional Look**: Modern, clean design
-- **Clear CTAs**: Focused on conversions
-- **Platform Agnostic**: Highlights your unique value
-
-## 💼 Business Plan Highlights
-
-The business plan includes:
-- Executive summary with key metrics
-- Market opportunity analysis ($50B market)
-- Service portfolio with pricing
-- Competitive advantages
-- Partnership-led business model
-- Growth strategy and roadmap
-- Financial projections (kept internal as requested)
-
-## 🔧 Customization
-
-### Changing Colors
-Edit the CSS variables in `styles.css`:
-```css
-:root {
-    --primary-blue: #2563eb;
-    --primary-dark: #1e40af;
-    /* etc... */
-}
+# Configure environment
+cp env.example .env
+# Edit .env with your credentials
 ```
 
-### Adding Pages
-1. Copy an existing HTML file
-2. Update the navigation in all files
-3. Add corresponding styles in styles.css
+### Deployment
 
-### Updating Services/Pricing
-Edit the service cards in `services.html` and homepage
+```bash
+# Automated deployment
+npm run deploy
 
-### Adding Company Logos
+# Or use shell script
+./deploy.sh
 
-The website includes logo placeholders in several locations:
+# Or RSYNC (if SSH available)
+./deploy-rsync.sh
+```
 
-#### Platform Logos (index.html)
-- Located in the "Platform Expertise" section
-- Currently using logo URLs from company websites
-- To add your own logos:
-  1. Download logos from official sources (with permission)
-  2. Save to `/images/logos/` folder
-  3. Update image `src` attributes in HTML
+## 📁 Project Structure
 
-#### Trusted By Section (index.html)
-- Shows partner/client logos
-- Currently using Clearbit logo API
-- To add actual client logos:
-  ```html
-  <div class="logo-item">
-      <img src="images/logos/client-name.svg" alt="Client Name" class="company-logo">
-  </div>
-  ```
+```
+integratewise-website/
+├── index.html              # Homepage
+├── about.html              # About page
+├── services.html           # Services page
+├── case-studies.html       # Case studies
+├── resources.html          # Resources & guides
+├── contact.html            # Contact page
+├── business-plan.html      # Business plan document
+├── styles.css              # Main stylesheet
+├── script.js               # JavaScript functionality
+├── .htaccess               # Apache configuration
+├── images/                 # Image assets
+│   └── logo/               # Logo files
+├── automation/             # Automation workflows
+│   ├── config/             # Workflow configurations
+│   │   ├── zapier-workflows.json
+│   │   └── make-scenarios.json
+│   ├── scripts/            # Setup & testing scripts
+│   │   ├── setup-automation.js
+│   │   └── test-workflows.js
+│   └── README.md           # Automation docs
+├── deploy.js               # Node.js deployment script
+├── deploy.sh               # Shell deployment script
+├── package.json            # Node.js dependencies
+├── env.example             # Environment variables template
+├── AUTOMATION_WORKFLOWS.md # Complete automation guide
+├── ALBATO_CSM_AUTOMATION.md # CSM workflows
+├── Zapier_Integration_Plan.md # Integration plan
+└── README.md               # This file
+```
 
-#### Case Study Logos (case-studies.html)
-- Placeholder logos in each case study header
-- Replace with actual client logos (with permission):
-  ```html
-  <div class="case-study-logo">
-      <img src="images/logos/client-logo.png" alt="Client Name">
-  </div>
-  ```
+## 🛠️ Development
 
-**Logo Requirements:**
-- Format: SVG (preferred) or PNG with transparent background
-- Size: Max 200px width, 60px height
-- Location: Create `/images/logos/` folder in root directory
-- Naming: Use lowercase with hyphens (e.g., `mulesoft-logo.svg`)
+### Local Development
 
-**Logo Sources:**
-- Platform logos: Official partner portals or brand guidelines
-- Client logos: Request from clients with written permission
-- Use high-quality, professional logos only
+```bash
+# Start local server (if using Node.js)
+npm run dev
+
+# Or use Python's built-in server
+python3 -m http.server 8000
+
+# Or use PHP's built-in server
+php -S localhost:8000
+```
+
+Visit: `http://localhost:8000`
+
+### Testing
+
+```bash
+# Run all tests
+npm test
+
+# Watch mode
+npm run test:watch
+
+# Coverage report
+npm run test:coverage
+```
+
+## 📦 Deployment Options
+
+### Option 1: Automated (Recommended)
+
+```bash
+npm run deploy
+```
+
+### Option 2: Manual via cPanel
+
+1. Log into cPanel
+2. Open File Manager
+3. Upload files to `public_html`
+4. Set permissions (644 for files, 755 for folders)
+
+### Option 3: CI/CD with GitHub Actions
+
+Push to `main` branch triggers automatic deployment.
+
+## 🔧 Configuration
+
+### Environment Variables
+
+Copy `env.example` to `.env` and configure:
+
+```env
+# FTP Configuration
+FTP_HOST=your-domain.com
+FTP_USER=your_ftp_username
+FTP_PASS=your_ftp_password
+FTP_PATH=/public_html
+
+# Automation APIs
+NOTION_API_KEY=your_key
+CODA_API_TOKEN=your_token
+# ... see env.example for full list
+```
+
+## 🤖 Automation Features
+
+### Comprehensive Automation Workflows
+Complete automation suite covering 6 major categories:
+
+1. **Task Management & Prioritization** (Todoist-Centric)
+   - Todoist → Grok AI prioritization
+   - Completed tasks → Coda sync
+   - Daily digest → Slack/Email
+
+2. **File & Document Management** (Box-Centric)
+   - Box upload → Todoist review tasks
+   - File changes → Airtable updates
+   - Scheduled backups → Google Drive
+
+3. **CRM & Client Ops** (Salesforce/HubSpot-Centric)
+   - Salesforce opportunities → Todoist tasks
+   - HubSpot forms → Pipeline automation
+   - Risk alerts → Urgent notifications
+
+4. **Dev & Deployment** (Cursor/Vercel-Centric)
+   - GitHub push → Vercel deploy
+   - Coda pages → Box archive
+   - Tool comparison alerts
+
+5. **Finance & Ops** (Zoho/Stripe-Centric)
+   - Zoho invoices → GST reconciliation
+   - Stripe payments → Revenue tracking
+   - Monthly finance reviews
+
+6. **Personal & Deep Work** (Cross-Tool)
+   - Deep work blocks → Focus mode
+   - Weekly reviews → AI insights
+
+### Setup Automation
+
+```bash
+# Run automation setup script
+npm run start:automation
+
+# Test workflows
+node automation/scripts/test-workflows.js todoist-grok
+```
+
+See [AUTOMATION_WORKFLOWS.md](AUTOMATION_WORKFLOWS.md) for complete documentation.
+
+### Lead Management
+- Automated lead capture from website
+- Assignment based on platform expertise
+- CRM sync (Notion/Coda/Airtable)
+
+### Project Tracking
+- Milestone-based invoicing
+- Automated reminders
+- Weekly reports
+
+### Financial Automation
+- Invoice generation
+- GST calculation
+- Payment tracking
+- EMI scheduling
+
+### Data Sync
+- Cross-platform synchronization
+- Conflict resolution
+- Integrity checks
+
+## 📚 Documentation
+
+- [Automation Workflows](AUTOMATION_WORKFLOWS.md) - Complete automation guide (6 categories)
+- [CSM Automation](ALBATO_CSM_AUTOMATION.md) - Salesforce CSM workflows
+- [Zapier Integration](Zapier_Integration_Plan.md) - Notion ↔ Coda sync
+- [Deployment Guide](DEPLOYMENT_GUIDE.md) - Manual deployment steps
+- [Automation Setup](AUTO_DEPLOY.md) - Automated deployment guide
+- [Quick Start](QUICK_START.md) - 3-step deployment
+- [Business Plan](business-plan.html) - Complete business strategy
+
+## 🧪 Testing
+
+```bash
+# Unit tests
+npm run test:unit
+
+# Integration tests
+npm run test:integration
+
+# Full test suite
+npm test
+```
+
+## 🔒 Security
+
+- Environment variables never committed
+- `.env` file in `.gitignore`
+- Secure FTP/SFTP connections
+- API keys stored securely
+- Webhook validation enabled
+
+## 📈 Performance
+
+- Optimized CSS/JS
+- Image compression
+- Browser caching via `.htaccess`
+- GZIP compression enabled
+- Lazy loading for images
+
+## 🌍 Browser Support
+
+- Chrome (latest)
+- Firefox (latest)
+- Safari (latest)
+- Edge (latest)
+- Mobile browsers (iOS Safari, Chrome Mobile)
+
+## 📝 License
+
+MIT License - see [LICENSE](LICENSE) file for details
+
+## 👥 Contributing
+
+1. Fork the repository
+2. Create feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit changes (`git commit -m 'Add amazing feature'`)
+4. Push to branch (`git push origin feature/amazing-feature`)
+5. Open Pull Request
 
 ## 📞 Support
 
-For questions about deployment or customization, consult the documentation for your chosen platform:
-- [Vercel Docs](https://vercel.com/docs)
-- [Netlify Docs](https://docs.netlify.com)
-- [GitHub Pages Docs](https://pages.github.com)
+- **Website**: [integratewise.com](https://integratewise.com)
+- **Email**: info@integratewise.com
+- **Issues**: [GitHub Issues](https://github.com/yourusername/integratewise-website/issues)
 
-## ✅ Launch Checklist
+## 🗺️ Roadmap
 
-- [ ] Update all contact information
-- [ ] Add real client logos (with permission)
-- [ ] Set up form handling
-- [ ] Configure custom domain
-- [ ] Add SSL certificate
-- [ ] Set up email forwarding
-- [ ] Add analytics tracking
-- [ ] Test all links and forms
-- [ ] Optimize images for web
-- [ ] Create social media profiles
-- [ ] Submit to Google Business
+- [ ] Multi-language support
+- [ ] Advanced analytics dashboard
+- [ ] Client portal integration
+- [ ] API documentation
+- [ ] Mobile app
 
-## 🎉 Ready to Launch!
+## 🙏 Acknowledgments
 
-Your IntegrateWise website is ready to establish your professional presence and attract clients and partners. The clean design and clear messaging will help you stand out in the integration consulting space.
+- Built with modern web standards
+- Inspired by leading integration advisory firms
+- Powered by open-source technologies
 
-Remember: The website is your "face" - now you can focus on building partnerships and delivering value to clients!
+---
+
+**Made with ❤️ by IntegrateWise**
+
+For business inquiries: info@integratewise.com

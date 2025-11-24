@@ -1,0 +1,10 @@
+{
+  "teamKey": "INT",
+  "projectName": "IntegrateWise Website",
+  "repository": "NirmalPrinceJ/integratewise",
+  "syncLabels": true,
+  "syncStatus": true,
+  "syncAssignees": true,
+  "syncComments": true
+}
+

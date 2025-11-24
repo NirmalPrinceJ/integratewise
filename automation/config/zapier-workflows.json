@@ -1,0 +1,211 @@
+{
+  "workflows": [
+    {
+      "name": "Todoist-Grok-Prioritization",
+      "id": "todoist-grok-prioritization",
+      "trigger": {
+        "app": "Todoist",
+        "event": "New Task",
+        "filters": {
+          "labels": ["@urgent", "@csm", "@integratewise"],
+          "projects": ["Salesforce CSM", "IntegrateWise"]
+        }
+      },
+      "steps": [
+        {
+          "step": 1,
+          "app": "Webhooks by Zapier",
+          "action": "POST",
+          "url": "https://api.x.ai/v1/chat/completions",
+          "headers": {
+            "Authorization": "Bearer {{XAI_API_KEY}}",
+            "Content-Type": "application/json"
+          }
+        },
+        {
+          "step": 2,
+          "app": "Code by Zapier",
+          "language": "javascript",
+          "code_file": "grok-parser.js"
+        },
+        {
+          "step": 3,
+          "app": "Todoist",
+          "action": "Update Task"
+        }
+      ],
+      "enabled": false,
+      "priority": "high"
+    },
+    {
+      "name": "Completed-Task-Coda-Sync",
+      "id": "completed-task-coda-sync",
+      "trigger": {
+        "app": "Todoist",
+        "event": "Task Completed",
+        "filters": {
+          "labels": ["@integratewise", "@revenue", "@csm"],
+          "exclude_projects": ["Personal"]
+        }
+      },
+      "steps": [
+        {
+          "step": 1,
+          "app": "Todoist",
+          "action": "Get Task"
+        },
+        {
+          "step": 2,
+          "app": "Coda",
+          "action": "Upsert Row",
+          "table": "Task Log"
+        },
+        {
+          "step": 3,
+          "app": "Airtable",
+          "action": "Create Record",
+          "condition": "has_label_weekly"
+        }
+      ],
+      "enabled": false,
+      "priority": "medium"
+    },
+    {
+      "name": "Salesforce-Opportunity-Todoist",
+      "id": "salesforce-opportunity-todoist",
+      "trigger": {
+        "app": "Salesforce",
+        "event": "New Opportunity",
+        "filters": {
+          "stage_contains": ["Renewal", "Expansion"],
+          "account_type": "Enterprise"
+        }
+      },
+      "steps": [
+        {
+          "step": 1,
+          "app": "Salesforce",
+          "action": "Find Record"
+        },
+        {
+          "step": 2,
+          "app": "Todoist",
+          "action": "Create Task",
+          "project": "Salesforce CSM",
+          "labels": ["@csm"]
+        },
+        {
+          "step": 3,
+          "app": "Coda",
+          "action": "Upsert Row",
+          "table": "CSM Opportunities"
+        }
+      ],
+      "enabled": false,
+      "priority": "high"
+    },
+    {
+      "name": "HubSpot-Form-Pipeline",
+      "id": "hubspot-form-pipeline",
+      "trigger": {
+        "app": "HubSpot",
+        "event": "Form Submission",
+        "forms": ["14-Day Trial", "Contact Us"]
+      },
+      "steps": [
+        {
+          "step": 1,
+          "app": "Airtable",
+          "action": "Create Record",
+          "base": "Client Delivery"
+        },
+        {
+          "step": 2,
+          "app": "Todoist",
+          "action": "Create Task",
+          "labels": ["@revenue_stream", "@follow_up"]
+        },
+        {
+          "step": 3,
+          "app": "Webhooks by Zapier",
+          "action": "POST",
+          "url": "https://api.x.ai/v1/chat/completions",
+          "purpose": "Generate welcome email"
+        },
+        {
+          "step": 4,
+          "app": "Gmail",
+          "action": "Send Email"
+        }
+      ],
+      "enabled": false,
+      "priority": "high"
+    },
+    {
+      "name": "GitHub-Vercel-Deploy",
+      "id": "github-vercel-deploy",
+      "trigger": {
+        "app": "GitHub",
+        "event": "Push",
+        "branch": "main"
+      },
+      "steps": [
+        {
+          "step": 1,
+          "app": "Webhooks by Zapier",
+          "action": "POST",
+          "url": "https://api.vercel.com/v1/integrations/deployments"
+        },
+        {
+          "step": 2,
+          "app": "Todoist",
+          "action": "Create Task",
+          "labels": ["@dev_tools", "@testing"]
+        },
+        {
+          "step": 3,
+          "app": "Coda",
+          "action": "Create Row",
+          "table": "Deployments"
+        }
+      ],
+      "enabled": false,
+      "priority": "medium"
+    },
+    {
+      "name": "Zoho-Invoice-Reconciliation",
+      "id": "zoho-invoice-reconciliation",
+      "trigger": {
+        "app": "Zoho Books",
+        "event": "New Invoice",
+        "filters": {
+          "status": ["Sent", "Paid"]
+        }
+      },
+      "steps": [
+        {
+          "step": 1,
+          "app": "Zoho Books",
+          "action": "Get Invoice"
+        },
+        {
+          "step": 2,
+          "app": "Todoist",
+          "action": "Create Task",
+          "labels": ["@iw_ops", "@finance", "@gst"]
+        },
+        {
+          "step": 3,
+          "app": "Coda",
+          "action": "Upsert Row",
+          "table": "Revenue"
+        }
+      ],
+      "enabled": false,
+      "priority": "medium"
+    }
+  ],
+  "version": "1.0.0",
+  "last_updated": "2024-01-01"
+}
+
