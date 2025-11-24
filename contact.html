@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - IntegrateWise | Get Started Today</title>
+    <link rel="icon" type="image/svg+xml" href="images/logo/favicon.svg">
+    <link rel="alternate icon" href="images/logo/favicon.svg">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Page Loader -->
+    <div class="page-loader"></div>
+    
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-wrapper">
+                <div class="logo">
+                    <img src="images/logo/integratewise-logo.svg" alt="IntegrateWise" class="logo-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';">
+                    <span class="logo-text" style="display:none;">IntegrateWise</span>
+                </div>
+                <div class="nav-menu" id="navMenu">
+                    <a href="index.html" class="nav-link">Home</a>
+                    <a href="about.html" class="nav-link">About</a>
+                    <a href="services.html" class="nav-link">Services</a>
+                    <a href="case-studies.html" class="nav-link">Case Studies</a>
+                    <a href="resources.html" class="nav-link">Resources</a>
+                    <a href="contact.html" class="nav-link active">Contact</a>
+                    <a href="contact.html" class="btn btn-primary nav-cta">Get Started</a>
+                </div>
+                <div class="mobile-toggle" id="mobileToggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Get Started</h1>
+            <p class="page-subtitle">Let's discuss how we can transform your integration strategy</p>
+        </div>
+    </section>
+
+    <!-- Contact Options -->
+    <section class="contact-options">
+        <div class="container">
+            <div class="options-grid">
+                <div class="contact-option">
+                    <div class="option-icon">📅</div>
+                    <h3>Schedule a Consultation</h3>
+                    <p>Book a 30-minute discovery call to discuss your integration challenges and explore solutions.</p>
+                    <a href="#consultation-form" class="btn btn-primary">Book Discovery Call</a>
+                </div>
+                <div class="contact-option">
+                    <div class="option-icon">💬</div>
+                    <h3>Quick Question?</h3>
+                    <p>Have a specific question about our services or platforms? Send us a message and we'll respond within 24 hours.</p>
+                    <a href="#contact-form" class="btn btn-outline">Send Message</a>
+                </div>
+                <div class="contact-option">
+                    <div class="option-icon">🤝</div>
+                    <h3>Partnership Inquiry</h3>
+                    <p>Interested in joining our partner network? Let's explore collaboration opportunities.</p>
+                    <a href="#partnership-form" class="btn btn-outline">Partner With Us</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Contact Form -->
+    <section class="contact-form-section" id="contact-form">
+        <div class="container">
+            <div class="form-container">
+                <div class="form-content">
+                    <h2>Tell Us About Your Project</h2>
+                    <p>Fill out the form below and we'll get back to you within one business day.</p>
+                    
+                    <form class="contact-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="name">Full Name *</label>
+                                <input type="text" id="name" name="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Work Email *</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="company">Company *</label>
+                                <input type="text" id="company" name="company" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Phone Number</label>
+                                <input type="tel" id="phone" name="phone">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="service">Service Interest *</label>
+                            <select id="service" name="service" required>
+                                <option value="">Select a service...</option>
+                                <option value="health-check">Integration Health Check</option>
+                                <option value="accelerator">Automation Accelerator</option>
+                                <option value="strategy">Enterprise Strategy</option>
+                                <option value="platform">Success Platform</option>
+                                <option value="training">Training Academy</option>
+                                <option value="other">Other / Not Sure</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="budget">Budget Range</label>
+                            <select id="budget" name="budget">
+                                <option value="">Select budget range...</option>
+                                <option value="<50k">Less than ₹50,000</option>
+                                <option value="50-100k">₹50,000 - ₹1,00,000</option>
+                                <option value="100-500k">₹1,00,000 - ₹5,00,000</option>
+                                <option value="500k+">More than ₹5,00,000</option>
+                                <option value="not-sure">Not Sure</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="timeline">Project Timeline</label>
+                            <select id="timeline" name="timeline">
+                                <option value="">Select timeline...</option>
+                                <option value="immediate">Immediate (Within 2 weeks)</option>
+                                <option value="month">Within a month</option>
+                                <option value="quarter">Within 3 months</option>
+                                <option value="planning">Just planning</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Tell us about your integration challenges *</label>
+                            <textarea id="message" name="message" rows="4" required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary btn-large">Send Message</button>
+                    </form>
+                </div>
+                
+                <div class="contact-info">
+                    <h3>Get in Touch</h3>
+                    <div class="info-item">
+                        <h4>Email</h4>
+                        <a href="mailto:info@integratewise.com">info@integratewise.com</a>
+                    </div>
+                    <div class="info-item">
+                        <h4>Phone</h4>
+                        <a href="tel:+919999999999">+91 99999 99999</a>
+                    </div>
+                    <div class="info-item">
+                        <h4>Response Time</h4>
+                        <p>We typically respond within 24 business hours</p>
+                    </div>
+                    <div class="info-item">
+                        <h4>Office Hours</h4>
+                        <p>Monday - Friday: 9:00 AM - 6:00 PM IST</p>
+                    </div>
+                    
+                    <div class="social-links">
+                        <h4>Connect With Us</h4>
+                        <a href="https://linkedin.com/company/integratewise" target="_blank" class="social-link">
+                            LinkedIn →
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Consultation Booking -->
+    <section class="consultation-section" id="consultation-form">
+        <div class="container">
+            <div class="consultation-content">
+                <h2>Book Your Free Discovery Call</h2>
+                <p>Schedule a 30-minute consultation to discuss your integration needs</p>
+                
+                <div class="booking-options">
+                    <div class="booking-card">
+                        <h3>Integration Health Check Discovery</h3>
+                        <p>Discuss your current integration challenges and explore how our 48-hour health check can help.</p>
+                        <ul>
+                            <li>Current state assessment</li>
+                            <li>Pain points discussion</li>
+                            <li>Solution recommendations</li>
+                        </ul>
+                        <a href="#" class="btn btn-primary">Book This Call</a>
+                    </div>
+                    
+                    <div class="booking-card">
+                        <h3>Platform Selection Consultation</h3>
+                        <p>Get unbiased advice on choosing the right integration platform for your needs.</p>
+                        <ul>
+                            <li>Requirements analysis</li>
+                            <li>Platform comparison</li>
+                            <li>TCO estimation</li>
+                        </ul>
+                        <a href="#" class="btn btn-primary">Book This Call</a>
+                    </div>
+                    
+                    <div class="booking-card">
+                        <h3>General Integration Strategy</h3>
+                        <p>Open discussion about your integration roadmap and strategic objectives.</p>
+                        <ul>
+                            <li>Business objectives</li>
+                            <li>Technical requirements</li>
+                            <li>Next steps planning</li>
+                        </ul>
+                        <a href="#" class="btn btn-primary">Book This Call</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Partnership Form -->
+    <section class="partnership-section" id="partnership-form">
+        <div class="container">
+            <div class="partnership-content">
+                <h2>Join Our Partner Network</h2>
+                <p>Become part of IntegrateWise's growing network of integration specialists</p>
+                
+                <div class="partnership-benefits">
+                    <div class="benefit">
+                        <h4>Steady Project Pipeline</h4>
+                        <p>Access to enterprise integration projects</p>
+                    </div>
+                    <div class="benefit">
+                        <h4>30-40% Margins</h4>
+                        <p>Competitive revenue sharing model</p>
+                    </div>
+                    <div class="benefit">
+                        <h4>Technical Focus</h4>
+                        <p>We handle sales, you focus on delivery</p>
+                    </div>
+                    <div class="benefit">
+                        <h4>Growth Support</h4>
+                        <p>Training and certification opportunities</p>
+                    </div>
+                </div>
+                
+                <form class="partnership-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="partner-name">Name *</label>
+                            <input type="text" id="partner-name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="partner-email">Email *</label>
+                            <input type="email" id="partner-email" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="expertise">Platform Expertise *</label>
+                        <select id="expertise" multiple required>
+                            <option value="mulesoft">MuleSoft</option>
+                            <option value="boomi">Boomi</option>
+                            <option value="workato">Workato</option>
+                            <option value="salesforce">Salesforce</option>
+                            <option value="make">Make</option>
+                            <option value="n8n">n8n</option>
+                            <option value="zapier">Zapier</option>
+                        </select>
+                        <small>Hold Ctrl/Cmd to select multiple</small>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="experience">Years of Experience *</label>
+                        <select id="experience" required>
+                            <option value="">Select experience...</option>
+                            <option value="1-3">1-3 years</option>
+                            <option value="3-5">3-5 years</option>
+                            <option value="5-10">5-10 years</option>
+                            <option value="10+">10+ years</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="linkedin">LinkedIn Profile</label>
+                        <input type="url" id="linkedin" placeholder="https://linkedin.com/in/yourprofile">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="partner-message">Tell us about your integration experience *</label>
+                        <textarea id="partner-message" rows="4" required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary btn-large">Submit Partnership Application</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="container">
+            <h2>Frequently Asked Questions</h2>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <h4>How quickly can we start?</h4>
+                    <p>For advisory services, we can typically begin within 48-72 hours. Implementation projects usually start within 1-2 weeks after contract signing.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>Do you work with our existing team?</h4>
+                    <p>Absolutely. We believe in knowledge transfer and can work alongside your team, providing training and documentation throughout the engagement.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>What platforms do you specialize in?</h4>
+                    <p>We have deep expertise in MuleSoft, Boomi, Workato, Salesforce ecosystem, and low-code platforms like Make, n8n, and Zapier.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>How do you ensure project success?</h4>
+                    <p>We use fixed-scope engagements, clear milestones, regular communication, and proven frameworks. All projects include documentation and knowledge transfer.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <img src="images/logo/integratewise-logo.svg" alt="IntegrateWise" class="logo-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';">
+                        <span class="logo-text" style="display:none;">IntegrateWise</span>
+                    </div>
+                    <p class="footer-tagline">Your Integration Architect, Not a Platform Reseller</p>
+                    <p class="footer-description">Platform-agnostic integration advisory helping enterprises connect systems and drive outcomes.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Services</h4>
+                    <ul class="footer-links">
+                        <li><a href="services.html#health-check">Integration Health Check</a></li>
+                        <li><a href="services.html#accelerator">Automation Accelerator</a></li>
+                        <li><a href="services.html#strategy">Enterprise Strategy</a></li>
+                        <li><a href="services.html#platform">Success Platform</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Company</h4>
+                    <ul class="footer-links">
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="case-studies.html">Case Studies</a></li>
+                        <li><a href="resources.html">Resources</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Connect</h4>
+                    <ul class="footer-links">
+                        <li><a href="https://linkedin.com/company/integratewise" target="_blank">LinkedIn</a></li>
+                        <li><a href="mailto:info@integratewise.com">info@integratewise.com</a></li>
+                        <li><a href="tel:+919999999999">+91 99999 99999</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 IntegrateWise LLP. All rights reserved.</p>
+                <div class="footer-legal">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

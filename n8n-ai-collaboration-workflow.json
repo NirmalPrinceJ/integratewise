@@ -1,0 +1,489 @@
+{
+  "name": "AI Collaboration Hub - Multi-Model Analysis",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "hours",
+              "hoursInterval": 24
+            }
+          ]
+        }
+      },
+      "id": "trigger-schedule",
+      "name": "Daily Topic Analysis",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1,
+      "position": [250, 300]
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "ai-collaborate",
+        "options": {
+          "responseData": "allEntries"
+        }
+      },
+      "id": "webhook-trigger",
+      "name": "Manual Topic Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [250, 500]
+    },
+    {
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "{\n  \"topic\": \"{{ $json.topic || 'How to improve customer retention in SaaS' }}\",\n  \"context\": \"{{ $json.context || 'IntegrateWise CSM operations' }}\",\n  \"analysis_depth\": \"{{ $json.depth || 'comprehensive' }}\",\n  \"timestamp\": \"{{ new Date().toISOString() }}\",\n  \"session_id\": \"{{ Math.random().toString(36).substring(7) }}\"\n}",
+        "options": {}
+      },
+      "id": "set-parameters",
+      "name": "Set Analysis Parameters",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3,
+      "position": [450, 400]
+    },
+    {
+      "parameters": {
+        "resource": "chatCompletion",
+        "model": "gpt-4-turbo-preview",
+        "messages": {
+          "values": [
+            {
+              "role": "system",
+              "content": "You are a strategic business analyst specializing in {{ $json.context }}. Provide comprehensive analysis with actionable insights."
+            },
+            {
+              "role": "user",
+              "content": "Analyze this topic: {{ $json.topic }}\n\nProvide:\n1. Current state assessment\n2. Key challenges\n3. Strategic recommendations\n4. Implementation steps\n5. Success metrics\n\nFormat as structured JSON."
+            }
+          ]
+        },
+        "options": {
+          "temperature": 0.7,
+          "maxTokens": 2000,
+          "responseFormat": {
+            "type": "json_object"
+          }
+        }
+      },
+      "id": "openai-gpt4",
+      "name": "OpenAI GPT-4 Analysis",
+      "type": "n8n-nodes-base.openAi",
+      "typeVersion": 1,
+      "position": [650, 200],
+      "credentials": {
+        "openAiApi": {
+          "id": "1",
+          "name": "OpenAI API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "message",
+        "model": "claude-3-opus-20240229",
+        "messages": {
+          "values": [
+            {
+              "role": "user",
+              "content": "Topic: {{ $json.topic }}\nContext: {{ $json.context }}\n\nAs Claude, provide unique insights that might be overlooked, focusing on:\n1. Ethical considerations\n2. Long-term implications\n3. Human-centered approach\n4. Risk mitigation\n5. Innovation opportunities\n\nStructure your response as JSON with clear sections."
+            }
+          ]
+        },
+        "options": {
+          "maxTokens": 2000,
+          "temperature": 0.8
+        }
+      },
+      "id": "anthropic-claude",
+      "name": "Anthropic Claude Analysis",
+      "type": "n8n-nodes-base.anthropic",
+      "typeVersion": 1,
+      "position": [650, 350],
+      "credentials": {
+        "anthropicApi": {
+          "id": "2",
+          "name": "Anthropic API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.gemini.google.com/v1/generateContent",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "X-API-Key",
+              "value": "={{ $credentials.apiKey }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "prompt",
+              "value": "Analyze: {{ $json.topic }}\nContext: {{ $json.context }}\n\nProvide data-driven insights with quantitative analysis, benchmarks, and industry comparisons. Format as JSON."
+            },
+            {
+              "name": "model",
+              "value": "gemini-pro"
+            }
+          ]
+        },
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          }
+        }
+      },
+      "id": "google-gemini",
+      "name": "Google Gemini Analysis",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [650, 500]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.perplexity.ai/chat/completions",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer {{ $credentials.apiKey }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "model",
+              "value": "pplx-70b-online"
+            },
+            {
+              "name": "messages",
+              "value": "[{\"role\":\"user\",\"content\":\"Research and analyze: {{ $json.topic }}\\nProvide recent data, case studies, and current best practices. Include sources.\"}]"
+            }
+          ]
+        }
+      },
+      "id": "perplexity-research",
+      "name": "Perplexity Research",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [650, 650]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Aggregate and synthesize all AI responses\nconst items = $input.all();\n\nconst topic = items[0].json.topic;\nconst context = items[0].json.context;\nconst sessionId = items[0].json.session_id;\n\n// Parse AI responses\nconst responses = {\n  gpt4: items[0].json,\n  claude: items[1].json,\n  gemini: items[2].json,\n  perplexity: items[3].json\n};\n\n// Extract key themes across all responses\nfunction extractThemes(responses) {\n  const themes = new Map();\n  \n  Object.values(responses).forEach(response => {\n    // Extract keywords and concepts\n    const text = JSON.stringify(response);\n    const keywords = text.match(/\\b[A-Z][a-z]+\\b/g) || [];\n    \n    keywords.forEach(keyword => {\n      themes.set(keyword, (themes.get(keyword) || 0) + 1);\n    });\n  });\n  \n  // Return top themes\n  return Array.from(themes.entries())\n    .sort((a, b) => b[1] - a[1])\n    .slice(0, 10)\n    .map(([theme, count]) => ({ theme, frequency: count }));\n}\n\n// Identify consensus points\nfunction findConsensus(responses) {\n  const consensus = [];\n  const allPoints = [];\n  \n  Object.entries(responses).forEach(([ai, response]) => {\n    if (response.recommendations) {\n      allPoints.push(...response.recommendations);\n    }\n  });\n  \n  // Find points mentioned by multiple AIs\n  const pointFrequency = {};\n  allPoints.forEach(point => {\n    const key = point.toLowerCase().substring(0, 50);\n    pointFrequency[key] = (pointFrequency[key] || 0) + 1;\n  });\n  \n  Object.entries(pointFrequency).forEach(([point, freq]) => {\n    if (freq >= 2) {\n      consensus.push({\n        point: point,\n        agreement_level: freq,\n        strength: freq >= 3 ? 'strong' : 'moderate'\n      });\n    }\n  });\n  \n  return consensus;\n}\n\n// Generate action items\nfunction generateActionItems(responses, consensus) {\n  const actionItems = [];\n  \n  // High-priority items from consensus\n  consensus.forEach((item, index) => {\n    if (item.strength === 'strong') {\n      actionItems.push({\n        priority: 'high',\n        title: `Consensus Action ${index + 1}`,\n        description: item.point,\n        source: 'multi-ai-consensus',\n        confidence: 0.9\n      });\n    }\n  });\n  \n  // Unique insights from each AI\n  if (responses.claude?.ethical_considerations) {\n    actionItems.push({\n      priority: 'medium',\n      title: 'Ethical Review Required',\n      description: responses.claude.ethical_considerations[0],\n      source: 'claude',\n      confidence: 0.8\n    });\n  }\n  \n  if (responses.gemini?.benchmarks) {\n    actionItems.push({\n      priority: 'medium',\n      title: 'Benchmark Implementation',\n      description: `Implement industry benchmarks: ${responses.gemini.benchmarks}`,\n      source: 'gemini',\n      confidence: 0.85\n    });\n  }\n  \n  if (responses.perplexity?.case_studies) {\n    actionItems.push({\n      priority: 'low',\n      title: 'Case Study Review',\n      description: 'Review relevant case studies for implementation patterns',\n      source: 'perplexity',\n      confidence: 0.75\n    });\n  }\n  \n  return actionItems;\n}\n\n// Calculate confidence scores\nfunction calculateConfidence(responses) {\n  let totalConfidence = 0;\n  let validResponses = 0;\n  \n  Object.values(responses).forEach(response => {\n    if (response && Object.keys(response).length > 0) {\n      validResponses++;\n      // Assess response quality\n      const hasStructure = response.recommendations || response.insights;\n      const hasData = response.metrics || response.benchmarks;\n      totalConfidence += hasStructure ? 0.5 : 0;\n      totalConfidence += hasData ? 0.5 : 0;\n    }\n  });\n  \n  return validResponses > 0 ? totalConfidence / validResponses : 0;\n}\n\n// Build collaborative analysis\nconst themes = extractThemes(responses);\nconst consensus = findConsensus(responses);\nconst actionItems = generateActionItems(responses, consensus);\nconst confidence = calculateConfidence(responses);\n\n// Create synthesis report\nconst synthesis = {\n  session_id: sessionId,\n  topic: topic,\n  context: context,\n  analysis_date: new Date().toISOString(),\n  \n  ai_responses: {\n    gpt4: responses.gpt4,\n    claude: responses.claude,\n    gemini: responses.gemini,\n    perplexity: responses.perplexity\n  },\n  \n  synthesis: {\n    key_themes: themes,\n    consensus_points: consensus,\n    confidence_score: confidence,\n    response_quality: {\n      gpt4: responses.gpt4 ? 'complete' : 'failed',\n      claude: responses.claude ? 'complete' : 'failed',\n      gemini: responses.gemini ? 'complete' : 'failed',\n      perplexity: responses.perplexity ? 'complete' : 'failed'\n    }\n  },\n  \n  insights: {\n    primary: consensus.filter(c => c.strength === 'strong').map(c => c.point),\n    secondary: consensus.filter(c => c.strength === 'moderate').map(c => c.point),\n    unique: {\n      gpt4: 'Strategic implementation focus',\n      claude: 'Human-centered considerations',\n      gemini: 'Data-driven benchmarks',\n      perplexity: 'Current market research'\n    }\n  },\n  \n  action_items: actionItems,\n  \n  recommendations: {\n    immediate: actionItems.filter(a => a.priority === 'high'),\n    short_term: actionItems.filter(a => a.priority === 'medium'),\n    long_term: actionItems.filter(a => a.priority === 'low')\n  }\n};\n\nreturn synthesis;"
+      },
+      "id": "synthesize-responses",
+      "name": "AI Response Synthesizer",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [850, 400]
+    },
+    {
+      "parameters": {
+        "resource": "chatCompletion",
+        "model": "gpt-4-turbo-preview",
+        "messages": {
+          "values": [
+            {
+              "role": "system",
+              "content": "You are a meta-analysis AI that synthesizes multiple AI perspectives into actionable insights."
+            },
+            {
+              "role": "user",
+              "content": "Synthesize these AI responses into a final executive summary:\n\n{{ JSON.stringify($json.ai_responses) }}\n\nConsensus points: {{ JSON.stringify($json.synthesis.consensus_points) }}\n\nCreate:\n1. Executive summary (3 sentences)\n2. Critical insights (top 5)\n3. Risk factors to monitor\n4. Success metrics\n5. 30-60-90 day roadmap"
+            }
+          ]
+        },
+        "options": {
+          "temperature": 0.5,
+          "maxTokens": 1500
+        }
+      },
+      "id": "meta-analysis",
+      "name": "Meta-Analysis Generator",
+      "type": "n8n-nodes-base.openAi",
+      "typeVersion": 1,
+      "position": [1050, 400]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Generate actionable tasks from synthesis\nconst synthesis = $input.first().json;\nconst metaAnalysis = $input.last().json;\n\nconst tasks = [];\n\n// Convert high-priority action items to tasks\nsynthesis.action_items.forEach((item, index) => {\n  const task = {\n    title: item.title,\n    description: item.description,\n    priority: item.priority,\n    status: 'pending',\n    assigned_to: item.priority === 'high' ? 'founder' : 'team',\n    due_date: calculateDueDate(item.priority),\n    source: `AI Collaboration: ${item.source}`,\n    confidence: item.confidence,\n    category: determineCategory(item.title),\n    tags: extractTags(item.description),\n    session_id: synthesis.session_id,\n    created_at: new Date().toISOString()\n  };\n  \n  tasks.push(task);\n});\n\n// Add tasks from meta-analysis roadmap\nif (metaAnalysis.roadmap) {\n  const roadmapTasks = parseRoadmap(metaAnalysis.roadmap);\n  tasks.push(...roadmapTasks);\n}\n\n// Helper functions\nfunction calculateDueDate(priority) {\n  const date = new Date();\n  switch(priority) {\n    case 'high':\n      date.setDate(date.getDate() + 7);\n      break;\n    case 'medium':\n      date.setDate(date.getDate() + 14);\n      break;\n    case 'low':\n      date.setDate(date.getDate() + 30);\n      break;\n  }\n  return date.toISOString().split('T')[0];\n}\n\nfunction determineCategory(title) {\n  if (title.includes('Review') || title.includes('Audit')) return 'assessment';\n  if (title.includes('Implement') || title.includes('Deploy')) return 'implementation';\n  if (title.includes('Monitor') || title.includes('Track')) return 'monitoring';\n  if (title.includes('Research') || title.includes('Study')) return 'research';\n  return 'general';\n}\n\nfunction extractTags(description) {\n  const tags = [];\n  if (description.includes('customer')) tags.push('customer-success');\n  if (description.includes('retention')) tags.push('retention');\n  if (description.includes('automation')) tags.push('automation');\n  if (description.includes('metric') || description.includes('KPI')) tags.push('metrics');\n  if (description.includes('risk')) tags.push('risk-management');\n  return tags;\n}\n\nfunction parseRoadmap(roadmap) {\n  // This would parse the roadmap text and create structured tasks\n  // Simplified for example\n  return [];\n}\n\nreturn tasks;"
+      },
+      "id": "generate-tasks",
+      "name": "Task Generator",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1250, 400]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://coda.io/apis/v1/docs/{{ $credentials.docId }}/tables/Tasks/rows",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer {{ $credentials.apiToken }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "rows",
+              "value": "={{ $json }}"
+            }
+          ]
+        }
+      },
+      "id": "create-coda-tasks",
+      "name": "Create Tasks in Coda",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [1450, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "{{ $credentials.slackWebhook }}",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "text",
+              "value": "🤖 AI Collaboration Complete"
+            },
+            {
+              "name": "blocks",
+              "value": "[\n  {\n    \"type\": \"header\",\n    \"text\": {\n      \"type\": \"plain_text\",\n      \"text\": \"AI Collaboration Analysis: {{ $('set-parameters').item.json.topic }}\"\n    }\n  },\n  {\n    \"type\": \"section\",\n    \"fields\": [\n      {\n        \"type\": \"mrkdwn\",\n        \"text\": \"*Confidence Score:* {{ $('synthesize-responses').item.json.synthesis.confidence_score }}\"\n      },\n      {\n        \"type\": \"mrkdwn\",\n        \"text\": \"*Consensus Points:* {{ $('synthesize-responses').item.json.synthesis.consensus_points.length }}\"\n      },\n      {\n        \"type\": \"mrkdwn\",\n        \"text\": \"*Tasks Created:* {{ $('generate-tasks').item.json.length }}\"\n      },\n      {\n        \"type\": \"mrkdwn\",\n        \"text\": \"*AIs Consulted:* GPT-4, Claude, Gemini, Perplexity\"\n      }\n    ]\n  },\n  {\n    \"type\": \"section\",\n    \"text\": {\n      \"type\": \"mrkdwn\",\n      \"text\": \"*Key Insights:*\\n{{ $('synthesize-responses').item.json.insights.primary.join('\\n• ') }}\"\n    }\n  },\n  {\n    \"type\": \"actions\",\n    \"elements\": [\n      {\n        \"type\": \"button\",\n        \"text\": {\n          \"type\": \"plain_text\",\n          \"text\": \"View Full Report\"\n        },\n        \"url\": \"https://coda.io/d/{{ $credentials.docId }}#AI-Analysis\"\n      }\n    ]\n  }\n]"
+            }
+          ]
+        }
+      },
+      "id": "notify-slack",
+      "name": "Notify Slack",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [1450, 500]
+    },
+    {
+      "parameters": {
+        "operation": "create",
+        "collection": "ai_collaboration_sessions",
+        "fields": {
+          "values": [
+            {
+              "name": "session_id",
+              "value": "={{ $json.session_id }}"
+            },
+            {
+              "name": "topic",
+              "value": "={{ $json.topic }}"
+            },
+            {
+              "name": "synthesis",
+              "value": "={{ JSON.stringify($json.synthesis) }}"
+            },
+            {
+              "name": "insights",
+              "value": "={{ JSON.stringify($json.insights) }}"
+            },
+            {
+              "name": "tasks_created",
+              "value": "={{ $json.action_items.length }}"
+            },
+            {
+              "name": "timestamp",
+              "value": "={{ $json.analysis_date }}"
+            }
+          ]
+        }
+      },
+      "id": "store-mongodb",
+      "name": "Store in MongoDB",
+      "type": "n8n-nodes-base.mongoDb",
+      "typeVersion": 1,
+      "position": [1250, 600]
+    }
+  ],
+  "connections": {
+    "trigger-schedule": {
+      "main": [
+        [
+          {
+            "node": "set-parameters",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "webhook-trigger": {
+      "main": [
+        [
+          {
+            "node": "set-parameters",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "set-parameters": {
+      "main": [
+        [
+          {
+            "node": "openai-gpt4",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "anthropic-claude",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "google-gemini",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "perplexity-research",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "openai-gpt4": {
+      "main": [
+        [
+          {
+            "node": "synthesize-responses",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "anthropic-claude": {
+      "main": [
+        [
+          {
+            "node": "synthesize-responses",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "google-gemini": {
+      "main": [
+        [
+          {
+            "node": "synthesize-responses",
+            "type": "main",
+            "index": 2
+          }
+        ]
+      ]
+    },
+    "perplexity-research": {
+      "main": [
+        [
+          {
+            "node": "synthesize-responses",
+            "type": "main",
+            "index": 3
+          }
+        ]
+      ]
+    },
+    "synthesize-responses": {
+      "main": [
+        [
+          {
+            "node": "meta-analysis",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "store-mongodb",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "meta-analysis": {
+      "main": [
+        [
+          {
+            "node": "generate-tasks",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "generate-tasks": {
+      "main": [
+        [
+          {
+            "node": "create-coda-tasks",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "notify-slack",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionTimeout": 300,
+    "maxExecutionTime": 300,
+    "saveDataSuccessExecution": "all",
+    "saveExecutionProgress": true,
+    "saveManualExecutions": true
+  },
+  "staticData": null,
+  "tags": [
+    {
+      "id": 1,
+      "name": "ai-collaboration"
+    },
+    {
+      "id": 2,
+      "name": "multi-model"
+    }
+  ],
+  "triggerCount": 1,
+  "updatedAt": "2024-11-24T12:00:00.000Z",
+  "versionId": "1"
+}

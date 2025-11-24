@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services - IntegrateWise | Integration Advisory & Implementation</title>
+    <link rel="icon" type="image/svg+xml" href="images/logo/favicon.svg">
+    <link rel="alternate icon" href="images/logo/favicon.svg">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Page Loader -->
+    <div class="page-loader"></div>
+    
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-wrapper">
+                <div class="logo">
+                    <img src="images/logo/integratewise-logo.svg" alt="IntegrateWise" class="logo-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';">
+                    <span class="logo-text" style="display:none;">IntegrateWise</span>
+                </div>
+                <div class="nav-menu" id="navMenu">
+                    <a href="index.html" class="nav-link">Home</a>
+                    <a href="about.html" class="nav-link">About</a>
+                    <a href="services.html" class="nav-link active">Services</a>
+                    <a href="case-studies.html" class="nav-link">Case Studies</a>
+                    <a href="resources.html" class="nav-link">Resources</a>
+                    <a href="contact.html" class="nav-link">Contact</a>
+                    <a href="contact.html" class="btn btn-primary nav-cta">Get Started</a>
+                </div>
+                <div class="mobile-toggle" id="mobileToggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Our Services</h1>
+            <p class="page-subtitle">Comprehensive integration solutions tailored to your needs</p>
+        </div>
+    </section>
+
+    <!-- Service Categories -->
+    <section class="service-categories">
+        <div class="container">
+            <div class="category-tabs">
+                <button class="tab-button active" data-category="advisory">Advisory Services</button>
+                <button class="tab-button" data-category="implementation">Implementation</button>
+                <button class="tab-button" data-category="platform">Success Platform</button>
+                <button class="tab-button" data-category="training">Training Academy</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Advisory Services -->
+    <section id="advisory" class="service-detail-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Advisory Services</h2>
+                <p>Strategic guidance to optimize your integration architecture and reduce costs</p>
+            </div>
+
+            <div class="service-detail-grid">
+                <!-- Integration Health Check -->
+                <div id="health-check" class="service-detail-card">
+                    <div class="service-detail-header">
+                        <h3>Integration Health Check</h3>
+                        <div class="service-meta">
+                            <span class="duration">48 Hours</span>
+                            <span class="price">₹45,000</span>
+                        </div>
+                    </div>
+                    <p class="service-description">
+                        Comprehensive audit of your integration architecture to identify risks, optimization opportunities, 
+                        and cost savings. Perfect for organizations looking to validate their integration strategy or 
+                        troubleshoot performance issues.
+                    </p>
+                    <div class="service-deliverables">
+                        <h4>What You Get:</h4>
+                        <ul>
+                            <li>Complete architecture review and documentation</li>
+                            <li>TCO analysis with 3-year projections</li>
+                            <li>Risk assessment with mitigation strategies</li>
+                            <li>Performance optimization recommendations</li>
+                            <li>Executive brief with prioritized roadmap</li>
+                            <li>30-minute presentation to stakeholders</li>
+                        </ul>
+                    </div>
+                    <div class="service-process">
+                        <h4>Our Process:</h4>
+                        <ol>
+                            <li><strong>Discovery Call (2 hours):</strong> Understand your current state and challenges</li>
+                            <li><strong>Analysis (Day 1):</strong> Review architecture, identify gaps and opportunities</li>
+                            <li><strong>Documentation (Day 2):</strong> Create comprehensive report and recommendations</li>
+                            <li><strong>Delivery:</strong> Present findings and answer questions</li>
+                        </ol>
+                    </div>
+                    <a href="contact.html" class="btn btn-primary">Schedule Health Check</a>
+                </div>
+
+                <!-- Automation Accelerator -->
+                <div id="accelerator" class="service-detail-card">
+                    <div class="service-detail-header">
+                        <h3>Automation Accelerator</h3>
+                        <div class="service-meta">
+                            <span class="duration">5 Days</span>
+                            <span class="price">₹75,000</span>
+                        </div>
+                    </div>
+                    <p class="service-description">
+                        Rapid implementation of your priority workflows with production-ready automation. Ideal for 
+                        teams looking to quickly demonstrate ROI or address urgent integration needs.
+                    </p>
+                    <div class="service-deliverables">
+                        <h4>What You Get:</h4>
+                        <ul>
+                            <li>3-5 priority workflows automated end-to-end</li>
+                            <li>Platform setup and configuration</li>
+                            <li>Error handling and monitoring setup</li>
+                            <li>Complete documentation and runbooks</li>
+                            <li>Team training (up to 5 users)</li>
+                            <li>30 days of post-implementation support</li>
+                        </ul>
+                    </div>
+                    <div class="service-process">
+                        <h4>Our Process:</h4>
+                        <ol>
+                            <li><strong>Day 1:</strong> Requirements gathering and platform setup</li>
+                            <li><strong>Days 2-3:</strong> Workflow development and testing</li>
+                            <li><strong>Day 4:</strong> Deployment and monitoring setup</li>
+                            <li><strong>Day 5:</strong> Training and handover</li>
+                        </ol>
+                    </div>
+                    <a href="contact.html" class="btn btn-primary">Start Your Accelerator</a>
+                </div>
+
+                <!-- Enterprise Strategy -->
+                <div id="strategy" class="service-detail-card">
+                    <div class="service-detail-header">
+                        <h3>Enterprise Integration Strategy</h3>
+                        <div class="service-meta">
+                            <span class="duration">10 Days</span>
+                            <span class="price">₹1,25,000</span>
+                        </div>
+                    </div>
+                    <p class="service-description">
+                        Comprehensive integration strategy aligned with your business objectives. Perfect for organizations 
+                        planning major digital transformation or consolidating their integration landscape.
+                    </p>
+                    <div class="service-deliverables">
+                        <h4>What You Get:</h4>
+                        <ul>
+                            <li>Platform selection with detailed comparison</li>
+                            <li>3-year integration roadmap with milestones</li>
+                            <li>Governance framework and best practices</li>
+                            <li>Team structure and skill requirements</li>
+                            <li>Budget estimates and ROI projections</li>
+                            <li>Vendor evaluation and negotiation support</li>
+                            <li>Executive workshop (half-day)</li>
+                        </ul>
+                    </div>
+                    <div class="service-process">
+                        <h4>Our Process:</h4>
+                        <ol>
+                            <li><strong>Week 1:</strong> Discovery, stakeholder interviews, current state assessment</li>
+                            <li><strong>Week 2:</strong> Future state design, platform evaluation, strategy development</li>
+                            <li><strong>Delivery:</strong> Present strategy, conduct workshop, finalize roadmap</li>
+                        </ol>
+                    </div>
+                    <a href="contact.html" class="btn btn-primary">Design Your Strategy</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Implementation Services -->
+    <section id="implementation" class="service-detail-section hidden">
+        <div class="container">
+            <div class="section-header">
+                <h2>Implementation Services</h2>
+                <p>End-to-end implementation with fixed timelines and transparent pricing</p>
+            </div>
+
+            <div class="service-packages">
+                <!-- Platform Implementations -->
+                <div class="package-category">
+                    <h3>Enterprise Platform Implementation</h3>
+                    <div class="package-grid">
+                        <div class="package-card">
+                            <h4>MuleSoft Anypoint</h4>
+                            <ul>
+                                <li>Platform setup and configuration</li>
+                                <li>API-led connectivity implementation</li>
+                                <li>3-5 API packages delivered</li>
+                                <li>CloudHub optimization</li>
+                            </ul>
+                            <p class="package-price">Starting at ₹3,50,000</p>
+                        </div>
+                        <div class="package-card">
+                            <h4>Boomi AtomSphere</h4>
+                            <ul>
+                                <li>Environment setup and atoms deployment</li>
+                                <li>Master Data Management configuration</li>
+                                <li>B2B/EDI gateway setup</li>
+                                <li>Process library development</li>
+                            </ul>
+                            <p class="package-price">Starting at ₹3,00,000</p>
+                        </div>
+                        <div class="package-card">
+                            <h4>Workato</h4>
+                            <ul>
+                                <li>Workspace configuration</li>
+                                <li>5-10 recipes implementation</li>
+                                <li>Custom connector development</li>
+                                <li>Embedded integration setup</li>
+                            </ul>
+                            <p class="package-price">Starting at ₹2,50,000</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Salesforce Solutions -->
+                <div class="package-category">
+                    <h3>Salesforce Integration Solutions</h3>
+                    <div class="package-grid">
+                        <div class="package-card">
+                            <h4>Data Cloud Implementation</h4>
+                            <ul>
+                                <li>Architecture and data model design</li>
+                                <li>Data ingestion setup</li>
+                                <li>Calculated insights configuration</li>
+                                <li>Activation to Sales/Marketing Cloud</li>
+                            </ul>
+                            <p class="package-price">Starting at ₹4,00,000</p>
+                        </div>
+                        <div class="package-card">
+                            <h4>Copado DevOps</h4>
+                            <ul>
+                                <li>Pipeline configuration</li>
+                                <li>Branch management setup</li>
+                                <li>Quality gates implementation</li>
+                                <li>Team training and adoption</li>
+                            </ul>
+                            <p class="package-price">Starting at ₹2,00,000</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Low-Code Solutions -->
+                <div class="package-category">
+                    <h3>Low-Code Platform Setup</h3>
+                    <div class="package-grid">
+                        <div class="package-card">
+                            <h4>Make (Integromat)</h4>
+                            <ul>
+                                <li>Organization setup</li>
+                                <li>10-15 scenario development</li>
+                                <li>Custom app integration</li>
+                                <li>Team training</li>
+                            </ul>
+                            <p class="package-price">Starting at ₹1,50,000</p>
+                        </div>
+                        <div class="package-card">
+                            <h4>n8n (Self-Hosted)</h4>
+                            <ul>
+                                <li>Infrastructure setup</li>
+                                <li>Workflow migration</li>
+                                <li>Custom node development</li>
+                                <li>Security configuration</li>
+                            </ul>
+                            <p class="package-price">Starting at ₹1,75,000</p>
+                        </div>
+                        <div class="package-card">
+                            <h4>Zapier</h4>
+                            <ul>
+                                <li>Account optimization</li>
+                                <li>Complex zap development</li>
+                                <li>Custom integrations</li>
+                                <li>Performance tuning</li>
+                            </ul>
+                            <p class="package-price">Starting at ₹1,00,000</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Success Platform -->
+    <section id="platform" class="service-detail-section hidden">
+        <div class="container">
+            <div class="section-header">
+                <h2>Customer Success Intelligence Platform</h2>
+                <p>Proven framework for managing enterprise accounts and strategic initiatives</p>
+            </div>
+
+            <div class="platform-overview">
+                <div class="platform-description">
+                    <p>
+                        Our Customer Success Intelligence Platform is a comprehensive solution for managing enterprise 
+                        accounts, tracking strategic objectives, and driving measurable outcomes. Built on proven 
+                        frameworks that currently manage portfolios worth millions, this platform transforms how you 
+                        engage with and deliver value to your key accounts.
+                    </p>
+                </div>
+
+                <div class="platform-features">
+                    <div class="feature-category">
+                        <h3>Core Modules</h3>
+                        <ul>
+                            <li><strong>Account Intelligence:</strong> 360-degree view of account health and engagement</li>
+                            <li><strong>Strategic Objectives:</strong> Track and manage client initiatives with KPIs</li>
+                            <li><strong>Risk Management:</strong> Proactive identification and mitigation</li>
+                            <li><strong>Platform Health:</strong> Real-time monitoring and optimization</li>
+                            <li><strong>Stakeholder Mapping:</strong> Relationship tracking and engagement</li>
+                        </ul>
+                    </div>
+
+                    <div class="feature-category">
+                        <h3>Industry Templates</h3>
+                        <div class="industry-templates">
+                            <div class="template-item">
+                                <h4>Financial Services</h4>
+                                <p>Compliance tracking, risk management, regulatory reporting</p>
+                            </div>
+                            <div class="template-item">
+                                <h4>Healthcare</h4>
+                                <p>HIPAA compliance, patient outcomes, clinical integration</p>
+                            </div>
+                            <div class="template-item">
+                                <h4>Logistics</h4>
+                                <p>Shipment tracking, ESG reporting, multi-modal optimization</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="platform-packages">
+                    <h3>Available Packages</h3>
+                    <div class="package-comparison">
+                        <div class="comparison-card">
+                            <h4>Platform License</h4>
+                            <p class="package-price">₹4,999</p>
+                            <ul>
+                                <li>Full platform access</li>
+                                <li>3 industry templates</li>
+                                <li>Setup documentation</li>
+                                <li>30-minute onboarding</li>
+                            </ul>
+                            <a href="contact.html" class="btn btn-outline">Get License</a>
+                        </div>
+                        <div class="comparison-card featured">
+                            <h4>Implementation Package</h4>
+                            <p class="package-price">₹35,000</p>
+                            <ul>
+                                <li>Platform license included</li>
+                                <li>Custom configuration</li>
+                                <li>Data migration (5 accounts)</li>
+                                <li>Team training (10 users)</li>
+                                <li>30-day support</li>
+                            </ul>
+                            <a href="contact.html" class="btn btn-primary">Get Started</a>
+                        </div>
+                        <div class="comparison-card">
+                            <h4>Enterprise</h4>
+                            <p class="package-price">Custom</p>
+                            <ul>
+                                <li>Unlimited accounts</li>
+                                <li>Custom modules</li>
+                                <li>API access</li>
+                                <li>Dedicated support</li>
+                                <li>Quarterly reviews</li>
+                            </ul>
+                            <a href="contact.html" class="btn btn-outline">Contact Sales</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Training Academy -->
+    <section id="training" class="service-detail-section hidden">
+        <div class="container">
+            <div class="section-header">
+                <h2>IntegrateWise Academy</h2>
+                <p>Build integration expertise through hands-on training and certification</p>
+            </div>
+
+            <div class="training-programs">
+                <div class="program-category">
+                    <h3>Integration Bootcamps</h3>
+                    <div class="program-grid">
+                        <div class="program-card">
+                            <h4>MuleSoft Developer Bootcamp</h4>
+                            <p class="program-duration">4 Weeks • Online/Hybrid</p>
+                            <p>Comprehensive training from API fundamentals to advanced DataWeave</p>
+                            <ul>
+                                <li>40 hours of live instruction</li>
+                                <li>Hands-on labs and projects</li>
+                                <li>Certification preparation</li>
+                                <li>Job placement assistance</li>
+                            </ul>
+                            <p class="program-price">₹45,000 per seat</p>
+                        </div>
+                        <div class="program-card">
+                            <h4>Low-Code Integration Masterclass</h4>
+                            <p class="program-duration">2 Weeks • Online</p>
+                            <p>Master Make, n8n, and Zapier for rapid automation delivery</p>
+                            <ul>
+                                <li>20 hours of instruction</li>
+                                <li>Real-world scenarios</li>
+                                <li>Platform comparison</li>
+                                <li>Best practices guide</li>
+                            </ul>
+                            <p class="program-price">₹25,000 per seat</p>
+                        </div>
+                        <div class="program-card">
+                            <h4>API Architecture Workshop</h4>
+                            <p class="program-duration">3 Days • In-Person</p>
+                            <p>Design scalable API-led architectures for enterprise integration</p>
+                            <ul>
+                                <li>Architecture patterns</li>
+                                <li>Security best practices</li>
+                                <li>Governance frameworks</li>
+                                <li>Case study workshop</li>
+                            </ul>
+                            <p class="program-price">₹35,000 per seat</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="program-category">
+                    <h3>Corporate Training</h3>
+                    <div class="corporate-options">
+                        <div class="corporate-card">
+                            <h4>Custom Training Programs</h4>
+                            <p>Tailored curriculum for your team's specific needs</p>
+                            <ul>
+                                <li>Platform-specific training</li>
+                                <li>Role-based learning paths</li>
+                                <li>On-site or virtual delivery</li>
+                                <li>Ongoing mentorship</li>
+                            </ul>
+                            <p class="corporate-price">Starting at ₹2,00,000</p>
+                        </div>
+                        <div class="corporate-card">
+                            <h4>Integration CoE Setup</h4>
+                            <p>Establish your Center of Excellence with our guidance</p>
+                            <ul>
+                                <li>CoE framework design</li>
+                                <li>Process documentation</li>
+                                <li>Team enablement</li>
+                                <li>Quarterly reviews</li>
+                            </ul>
+                            <p class="corporate-price">Starting at ₹5,00,000</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ready to Transform Your Integration Strategy?</h2>
+                <p>Let's discuss which service best fits your needs</p>
+                <div class="cta-actions">
+                    <a href="contact.html" class="btn btn-white btn-large">Schedule Consultation</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <img src="images/logo/integratewise-logo.svg" alt="IntegrateWise" class="logo-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';">
+                        <span class="logo-text" style="display:none;">IntegrateWise</span>
+                    </div>
+                    <p class="footer-tagline">Your Integration Architect, Not a Platform Reseller</p>
+                    <p class="footer-description">Platform-agnostic integration advisory helping enterprises connect systems and drive outcomes.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Services</h4>
+                    <ul class="footer-links">
+                        <li><a href="services.html#health-check">Integration Health Check</a></li>
+                        <li><a href="services.html#accelerator">Automation Accelerator</a></li>
+                        <li><a href="services.html#strategy">Enterprise Strategy</a></li>
+                        <li><a href="services.html#platform">Success Platform</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Company</h4>
+                    <ul class="footer-links">
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="case-studies.html">Case Studies</a></li>
+                        <li><a href="resources.html">Resources</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Connect</h4>
+                    <ul class="footer-links">
+                        <li><a href="https://linkedin.com/company/integratewise" target="_blank">LinkedIn</a></li>
+                        <li><a href="mailto:info@integratewise.com">info@integratewise.com</a></li>
+                        <li><a href="tel:+919999999999">+91 99999 99999</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 IntegrateWise LLP. All rights reserved.</p>
+                <div class="footer-legal">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Service category tabs
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabButtons = document.querySelectorAll('.tab-button');
+            const sections = document.querySelectorAll('.service-detail-section');
+            
+            tabButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const category = this.dataset.category;
+                    
+                    // Update active tab
+                    tabButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Show corresponding section
+                    sections.forEach(section => {
+                        if (section.id === category) {
+                            section.classList.remove('hidden');
+                        } else {
+                            section.classList.add('hidden');
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>

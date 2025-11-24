@@ -1,0 +1,339 @@
+{
+  "workflows": {
+    "integratewise_ops": {
+      "lead_capture": {
+        "enabled": true,
+        "trigger": {
+          "type": "webhook",
+          "sources": ["website_form", "linkedin", "email"]
+        },
+        "actions": [
+          {
+            "name": "parse_lead_data",
+            "fields": ["name", "email", "company", "interest_area", "source"]
+          },
+          {
+            "name": "create_airtable_lead",
+            "table": "Leads",
+            "check_duplicates": true
+          },
+          {
+            "name": "send_autoresponse",
+            "template": "lead_acknowledgment"
+          },
+          {
+            "name": "slack_notification",
+            "channel": "#new-leads"
+          },
+          {
+            "name": "assign_lead",
+            "rules": {
+              "mulesoft": "nirmal",
+              "salesforce": "tbd",
+              "low_code": "tbd"
+            }
+          }
+        ],
+        "integrations": {
+          "airtable": {
+            "tables": ["Leads", "Contacts"],
+            "operations": ["read", "write"]
+          },
+          "gmail": {
+            "operations": ["send"]
+          },
+          "slack": {
+            "webhooks": ["new-leads"]
+          }
+        }
+      },
+      "client_onboarding": {
+        "enabled": true,
+        "trigger": {
+          "type": "airtable_status_change",
+          "field": "Deal_Status",
+          "value": "Closed-Won"
+        },
+        "actions": [
+          {
+            "name": "create_project",
+            "platform": "airtable",
+            "table": "Projects",
+            "initial_status": "Kickoff"
+          },
+          {
+            "name": "generate_checklist",
+            "platform": "coda",
+            "template": "onboarding_checklist",
+            "items": ["SOW_signing", "kickoff_meeting", "access_provisioning", "baseline_documentation"]
+          },
+          {
+            "name": "send_welcome_email",
+            "template": "client_welcome"
+          },
+          {
+            "name": "create_calendar_events",
+            "type": "recurring_weekly"
+          },
+          {
+            "name": "setup_box_folders",
+            "structure": {
+              "root": "/IntegrateWise/Clients/[Client_Name]/[Project_Name]",
+              "subfolders": ["Deliverables", "Meetings", "Artifacts"]
+            }
+          }
+        ]
+      },
+      "project_tracking": {
+        "enabled": true,
+        "trigger": {
+          "type": "status_update",
+          "platforms": ["coda", "airtable"]
+        },
+        "milestones": [25, 50, 75, 100],
+        "overdue_escalation": {
+          "reminder_days": 0,
+          "escalation_days": 3
+        },
+        "weekly_report": {
+          "schedule": "friday_5pm_ist",
+          "metrics": ["health_status", "completed_vs_planned", "blockers"]
+        }
+      },
+      "invoicing": {
+        "enabled": true,
+        "trigger": {
+          "type": "multiple",
+          "conditions": ["milestone_complete", "monthly_1st"]
+        },
+        "calculation": {
+          "fixed": "deal_value * milestone_percentage",
+          "time_and_materials": "sum(hours * hourly_rate)"
+        },
+        "tax": {
+          "gst": 0.18
+        },
+        "payment_reminder": {
+          "days_before_due": 3
+        }
+      }
+    },
+    "personal_finance": {
+      "emi_scheduling": {
+        "enabled": true,
+        "schedule": {
+          "frequency": "monthly",
+          "day": 1,
+          "time": "07:00",
+          "timezone": "Asia/Kolkata"
+        },
+        "actions": [
+          {
+            "name": "calculate_emi",
+            "components": ["principal", "interest"]
+          },
+          {
+            "name": "update_balance",
+            "formula": "previous_balance - principal_paid"
+          },
+          {
+            "name": "log_transaction",
+            "table": "Transactions"
+          },
+          {
+            "name": "send_reminders",
+            "channels": ["email", "sms", "calendar"]
+          }
+        ]
+      },
+      "debt_consolidation": {
+        "enabled": true,
+        "schedule": {
+          "frequency": "weekly",
+          "day": "sunday",
+          "time": "20:00",
+          "timezone": "Asia/Kolkata"
+        },
+        "calculations": [
+          "total_outstanding",
+          "weighted_avg_interest",
+          "debt_free_projection"
+        ],
+        "optimizations": {
+          "prepayment_threshold": "high_interest",
+          "transfer_threshold": 0.02
+        }
+      },
+      "gst_automation": {
+        "enabled": true,
+        "schedule": {
+          "frequency": "monthly",
+          "day": 5,
+          "for_month": "previous"
+        },
+        "gst_rates": [0.05, 0.12, 0.18, 0.28],
+        "filing": {
+          "report": "GSTR-1",
+          "payment_due": 20
+        }
+      },
+      "zoho_books_sync": {
+        "enabled": true,
+        "schedule": {
+          "frequency": "daily",
+          "time": "23:00",
+          "timezone": "Asia/Kolkata"
+        },
+        "categorization": {
+          "rules": ["merchant_name", "amount_pattern", "history"]
+        },
+        "reconciliation": {
+          "mismatch_threshold": 100,
+          "currency": "INR"
+        }
+      }
+    },
+    "cross_platform_sync": {
+      "coda_notion_airtable": {
+        "enabled": true,
+        "frequency": "15_minutes",
+        "master_sources": {
+          "coda": ["accounts", "meetings", "tasks"],
+          "airtable": ["projects", "clients", "deals"],
+          "notion": ["knowledge_base", "strategic_docs"]
+        },
+        "sync_mappings": [
+          {
+            "source": "coda.accounts",
+            "target": "airtable.clients",
+            "direction": "one_way",
+            "field_mapping": {
+              "account_name": "client_name",
+              "health_status": "custom_field"
+            }
+          },
+          {
+            "source": "airtable.projects",
+            "target": "coda.projects",
+            "direction": "two_way",
+            "master": "airtable"
+          },
+          {
+            "source": "coda.tasks",
+            "target": "notion.tasks",
+            "direction": "one_way",
+            "filter": "assignee='Nirmal' AND type='Personal'"
+          }
+        ],
+        "conflict_resolution": "latest_timestamp"
+      },
+      "atlas_spine_integrity": {
+        "enabled": true,
+        "schedule": {
+          "frequency": "daily",
+          "time": "02:00",
+          "timezone": "Asia/Kolkata"
+        },
+        "checks": [
+          "orphaned_records",
+          "missing_required_fields",
+          "duplicate_ids",
+          "invalid_foreign_keys"
+        ],
+        "auto_fix": {
+          "orphaned_links": true,
+          "missing_defaults": true
+        },
+        "reporting": {
+          "email": "nirmal",
+          "create_tickets": true
+        }
+      }
+    }
+  },
+  "implementation_phases": {
+    "phase_1": {
+      "duration": "weeks_1_2",
+      "components": [
+        "csm.account_health_scoring",
+        "csm.renewal_tracking",
+        "integratewise.lead_capture",
+        "integratewise.invoicing",
+        "finance.emi_scheduling",
+        "finance.zoho_books_sync"
+      ]
+    },
+    "phase_2": {
+      "duration": "weeks_3_4",
+      "components": [
+        "csm.stakeholder_engagement",
+        "integratewise.client_onboarding",
+        "integratewise.project_tracking",
+        "cross_platform.coda_airtable_sync"
+      ]
+    },
+    "phase_3": {
+      "duration": "weeks_5_6",
+      "components": [
+        "finance.gst_automation",
+        "finance.debt_consolidation",
+        "cross_platform.atlas_spine_integrity",
+        "cross_platform.notion_integration"
+      ]
+    }
+  },
+  "tech_stack": {
+    "orchestration": {
+      "primary": "make.com",
+      "backup": "n8n"
+    },
+    "api_gateway": "nodejs",
+    "credentials": "bitwarden",
+    "monitoring": "uptimerobot",
+    "logging": {
+      "options": ["postgresql", "airtable"]
+    }
+  },
+  "api_endpoints": {
+    "airtable": {
+      "base_url": "https://api.airtable.com/v0",
+      "auth_type": "bearer",
+      "rate_limit": 5
+    },
+    "coda": {
+      "base_url": "https://coda.io/apis/v1",
+      "auth_type": "bearer",
+      "rate_limit": 100
+    },
+    "notion": {
+      "base_url": "https://api.notion.com/v1",
+      "auth_type": "bearer",
+      "rate_limit": 3
+    },
+    "zoho_books": {
+      "base_url": "https://books.zoho.in/api/v3",
+      "auth_type": "oauth2",
+      "rate_limit": 150
+    },
+    "gmail": {
+      "base_url": "https://gmail.googleapis.com/gmail/v1",
+      "auth_type": "oauth2",
+      "rate_limit": 250
+    },
+    "slack": {
+      "base_url": "https://slack.com/api",
+      "auth_type": "webhook",
+      "rate_limit": 1
+    },
+    "google_calendar": {
+      "base_url": "https://www.googleapis.com/calendar/v3",
+      "auth_type": "oauth2",
+      "rate_limit": 1000000
+    },
+    "box": {
+      "base_url": "https://api.box.com/2.0",
+      "auth_type": "oauth2",
+      "rate_limit": 1000
+    }
+  }
+}

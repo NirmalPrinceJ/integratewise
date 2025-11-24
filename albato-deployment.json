@@ -1,0 +1,93 @@
+{
+  "name": "integratewise-albato-automation",
+  "version": "1.0.0",
+  "description": "Albato automation suite for IntegrateWise CSM workflows",
+  "main": "albato-webhook-endpoints.js",
+  "scripts": {
+    "start": "node albato-webhook-endpoints.js",
+    "dev": "nodemon albato-webhook-endpoints.js",
+    "test": "jest",
+    "deploy": "vercel --prod",
+    "setup": "node setup-albato.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "axios": "^1.5.0",
+    "crypto": "^1.0.1",
+    "dotenv": "^16.3.1",
+    "node-cron": "^3.0.2",
+    "@albato/sdk": "^1.2.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1",
+    "jest": "^29.6.0",
+    "vercel": "^32.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "albato": {
+    "bundles": [
+      {
+        "id": "csm_health_score_calculator",
+        "name": "CSM Health Score Calculator",
+        "trigger": "schedule",
+        "schedule": "0 9 * * *",
+        "timezone": "Asia/Calcutta",
+        "apps": ["coda", "slack", "custom_code"],
+        "retries": 3,
+        "timeout": 300
+      },
+      {
+        "id": "csm_renewal_manager",
+        "name": "CSM Renewal Manager",
+        "trigger": "schedule",
+        "schedule": "0 8 * * 1",
+        "timezone": "Asia/Calcutta",
+        "apps": ["coda", "gmail", "slack"],
+        "retries": 2,
+        "timeout": 180
+      },
+      {
+        "id": "csm_engagement_followup",
+        "name": "CSM Engagement Follow-up",
+        "trigger": "webhook",
+        "webhook_path": "/meeting-logged",
+        "apps": ["gmail", "coda"],
+        "retries": 1,
+        "timeout": 60
+      }
+    ],
+    "connections": {
+      "coda": {
+        "type": "oauth2",
+        "scopes": ["doc:read", "doc:write", "webhook:create"]
+      },
+      "slack": {
+        "type": "webhook",
+        "channels": ["#csm-alerts", "#csm-system-alerts", "#sales-alerts"]
+      },
+      "gmail": {
+        "type": "oauth2",
+        "scopes": ["gmail.send", "gmail.compose"]
+      }
+    },
+    "environment": {
+      "production": {
+        "webhook_base_url": "https://webhooks.integratewise.com",
+        "monitoring": true,
+        "debug": false
+      },
+      "staging": {
+        "webhook_base_url": "https://staging-webhooks.integratewise.com",
+        "monitoring": true,
+        "debug": true
+      },
+      "development": {
+        "webhook_base_url": "http://localhost:3000",
+        "monitoring": false,
+        "debug": true
+      }
+    }
+  }
+}

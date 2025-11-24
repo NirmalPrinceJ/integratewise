@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resources - IntegrateWise | Integration Knowledge Hub</title>
+    <link rel="icon" type="image/svg+xml" href="images/logo/favicon.svg">
+    <link rel="alternate icon" href="images/logo/favicon.svg">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Page Loader -->
+    <div class="page-loader"></div>
+    
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-wrapper">
+                <div class="logo">
+                    <img src="images/logo/integratewise-logo.svg" alt="IntegrateWise" class="logo-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';">
+                    <span class="logo-text" style="display:none;">IntegrateWise</span>
+                </div>
+                <div class="nav-menu" id="navMenu">
+                    <a href="index.html" class="nav-link">Home</a>
+                    <a href="about.html" class="nav-link">About</a>
+                    <a href="services.html" class="nav-link">Services</a>
+                    <a href="case-studies.html" class="nav-link">Case Studies</a>
+                    <a href="resources.html" class="nav-link active">Resources</a>
+                    <a href="contact.html" class="nav-link">Contact</a>
+                    <a href="contact.html" class="btn btn-primary nav-cta">Get Started</a>
+                </div>
+                <div class="mobile-toggle" id="mobileToggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Resources</h1>
+            <p class="page-subtitle">Guides, tools, and insights for integration excellence</p>
+        </div>
+    </section>
+
+    <!-- Resource Categories -->
+    <section class="resource-categories">
+        <div class="container">
+            <div class="category-filter">
+                <button class="filter-btn active" data-filter="all">All Resources</button>
+                <button class="filter-btn" data-filter="guides">Guides</button>
+                <button class="filter-btn" data-filter="tools">Tools</button>
+                <button class="filter-btn" data-filter="comparisons">Platform Comparisons</button>
+                <button class="filter-btn" data-filter="best-practices">Best Practices</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Platform Comparisons -->
+    <section class="resources-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Platform Comparison Guides</h2>
+                <p>Unbiased analysis to help you choose the right integration platform</p>
+            </div>
+
+            <div class="resources-grid" data-category="comparisons">
+                <div class="resource-card">
+                    <div class="resource-type">Platform Comparison</div>
+                    <h3>MuleSoft vs Boomi vs Workato</h3>
+                    <p>Comprehensive comparison of enterprise integration platforms including features, pricing, and use cases.</p>
+                    <div class="resource-meta">
+                        <span>15 min read</span>
+                        <span>Updated: Jan 2024</span>
+                    </div>
+                    <a href="#" class="btn btn-outline">Read Guide</a>
+                </div>
+
+                <div class="resource-card">
+                    <div class="resource-type">Platform Comparison</div>
+                    <h3>Low-Code Showdown: Make vs n8n vs Zapier</h3>
+                    <p>Which low-code platform is right for your business? Deep dive into capabilities, pricing, and scalability.</p>
+                    <div class="resource-meta">
+                        <span>12 min read</span>
+                        <span>Updated: Dec 2023</span>
+                    </div>
+                    <a href="#" class="btn btn-outline">Read Guide</a>
+                </div>
+
+                <div class="resource-card">
+                    <div class="resource-type">Platform Comparison</div>
+                    <h3>Salesforce Integration Options Compared</h3>
+                    <p>From Data Cloud to MuleSoft to platform events - understand your Salesforce integration choices.</p>
+                    <div class="resource-meta">
+                        <span>18 min read</span>
+                        <span>Updated: Jan 2024</span>
+                    </div>
+                    <a href="#" class="btn btn-outline">Read Guide</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Tools -->
+    <section class="resources-section alt-background">
+        <div class="container">
+            <div class="section-header">
+                <h2>Interactive Tools</h2>
+                <p>Calculate costs, assess readiness, and make data-driven decisions</p>
+            </div>
+
+            <div class="tools-grid" data-category="tools">
+                <div class="tool-card">
+                    <div class="tool-icon">📊</div>
+                    <h3>TCO Calculator</h3>
+                    <p>Calculate the total cost of ownership for different integration platforms over 3 years.</p>
+                    <a href="#" class="btn btn-primary">Launch Calculator</a>
+                </div>
+
+                <div class="tool-card">
+                    <div class="tool-icon">🎯</div>
+                    <h3>Platform Selector</h3>
+                    <p>Answer 10 questions and get a personalized platform recommendation based on your needs.</p>
+                    <a href="#" class="btn btn-primary">Start Assessment</a>
+                </div>
+
+                <div class="tool-card">
+                    <div class="tool-icon">📈</div>
+                    <h3>ROI Estimator</h3>
+                    <p>Estimate the return on investment from automating your integration workflows.</p>
+                    <a href="#" class="btn btn-primary">Calculate ROI</a>
+                </div>
+            </div>
+
+            <!-- Platform Selector Demo -->
+            <div class="tool-demo">
+                <h3>Quick Platform Selector</h3>
+                <div class="selector-form">
+                    <label for="platform-selector">What's your primary integration scenario?</label>
+                    <select id="platform-selector" class="form-select">
+                        <option value="">Select your scenario...</option>
+                        <option value="high-budget-hybrid">Enterprise with hybrid cloud (Budget >₹50L)</option>
+                        <option value="medium-budget-saas">SaaS-heavy mid-market (Budget ₹20-40L)</option>
+                        <option value="low-budget-simple">Simple workflows (Budget <₹15L)</option>
+                        <option value="salesforce-heavy">Salesforce-centric architecture</option>
+                        <option value="self-hosted">Need self-hosted solution</option>
+                    </select>
+                    <div id="platform-result" class="selector-result"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Implementation Guides -->
+    <section class="resources-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Implementation Guides</h2>
+                <p>Step-by-step guides for common integration scenarios</p>
+            </div>
+
+            <div class="resources-grid" data-category="guides">
+                <div class="resource-card">
+                    <div class="resource-type">Implementation Guide</div>
+                    <h3>API-Led Architecture Blueprint</h3>
+                    <p>Design scalable integration architectures with our proven API-led connectivity approach.</p>
+                    <div class="resource-topics">
+                        <span>Architecture</span>
+                        <span>Best Practices</span>
+                        <span>MuleSoft</span>
+                    </div>
+                    <a href="#" class="btn btn-outline">Download PDF</a>
+                </div>
+
+                <div class="resource-card">
+                    <div class="resource-type">Implementation Guide</div>
+                    <h3>HIPAA-Compliant Integration Playbook</h3>
+                    <p>Ensure healthcare data security and compliance in your integration projects.</p>
+                    <div class="resource-topics">
+                        <span>Healthcare</span>
+                        <span>Security</span>
+                        <span>Compliance</span>
+                    </div>
+                    <a href="#" class="btn btn-outline">Download PDF</a>
+                </div>
+
+                <div class="resource-card">
+                    <div class="resource-type">Implementation Guide</div>
+                    <h3>Real-time Data Sync Patterns</h3>
+                    <p>Implement efficient real-time synchronization between systems with proven patterns.</p>
+                    <div class="resource-topics">
+                        <span>Real-time</span>
+                        <span>Patterns</span>
+                        <span>Performance</span>
+                    </div>
+                    <a href="#" class="btn btn-outline">Download PDF</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Best Practices -->
+    <section class="resources-section alt-background">
+        <div class="container">
+            <div class="section-header">
+                <h2>Best Practices & Templates</h2>
+                <p>Accelerate your projects with proven templates and frameworks</p>
+            </div>
+
+            <div class="best-practices-grid" data-category="best-practices">
+                <div class="practice-card">
+                    <h3>Error Handling Framework</h3>
+                    <p>Robust error handling patterns for production-grade integrations</p>
+                    <ul>
+                        <li>Retry mechanisms</li>
+                        <li>Circuit breaker patterns</li>
+                        <li>Dead letter queues</li>
+                        <li>Monitoring setup</li>
+                    </ul>
+                    <a href="#" class="resource-link">Get Template →</a>
+                </div>
+
+                <div class="practice-card">
+                    <h3>Security Checklist</h3>
+                    <p>Comprehensive security controls for enterprise integrations</p>
+                    <ul>
+                        <li>Authentication patterns</li>
+                        <li>Encryption standards</li>
+                        <li>API security</li>
+                        <li>Audit logging</li>
+                    </ul>
+                    <a href="#" class="resource-link">Download Checklist →</a>
+                </div>
+
+                <div class="practice-card">
+                    <h3>Performance Optimization</h3>
+                    <p>Techniques to maximize integration throughput and minimize latency</p>
+                    <ul>
+                        <li>Batch processing</li>
+                        <li>Caching strategies</li>
+                        <li>Connection pooling</li>
+                        <li>Load balancing</li>
+                    </ul>
+                    <a href="#" class="resource-link">Learn More →</a>
+                </div>
+
+                <div class="practice-card">
+                    <h3>Documentation Templates</h3>
+                    <p>Professional templates for integration documentation</p>
+                    <ul>
+                        <li>Architecture diagrams</li>
+                        <li>API specifications</li>
+                        <li>Runbooks</li>
+                        <li>Handover guides</li>
+                    </ul>
+                    <a href="#" class="resource-link">Get Templates →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Industry Resources -->
+    <section class="resources-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Industry-Specific Resources</h2>
+                <p>Tailored guidance for your industry's unique integration challenges</p>
+            </div>
+
+            <div class="industry-resources">
+                <div class="industry-resource-card">
+                    <div class="industry-icon">🏦</div>
+                    <h3>Financial Services Integration Kit</h3>
+                    <p>Compliance frameworks, security patterns, and regulatory guidance for financial integrations.</p>
+                    <div class="resource-list">
+                        <a href="#">→ PCI-DSS Compliance Guide</a>
+                        <a href="#">→ Real-time Transaction Processing</a>
+                        <a href="#">→ Regulatory Reporting Automation</a>
+                    </div>
+                </div>
+
+                <div class="industry-resource-card">
+                    <div class="industry-icon">🏥</div>
+                    <h3>Healthcare Integration Toolkit</h3>
+                    <p>HIPAA-compliant patterns, FHIR resources, and clinical system integration guides.</p>
+                    <div class="resource-list">
+                        <a href="#">→ FHIR Implementation Guide</a>
+                        <a href="#">→ Patient Data Security</a>
+                        <a href="#">→ EHR Integration Patterns</a>
+                    </div>
+                </div>
+
+                <div class="industry-resource-card">
+                    <div class="industry-icon">📦</div>
+                    <h3>Logistics Integration Library</h3>
+                    <p>Supply chain visibility, IoT integration, and multi-modal transportation patterns.</p>
+                    <div class="resource-list">
+                        <a href="#">→ EDI Modernization Guide</a>
+                        <a href="#">→ Real-time Tracking Setup</a>
+                        <a href="#">→ ESG Reporting Framework</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Signup -->
+    <section class="newsletter-section">
+        <div class="container">
+            <div class="newsletter-content">
+                <h2>Stay Updated</h2>
+                <p>Get the latest integration insights, platform updates, and best practices delivered to your inbox</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Enter your email" required>
+                    <button type="submit" class="btn btn-primary">Subscribe</button>
+                </form>
+                <p class="newsletter-note">Join 500+ integration professionals. No spam, unsubscribe anytime.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <img src="images/logo/integratewise-logo.svg" alt="IntegrateWise" class="logo-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';">
+                        <span class="logo-text" style="display:none;">IntegrateWise</span>
+                    </div>
+                    <p class="footer-tagline">Your Integration Architect, Not a Platform Reseller</p>
+                    <p class="footer-description">Platform-agnostic integration advisory helping enterprises connect systems and drive outcomes.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Services</h4>
+                    <ul class="footer-links">
+                        <li><a href="services.html#health-check">Integration Health Check</a></li>
+                        <li><a href="services.html#accelerator">Automation Accelerator</a></li>
+                        <li><a href="services.html#strategy">Enterprise Strategy</a></li>
+                        <li><a href="services.html#platform">Success Platform</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Company</h4>
+                    <ul class="footer-links">
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="case-studies.html">Case Studies</a></li>
+                        <li><a href="resources.html">Resources</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Connect</h4>
+                    <ul class="footer-links">
+                        <li><a href="https://linkedin.com/company/integratewise" target="_blank">LinkedIn</a></li>
+                        <li><a href="mailto:info@integratewise.com">info@integratewise.com</a></li>
+                        <li><a href="tel:+919999999999">+91 99999 99999</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 IntegrateWise LLP. All rights reserved.</p>
+                <div class="footer-legal">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Resource filtering
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const resourceSections = document.querySelectorAll('[data-category]');
+            
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const filter = this.dataset.filter;
+                    
+                    // Update active button
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Show/hide sections
+                    resourceSections.forEach(section => {
+                        if (filter === 'all' || section.dataset.category === filter) {
+                            section.style.display = 'grid';
+                        } else {
+                            section.style.display = 'none';
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
