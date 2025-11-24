@@ -13,6 +13,7 @@ This directory contains GitHub Actions workflow files. Due to GitHub security re
 5. Copy the contents from the workflow files in this directory:
    - `test.yml` - Runs tests on push/PR
    - `linear-sync.yml` - Syncs issues with Linear
+   - `automation-test.yml` - Tests automation workflows
 
 ### Option 2: Update GitHub Token Permissions
 
@@ -30,10 +31,12 @@ To push workflow files directly via git:
 ```bash
 gh workflow create .github/workflows/test.yml
 gh workflow create .github/workflows/linear-sync.yml
+gh workflow create .github/workflows/automation-test.yml
 ```
 
 ## Workflow Files
 
 - **test.yml** - Automated testing on push and pull requests
 - **linear-sync.yml** - Integration with Linear for issue tracking
+- **automation-test.yml** - Tests automation workflows and integrations
 
