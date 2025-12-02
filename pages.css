@@ -207,18 +207,30 @@
     padding: 40px 0;
 }
 
-.brand-section h2 {
-    font-size: 36px;
+.brand-section h2.brand-primary {
+    font-size: 40px;
     color: var(--white);
-    font-family: var(--font-serif);
-    font-style: italic;
-    font-weight: 400;
+    font-family: var(--font-sans);
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+.brand-section .brand-subhead {
+    font-size: 18px;
+    color: var(--gray-300);
     margin-bottom: 16px;
 }
 
-.brand-section p {
+.brand-section .brand-mantra {
+    font-size: 16px;
     color: var(--gray-400);
+    font-style: italic;
     margin-bottom: 40px;
+}
+
+.brand-section .brand-mantra strong {
+    color: var(--primary-green);
+    font-style: normal;
 }
 
 .brand-colors {
