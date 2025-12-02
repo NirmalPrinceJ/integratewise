@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Platform | IntegrateWise — Atlas Spine + n8n Orchestrator</title>
+    <meta name="description" content="Atlas Spine on PostgreSQL, n8n orchestrator with enterprise-grade ETL/ELT, and read-only adapters. Ingest ≥98%, health compute <2 min, uptime >99.9%.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="pages.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <svg class="logo-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="40" height="40" rx="8" fill="#10B981"/>
+                    <path d="M12 20L18 26L28 14" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span>IntegrateWise</span>
+            </a>
+            <div class="nav-links">
+                <a href="about.html">About</a>
+                <a href="platform.html" class="active">Platform</a>
+                <a href="agents.html">Agents</a>
+                <a href="services.html">Services</a>
+                <a href="solutions.html">Solutions</a>
+                <a href="pricing.html">Pricing</a>
+                <a href="resources.html">Resources</a>
+            </div>
+            <div class="nav-cta">
+                <a href="contact.html" class="btn btn-primary">Contact Us</a>
+            </div>
+            <button class="mobile-menu-btn" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="page-hero">
+        <div class="container">
+            <div class="page-hero-content">
+                <span class="section-badge">Platform</span>
+                <h1>Enterprise-Grade<br><span class="highlight">Integration Architecture</span></h1>
+                <p class="hero-subtitle">Three-layer architecture: Atlas Spine + n8n Orchestrator + Read-Only Adapters</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Acceptance Targets -->
+    <section class="metrics-bar">
+        <div class="container">
+            <div class="metrics-grid">
+                <div class="metric-item">
+                    <span class="metric-value">≥98%</span>
+                    <span class="metric-label">Ingest Rate</span>
+                </div>
+                <div class="metric-item">
+                    <span class="metric-value">&lt;2 min</span>
+                    <span class="metric-label">Health Compute SLA</span>
+                </div>
+                <div class="metric-item">
+                    <span class="metric-value">&gt;99.9%</span>
+                    <span class="metric-label">Agent Uptime</span>
+                </div>
+                <div class="metric-item">
+                    <span class="metric-value">100%</span>
+                    <span class="metric-label">Rotation Compliance</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Atlas Spine -->
+    <section class="content-section">
+        <div class="container">
+            <div class="platform-section">
+                <div class="platform-header">
+                    <div class="platform-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <ellipse cx="12" cy="5" rx="9" ry="3"/>
+                            <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/>
+                            <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h2>Atlas Spine</h2>
+                        <span class="tech-badge">PostgreSQL</span>
+                    </div>
+                </div>
+                <p class="platform-desc">
+                    The canonical data model that normalizes all operational data with UUID everywhere, 
+                    strict foreign keys, and comprehensive audit columns.
+                </p>
+                
+                <h3>Core Entities</h3>
+                <div class="entity-grid">
+                    <div class="entity-card">
+                        <code>accounts</code>
+                        <p>Customer accounts with MRR, lifecycle, and health data</p>
+                    </div>
+                    <div class="entity-card">
+                        <code>contacts</code>
+                        <p>Stakeholder contacts and communication preferences</p>
+                    </div>
+                    <div class="entity-card">
+                        <code>stakeholders</code>
+                        <p>Key decision makers and champions</p>
+                    </div>
+                    <div class="entity-card">
+                        <code>integrations</code>
+                        <p>Connected systems and API configurations</p>
+                    </div>
+                    <div class="entity-card">
+                        <code>workflows</code>
+                        <p>Automation definitions and triggers</p>
+                    </div>
+                    <div class="entity-card">
+                        <code>runs</code>
+                        <p>Execution history and status tracking</p>
+                    </div>
+                    <div class="entity-card">
+                        <code>events</code>
+                        <p>System events and webhooks</p>
+                    </div>
+                    <div class="entity-card">
+                        <code>secrets_vault</code>
+                        <p>Encrypted credentials and tokens</p>
+                    </div>
+                    <div class="entity-card">
+                        <code>health_scores</code>
+                        <p>Computed health metrics and trends</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Orchestrator -->
+    <section class="content-section bg-gray">
+        <div class="container">
+            <div class="platform-section">
+                <div class="platform-header">
+                    <div class="platform-icon orchestrator-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="16 18 22 12 16 6"/>
+                            <polyline points="8 6 2 12 8 18"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h2>n8n Orchestrator</h2>
+                        <span class="tech-badge">Enterprise ETL/ELT</span>
+                    </div>
+                </div>
+                <p class="platform-desc">
+                    Enterprise-grade orchestration with built-in reliability, observability, and governance.
+                </p>
+                
+                <div class="feature-list">
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                                <polyline points="22 4 12 14.01 9 11.01"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h4>Idempotent Upserts</h4>
+                            <p>Safe re-runs without data duplication; conflict-free merges</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="23 4 23 10 17 10"/>
+                                <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h4>3× Exponential Retry + DLQ</h4>
+                            <p>Automatic retries with dead-letter queue for failed messages</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                                <polyline points="14 2 14 8 20 8"/>
+                                <line x1="16" y1="13" x2="8" y2="13"/>
+                                <line x1="16" y1="17" x2="8" y2="17"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h4>Audit Logs</h4>
+                            <p>Complete trace with <code>trace_id</code>, <code>error_code</code>, timestamps</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                                <polyline points="22,6 12,13 2,6"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h4>Webhook Buses</h4>
+                            <p>Event-driven triggers with payload validation</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Adapters -->
+    <section class="content-section">
+        <div class="container">
+            <div class="platform-section">
+                <div class="platform-header">
+                    <div class="platform-icon adapter-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                            <line x1="8" y1="21" x2="16" y2="21"/>
+                            <line x1="12" y1="17" x2="12" y2="21"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h2>Read-Only Adapters</h2>
+                        <span class="tech-badge">View Layer</span>
+                    </div>
+                </div>
+                <p class="platform-desc">
+                    Minimal, performant views into the tools your teams already use—without write access or vendor lock-in.
+                </p>
+                
+                <h3>Adapter Constraints</h3>
+                <div class="constraints-grid">
+                    <div class="constraint-card">
+                        <h4>Minimal Columns</h4>
+                        <code>account_id, name, domain, mrr, lifecycle, health_score, renewal_date, last_updated, risk_flags</code>
+                    </div>
+                    <div class="constraint-card">
+                        <h4>TTL</h4>
+                        <p>10 minute cache with stale-while-revalidate (SWR)</p>
+                    </div>
+                    <div class="constraint-card">
+                        <h4>Pagination</h4>
+                        <p>100 rows per request with cursor-based navigation</p>
+                    </div>
+                    <div class="constraint-card">
+                        <h4>Role-Based Filters</h4>
+                        <p>Row-level security based on user roles and permissions</p>
+                    </div>
+                </div>
+
+                <h3>Supported Platforms</h3>
+                <div class="platform-logos">
+                    <span class="platform-logo">Notion</span>
+                    <span class="platform-logo">Coda</span>
+                    <span class="platform-logo">Airtable</span>
+                    <span class="platform-logo">Asana</span>
+                    <span class="platform-logo">ClickUp</span>
+                    <span class="platform-logo">Monday</span>
+                    <span class="platform-logo">Sheets</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Architecture Diagram -->
+    <section class="content-section bg-dark">
+        <div class="container">
+            <div class="section-header light">
+                <h2>Architecture Overview</h2>
+            </div>
+            <div class="architecture-flow">
+                <div class="arch-box">
+                    <h4>CRM Sources</h4>
+                    <p>Salesforce, HubSpot, Dynamics, Zoho</p>
+                </div>
+                <div class="arch-arrow">→</div>
+                <div class="arch-box highlight-box">
+                    <h4>Atlas Spine</h4>
+                    <p>PostgreSQL canonical model</p>
+                </div>
+                <div class="arch-arrow">→</div>
+                <div class="arch-box">
+                    <h4>n8n Orchestrator</h4>
+                    <p>ETL/ELT + Agents</p>
+                </div>
+                <div class="arch-arrow">→</div>
+                <div class="arch-box">
+                    <h4>View Adapters</h4>
+                    <p>Notion, Airtable, Sheets, etc.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ready to see the platform in action?</h2>
+                <p>Schedule a technical deep-dive to explore how Atlas Spine fits your stack.</p>
+                <div class="cta-buttons">
+                    <a href="contact.html" class="btn btn-primary btn-large">Request Demo</a>
+                    <a href="agents.html" class="btn btn-outline-light btn-large">Explore Agents</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <a href="index.html" class="logo">
+                        <svg class="logo-icon" viewBox="0 0 40 40" fill="none">
+                            <rect width="40" height="40" rx="8" fill="#10B981"/>
+                            <path d="M12 20L18 26L28 14" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <span>IntegrateWise</span>
+                    </a>
+                    <p>Connect. Automate. Elevate.</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Platform</h4>
+                        <a href="platform.html">Atlas Spine</a>
+                        <a href="agents.html">AI Agents</a>
+                        <a href="solutions.html">Solutions</a>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Company</h4>
+                        <a href="about.html">About</a>
+                        <a href="services.html">Services</a>
+                        <a href="pricing.html">Pricing</a>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Connect</h4>
+                        <a href="mailto:connect@integratewise.co">connect@integratewise.co</a>
+                        <a href="tel:+917019746296">+91 70197 46296</a>
+                        <a href="contact.html">Contact</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-acceptance">
+                <p><strong>Acceptance Criteria:</strong> Ingest ≥98% • Health compute &lt;2 min • Agent uptime &gt;99.9% • Rotation compliance 100%</p>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2024 IntegrateWise LLP. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
+

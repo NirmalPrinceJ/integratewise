@@ -1253,3 +1253,21 @@ h1, h2, h3, h4, h5, h6 {
     }
 }
 
+/* Footer Acceptance */
+.footer-acceptance {
+    padding: 20px 0;
+    border-top: 1px solid var(--gray-800);
+    border-bottom: 1px solid var(--gray-800);
+    margin-bottom: 32px;
+}
+
+.footer-acceptance p {
+    font-size: 13px;
+    color: var(--gray-400);
+    text-align: center;
+}
+
+.footer-acceptance strong {
+    color: var(--primary-green);
+}
+
