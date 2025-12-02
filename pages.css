@@ -1954,3 +1954,53 @@
     }
 }
 
+/* Legal Content Styles */
+.legal-content {
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.8;
+}
+
+.legal-content h2 {
+    font-size: 28px;
+    margin-top: 48px;
+    margin-bottom: 16px;
+    color: var(--gray-900);
+}
+
+.legal-content h3 {
+    font-size: 20px;
+    margin-top: 32px;
+    margin-bottom: 12px;
+    color: var(--gray-800);
+}
+
+.legal-content p {
+    margin-bottom: 16px;
+    color: var(--gray-600);
+}
+
+.legal-content ul {
+    margin-bottom: 24px;
+    padding-left: 24px;
+}
+
+.legal-content li {
+    margin-bottom: 8px;
+    color: var(--gray-600);
+}
+
+.legal-content a {
+    color: var(--primary-green);
+    text-decoration: underline;
+}
+
+.legal-content a:hover {
+    color: var(--primary-green-dark);
+}
+
+.legal-content strong {
+    color: var(--gray-900);
+    font-weight: 600;
+}
+

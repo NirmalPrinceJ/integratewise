@@ -221,6 +221,65 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
+    // Contact form handling
+    const contactForm = document.getElementById('contact-form');
+    if (contactForm) {
+        contactForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const submitButton = contactForm.querySelector('button[type="submit"]');
+            const originalText = submitButton.textContent;
+            
+            // Disable button and show loading state
+            submitButton.disabled = true;
+            submitButton.textContent = 'Sending...';
+            
+            try {
+                const formData = new FormData(contactForm);
+                const response = await fetch(contactForm.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+                
+                if (response.ok) {
+                    // Show success message
+                    const successMsg = document.createElement('div');
+                    successMsg.className = 'form-success';
+                    successMsg.style.cssText = 'padding: 16px; background: #10B981; color: white; border-radius: 8px; margin-top: 16px;';
+                    successMsg.textContent = 'Thank you! Your message has been sent. We\'ll get back to you soon.';
+                    contactForm.appendChild(successMsg);
+                    contactForm.reset();
+                    
+                    // Remove success message after 5 seconds
+                    setTimeout(() => {
+                        successMsg.remove();
+                    }, 5000);
+                } else {
+                    throw new Error('Form submission failed');
+                }
+            } catch (error) {
+                // Show error message
+                const errorMsg = document.createElement('div');
+                errorMsg.className = 'form-error';
+                errorMsg.style.cssText = 'padding: 16px; background: #EF4444; color: white; border-radius: 8px; margin-top: 16px;';
+                errorMsg.textContent = 'Sorry, there was an error sending your message. Please try again or email us directly.';
+                contactForm.appendChild(errorMsg);
+                
+                // Remove error message after 5 seconds
+                setTimeout(() => {
+                    errorMsg.remove();
+                }, 5000);
+            } finally {
+                // Re-enable button
+                submitButton.disabled = false;
+                submitButton.textContent = originalText;
+            }
+        });
+    }
+
     console.log('IntegrateWise landing page loaded successfully');
 });
 
