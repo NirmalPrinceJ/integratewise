@@ -19,9 +19,22 @@
  */
 
 // Replace with your Google Sheet ID (found in the Sheet URL)
-const SHEET_ID = 'YOUR_SHEET_ID_HERE';
+const SHEET_ID = '1T4OCMvL0RkJXiDPUkcIZyie8RfwdOa-CGwfvWK1zpRI';
 const SHEET_NAME = 'Sheet1'; // Change if your sheet tab has a different name
 
+// Handle GET requests (for testing/debugging)
+function doGet(e) {
+  return ContentService
+    .createTextOutput(JSON.stringify({
+      status: 'success',
+      message: 'IntegrateWise Contact Form Handler is running',
+      method: 'GET',
+      timestamp: new Date().toISOString()
+    }))
+    .setMimeType(ContentService.MimeType.JSON);
+}
+
+// Handle POST requests (form submissions)
 function doPost(e) {
   try {
     // Parse the JSON data from the form
@@ -99,4 +112,5 @@ function test() {
   
   doPost(mockEvent);
 }
+
 

@@ -25,7 +25,7 @@ This guide will help you connect your contact form directly to Google Sheets wit
 
 1. Look at your Google Sheet URL:
    ```
-   https://docs.google.com/spreadsheets/d/YOUR_SHEET_ID_HERE/edit
+   https://docs.google.com/spreadsheets/d/1T4OCMvL0RkJXiDPUkcIZyie8RfwdOa-CGwfvWK1zpRI/edit
    ```
 2. Copy the part between `/d/` and `/edit` - this is your Sheet ID
 
@@ -112,4 +112,5 @@ If you encounter issues:
 2. Verify Sheet ID and permissions
 3. Test with the `test()` function in Apps Script
 4. Contact: connect@integratewise.co
+
 

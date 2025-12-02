@@ -224,8 +224,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // Contact form handling - Google Sheets integration
     const contactForm = document.getElementById('contact-form');
     if (contactForm) {
-        // Replace this URL with your Google Apps Script Web App URL after deployment
-        const GOOGLE_SCRIPT_URL = 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE';
+        // Google Apps Script Web App URL
+        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzet3mdRXmM46DGwW1gRQXQSbVgBm2MaZ4GioNa9F_9wLLBRfx6CTwzCCRXTNwz4SzG8g/exec';
         
         contactForm.addEventListener('submit', async function(e) {
             e.preventDefault();
