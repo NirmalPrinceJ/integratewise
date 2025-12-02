@@ -33,7 +33,7 @@ This guide will help you connect your contact form directly to Google Sheets wit
 
 1. In your Google Sheet, go to **Extensions** → **Apps Script**
 2. Delete any default code
-3. Copy the entire contents of `google-apps-script.js` file
+3. Copy the entire contents of `google-apps-script.gs` file
 4. Paste it into the Apps Script editor
 5. Replace `YOUR_SHEET_ID_HERE` with your actual Sheet ID
 6. Click **Save** (Ctrl+S or Cmd+S)
