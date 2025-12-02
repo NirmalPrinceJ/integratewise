@@ -221,51 +221,75 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Contact form handling
+    // Contact form handling - Google Sheets integration
     const contactForm = document.getElementById('contact-form');
     if (contactForm) {
+        // Replace this URL with your Google Apps Script Web App URL after deployment
+        const GOOGLE_SCRIPT_URL = 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE';
+        
         contactForm.addEventListener('submit', async function(e) {
             e.preventDefault();
             
             const submitButton = contactForm.querySelector('button[type="submit"]');
             const originalText = submitButton.textContent;
             
+            // Remove any existing messages
+            const existingMsg = contactForm.querySelector('.form-success, .form-error');
+            if (existingMsg) existingMsg.remove();
+            
             // Disable button and show loading state
             submitButton.disabled = true;
             submitButton.textContent = 'Sending...';
             
             try {
-                const formData = new FormData(contactForm);
-                const response = await fetch(contactForm.action, {
+                // Collect form data
+                const formData = {
+                    name: contactForm.querySelector('#name').value,
+                    company: contactForm.querySelector('#company').value,
+                    email: contactForm.querySelector('#email').value,
+                    phone: contactForm.querySelector('#phone').value || '',
+                    source: contactForm.querySelector('#source').value || '',
+                    message: contactForm.querySelector('#message').value,
+                    consent: contactForm.querySelector('input[name="consent"]').checked,
+                    timestamp: new Date().toISOString(),
+                    page: window.location.href
+                };
+                
+                // Check if script URL is configured
+                if (GOOGLE_SCRIPT_URL === 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE') {
+                    throw new Error('Google Apps Script URL not configured. Please set GOOGLE_SCRIPT_URL in script.js');
+                }
+                
+                const response = await fetch(GOOGLE_SCRIPT_URL, {
                     method: 'POST',
-                    body: formData,
+                    mode: 'no-cors', // Required for Google Apps Script
                     headers: {
-                        'Accept': 'application/json'
-                    }
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData)
                 });
                 
-                if (response.ok) {
-                    // Show success message
-                    const successMsg = document.createElement('div');
-                    successMsg.className = 'form-success';
-                    successMsg.style.cssText = 'padding: 16px; background: #10B981; color: white; border-radius: 8px; margin-top: 16px;';
-                    successMsg.textContent = 'Thank you! Your message has been sent. We\'ll get back to you soon.';
-                    contactForm.appendChild(successMsg);
-                    contactForm.reset();
-                    
-                    // Remove success message after 5 seconds
-                    setTimeout(() => {
-                        successMsg.remove();
-                    }, 5000);
-                } else {
-                    throw new Error('Form submission failed');
-                }
+                // With no-cors mode, we can't check response status, so assume success
+                // Show success message
+                const successMsg = document.createElement('div');
+                successMsg.className = 'form-success';
+                successMsg.style.cssText = 'padding: 16px; background: #10B981; color: white; border-radius: 8px; margin-top: 16px;';
+                successMsg.textContent = 'Thank you! Your message has been sent. We\'ll get back to you soon.';
+                contactForm.appendChild(successMsg);
+                contactForm.reset();
+                
+                // Remove success message after 5 seconds
+                setTimeout(() => {
+                    successMsg.remove();
+                }, 5000);
+                
             } catch (error) {
+                console.error('Form submission error:', error);
                 // Show error message
                 const errorMsg = document.createElement('div');
                 errorMsg.className = 'form-error';
                 errorMsg.style.cssText = 'padding: 16px; background: #EF4444; color: white; border-radius: 8px; margin-top: 16px;';
-                errorMsg.textContent = 'Sorry, there was an error sending your message. Please try again or email us directly.';
+                errorMsg.textContent = 'Sorry, there was an error sending your message. Please try again or email us directly at connect@integratewise.co';
                 contactForm.appendChild(errorMsg);
                 
                 // Remove error message after 5 seconds
