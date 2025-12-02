@@ -22,14 +22,15 @@
 const SHEET_ID = '1T4OCMvL0RkJXiDPUkcIZyie8RfwdOa-CGwfvWK1zpRI';
 const SHEET_NAME = 'Sheet1'; // Change if your sheet tab has a different name
 
-// Handle GET requests (for testing/debugging)
+// Handle GET requests (for testing/debugging when accessing URL directly)
 function doGet(e) {
   return ContentService
     .createTextOutput(JSON.stringify({
       status: 'success',
       message: 'IntegrateWise Contact Form Handler is running',
       method: 'GET',
-      timestamp: new Date().toISOString()
+      timestamp: new Date().toISOString(),
+      note: 'This endpoint accepts POST requests from the contact form'
     }))
     .setMimeType(ContentService.MimeType.JSON);
 }
