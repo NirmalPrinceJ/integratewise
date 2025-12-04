@@ -323,10 +323,162 @@ h1, h2, h3, h4, h5, h6 {
 .hero-subtitle {
     font-size: 20px;
     color: var(--gray-500);
-    max-width: 640px;
-    margin: 0 auto 40px;
+    max-width: 720px;
+    margin: 0 auto 24px;
     animation: fadeInUp 0.6s ease 0.2s forwards;
     opacity: 0;
+}
+
+.hero-tagline {
+    font-size: 18px;
+    color: var(--gray-700);
+    max-width: 640px;
+    margin: 0 auto 40px;
+    animation: fadeInUp 0.6s ease 0.25s forwards;
+    opacity: 0;
+}
+
+/* Sub-Hero Section */
+.sub-hero {
+    padding: 40px 0 60px;
+    background: var(--white);
+    border-bottom: 1px solid var(--gray-100);
+}
+
+.sub-hero-text {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 18px;
+    color: var(--gray-600);
+    line-height: 1.7;
+}
+
+/* Problem CTA */
+.problem-cta {
+    text-align: center;
+    margin-top: 48px;
+}
+
+/* Comparison Table Section */
+.comparison-section {
+    padding: 60px 0;
+    background: var(--gray-50);
+}
+
+.comparison-table-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.comparison-table {
+    width: 100%;
+    min-width: 800px;
+    border-collapse: collapse;
+    background: var(--white);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+}
+
+.comparison-table th,
+.comparison-table td {
+    padding: 14px 16px;
+    text-align: left;
+    font-size: 14px;
+    border-bottom: 1px solid var(--gray-100);
+}
+
+.comparison-table th {
+    background: var(--gray-900);
+    color: var(--white);
+    font-weight: 600;
+    font-size: 13px;
+}
+
+.comparison-table th.highlight-col {
+    background: var(--primary);
+}
+
+.comparison-table td.highlight-col {
+    background: rgba(16, 185, 129, 0.08);
+    font-weight: 500;
+}
+
+.comparison-table tbody tr:hover {
+    background: var(--gray-50);
+}
+
+.comparison-table tbody tr:hover td.highlight-col {
+    background: rgba(16, 185, 129, 0.12);
+}
+
+.comparison-table .check {
+    color: var(--primary);
+    font-weight: bold;
+}
+
+.comparison-table .x {
+    color: var(--gray-400);
+}
+
+/* Is IntegrateWise Right for You Section */
+.fit-section {
+    padding: 80px 0;
+    background: var(--white);
+}
+
+.fit-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.fit-card {
+    background: var(--gray-50);
+    border-radius: 12px;
+    padding: 32px;
+    border: 1px solid var(--gray-100);
+}
+
+.fit-card h4 {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 16px;
+    color: var(--gray-900);
+}
+
+.fit-card ul {
+    list-style: none;
+}
+
+.fit-card li {
+    padding: 8px 0;
+    font-size: 15px;
+    color: var(--gray-600);
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.fit-card li::before {
+    content: "✓";
+    color: var(--primary);
+    font-weight: bold;
+}
+
+@media (max-width: 768px) {
+    .comparison-table th,
+    .comparison-table td {
+        padding: 10px 12px;
+        font-size: 12px;
+    }
+    
+    .fit-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 .hero-cta {
@@ -1179,6 +1331,17 @@ h1, h2, h3, h4, h5, h6 {
     color: var(--gray-400);
 }
 
+.saas-tier-desc {
+    font-size: 14px;
+    color: var(--gray-500);
+    margin-top: 4px;
+    font-weight: 400;
+}
+
+.saas-tier-card .btn {
+    margin-top: auto;
+}
+
 .saas-tier-features {
     list-style: none;
 }
@@ -1356,6 +1519,51 @@ h1, h2, h3, h4, h5, h6 {
     gap: 8px;
     color: var(--primary-green);
     font-weight: 700;
+}
+
+/* Lead Magnet Section */
+.lead-magnet-section {
+    padding: 60px 0;
+    background: var(--gray-50);
+}
+
+.lead-magnet-card {
+    background: linear-gradient(135deg, var(--primary-blue) 0%, #1e40af 100%);
+    border-radius: 16px;
+    padding: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+}
+
+.lead-magnet-content h3 {
+    font-size: 24px;
+    color: var(--white);
+    margin-bottom: 12px;
+}
+
+.lead-magnet-content p {
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 16px;
+    max-width: 500px;
+}
+
+.lead-magnet-card .btn-primary {
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+    .lead-magnet-card {
+        flex-direction: column;
+        text-align: center;
+        padding: 32px 24px;
+    }
+    
+    .lead-magnet-content p {
+        max-width: 100%;
+    }
 }
 
 /* CTA Section */
