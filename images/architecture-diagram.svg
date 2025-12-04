@@ -1,0 +1,91 @@
+<svg viewBox="0 0 1200 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="1200" height="600" fill="#F9FAFB"/>
+  
+  <!-- Title -->
+  <text x="600" y="40" font-family="system-ui, -apple-system, sans-serif" font-size="24" font-weight="700" fill="#111827" text-anchor="middle">Three-Layer Architecture</text>
+  
+  <!-- Layer 1: Atlas Spine -->
+  <g id="layer1">
+    <rect x="50" y="100" width="300" height="180" rx="12" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="2"/>
+    <circle cx="200" cy="140" r="20" fill="#2563EB"/>
+    <text x="200" y="147" font-family="system-ui" font-size="16" font-weight="700" fill="#FFFFFF" text-anchor="middle">1</text>
+    <text x="200" y="180" font-family="system-ui" font-size="20" font-weight="600" fill="#111827" text-anchor="middle">Atlas Spine</text>
+    <text x="200" y="205" font-family="system-ui" font-size="14" fill="#6B7280" text-anchor="middle">Unified Data Model</text>
+    
+    <!-- Database icon -->
+    <rect x="120" y="230" width="160" height="30" rx="4" fill="#2563EB" opacity="0.1" stroke="#2563EB" stroke-width="2"/>
+    <rect x="130" y="235" width="140" height="20" rx="2" fill="#2563EB" opacity="0.2"/>
+    <text x="200" y="250" font-family="system-ui" font-size="12" fill="#2563EB" text-anchor="middle" font-weight="600">Accounts • Contacts • Health • Risks</text>
+  </g>
+  
+  <!-- Arrow 1 -->
+  <path d="M350 190 L420 190" stroke="#10B981" stroke-width="4" stroke-linecap="round" marker-end="url(#arrowhead)"/>
+  
+  <!-- Layer 2: Orchestrator -->
+  <g id="layer2">
+    <rect x="450" y="100" width="300" height="180" rx="12" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="2"/>
+    <circle cx="600" cy="140" r="20" fill="#059669"/>
+    <text x="600" y="147" font-family="system-ui" font-size="16" font-weight="700" fill="#FFFFFF" text-anchor="middle">2</text>
+    <text x="600" y="180" font-family="system-ui" font-size="20" font-weight="600" fill="#111827" text-anchor="middle">Integration Engine</text>
+    <text x="600" y="205" font-family="system-ui" font-size="14" fill="#6B7280" text-anchor="middle">Data Integration</text>
+    
+    <!-- Workflow nodes -->
+    <circle cx="550" cy="240" r="12" fill="#059669" opacity="0.2" stroke="#059669" stroke-width="2"/>
+    <text x="550" y="245" font-family="system-ui" font-size="10" fill="#059669" text-anchor="middle" font-weight="600">Ingest</text>
+    <circle cx="600" cy="240" r="12" fill="#059669" opacity="0.2" stroke="#059669" stroke-width="2"/>
+    <text x="600" y="245" font-family="system-ui" font-size="10" fill="#059669" text-anchor="middle" font-weight="600">Transform</text>
+    <circle cx="650" cy="240" r="12" fill="#059669" opacity="0.2" stroke="#059669" stroke-width="2"/>
+    <text x="650" y="245" font-family="system-ui" font-size="10" fill="#059669" text-anchor="middle" font-weight="600">Load</text>
+  </g>
+  
+  <!-- Arrow 2 -->
+  <path d="M750 190 L820 190" stroke="#10B981" stroke-width="4" stroke-linecap="round" marker-end="url(#arrowhead)"/>
+  
+  <!-- Layer 3: AI Agents -->
+  <g id="layer3">
+    <rect x="850" y="100" width="300" height="180" rx="12" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="2"/>
+    <circle cx="1000" cy="140" r="20" fill="#8B5CF6"/>
+    <text x="1000" y="147" font-family="system-ui" font-size="16" font-weight="700" fill="#FFFFFF" text-anchor="middle">3</text>
+    <text x="1000" y="180" font-family="system-ui" font-size="20" font-weight="600" fill="#111827" text-anchor="middle">AI Agents</text>
+    <text x="1000" y="205" font-family="system-ui" font-size="14" fill="#6B7280" text-anchor="middle">Autonomous Intelligence</text>
+    
+    <!-- Agent icons -->
+    <circle cx="950" cy="240" r="10" fill="#8B5CF6" opacity="0.3"/>
+    <circle cx="980" cy="240" r="10" fill="#EF4444" opacity="0.3"/>
+    <circle cx="1010" cy="240" r="10" fill="#3B82F6" opacity="0.3"/>
+    <circle cx="1040" cy="240" r="10" fill="#F59E0B" opacity="0.3"/>
+    <text x="1000" y="255" font-family="system-ui" font-size="11" fill="#6B7280" text-anchor="middle">7 Agents • 24/7 • LLM-Powered</text>
+  </g>
+  
+  <!-- Data Flow Below -->
+  <text x="600" y="350" font-family="system-ui" font-size="18" font-weight="600" fill="#111827" text-anchor="middle">Data Flow</text>
+  
+  <!-- Sources -->
+  <g id="sources">
+    <rect x="50" y="380" width="150" height="100" rx="8" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="2"/>
+    <text x="125" y="405" font-family="system-ui" font-size="14" font-weight="600" fill="#111827" text-anchor="middle">CRM Sources</text>
+    <text x="125" y="430" font-family="system-ui" font-size="12" fill="#6B7280" text-anchor="middle">Salesforce</text>
+    <text x="125" y="450" font-family="system-ui" font-size="12" fill="#6B7280" text-anchor="middle">HubSpot</text>
+    <text x="125" y="470" font-family="system-ui" font-size="12" fill="#6B7280" text-anchor="middle">Dynamics</text>
+  </g>
+  
+  <path d="M200 430 L250 430" stroke="#10B981" stroke-width="3" stroke-linecap="round" marker-end="url(#arrowhead)"/>
+  
+  <!-- Views -->
+  <g id="views">
+    <rect x="1000" y="380" width="150" height="100" rx="8" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="2"/>
+    <text x="1075" y="405" font-family="system-ui" font-size="14" font-weight="600" fill="#111827" text-anchor="middle">View Platforms</text>
+    <text x="1075" y="430" font-family="system-ui" font-size="12" fill="#6B7280" text-anchor="middle">Notion • Coda</text>
+    <text x="1075" y="450" font-family="system-ui" font-size="12" fill="#6B7280" text-anchor="middle">Airtable • Sheets</text>
+    <text x="1075" y="470" font-family="system-ui" font-size="12" fill="#6B7280" text-anchor="middle">Asana • ClickUp</text>
+  </g>
+  
+  <!-- Arrow marker definition -->
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#10B981"/>
+    </marker>
+  </defs>
+</svg>
+
