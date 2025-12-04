@@ -1,202 +1,413 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Contact IntegrateWise | Book a Demo</title>
-<meta name="description" content="Book a demo, start an assessment, or request a custom quote. Connect via email or phone.">
-<link rel="canonical" href="https://integratewise.co/contact.html">
-<meta property="og:title" content="Contact IntegrateWise">
-<meta property="og:description" content="Book demos, assessments, implementations, managed ops, and quotes.">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://integratewise.co/contact.html">
-<meta property="og:image" content="https://integratewise.co/og-image.png">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Contact IntegrateWise">
-<meta name="twitter:description" content="Book demos, assessments, implementations, managed ops, and quotes.">
-<link rel="icon" href="favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="styles.css">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact | IntegrateWise</title>
+    <meta name="description" content="Book a demo, start an assessment, or request a custom quote. Connect via email or phone.">
+    <link rel="canonical" href="https://integratewise.co/contact.html">
+    <meta property="og:title" content="Contact IntegrateWise">
+    <meta property="og:description" content="Book demos, assessments, implementations, managed ops, and quotes.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://integratewise.co/contact.html">
+    <meta property="og:image" content="https://integratewise.co/og-image.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 <a href="#main-content" class="skip-to-content">Skip to main content</a>
 <header class="site-header">
     <div class="nav-container">
         <a class="logo" href="index.html" aria-label="IntegrateWise home">
-            <span class="logo-mark" aria-hidden="true">IW</span>
+            <svg class="logo-icon" width="36" height="36" viewBox="0 0 36 36" fill="none" aria-hidden="true">
+                <rect width="36" height="36" rx="8" fill="#10b981"/>
+                <path d="M10 18l6 6 10-12" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
             <span class="logo-text">IntegrateWise</span>
         </a>
         <nav class="nav-links" aria-label="Main navigation">
             <a href="platform.html">Platform</a>
             <a href="agents.html">Agents</a>
             <a href="services.html">Services</a>
-            <a href="solutions.html">Solutions</a>
             <a href="pricing.html">Pricing</a>
-            <a href="resources.html">Resources</a>
-            <a href="about.html">About</a>
             <a href="docs/index.html">Technical Docs</a>
         </nav>
         <div class="nav-actions">
-            <a class="btn btn-outline" href="#demo">Book a Demo</a>
+            <a class="btn btn-primary" href="#demo">Book a Demo</a>
             <button class="mobile-menu-btn" aria-label="Toggle navigation" aria-expanded="false"><span></span><span></span><span></span></button>
         </div>
     </div>
 </header>
-<main id="main-content" class="section">
-    <div class="container">
-        <div class="section-header">
-            <p class="eyebrow">Let’s talk</p>
-            <h1 class="section-title">Connect. Automate. Elevate.</h1>
-            <p class="section-subtitle">Email <a href="mailto:connect@integratewise.co">connect@integratewise.co</a> or call <a href="tel:+917019746296">+91 70197 46296</a>. Use the anchors below to reach the right team.</p>
+
+<main id="main-content">
+    <!-- Hero Section -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header center">
+                <span class="section-badge">Contact</span>
+                <h1 class="section-title">Let's talk</h1>
+                <p class="section-subtitle">Email <a href="mailto:connect@integratewise.co">connect@integratewise.co</a> or call <a href="tel:+917019746296">+91 70197 46296</a></p>
+            </div>
+
+            <!-- Quick Actions -->
+            <nav class="contact-actions" aria-label="Quick actions">
+                <a href="#demo" class="action-card">
+                    <span class="action-icon">📅</span>
+                    <span class="action-label">Book a Demo</span>
+                </a>
+                <a href="#assessment" class="action-card">
+                    <span class="action-icon">📊</span>
+                    <span class="action-label">Start Assessment</span>
+                </a>
+                <a href="#implementation" class="action-card">
+                    <span class="action-icon">🚀</span>
+                    <span class="action-label">Get Started</span>
+                </a>
+                <a href="#retainer" class="action-card">
+                    <span class="action-icon">🛡️</span>
+                    <span class="action-label">Managed Ops</span>
+                </a>
+                <a href="#quote" class="action-card">
+                    <span class="action-icon">💰</span>
+                    <span class="action-label">Get Custom Quote</span>
+                </a>
+            </nav>
         </div>
-        <div class="grid cards-2">
-            <article class="card" id="demo">
-                <h3>Book a Demo</h3>
-                <form class="form-grid" method="POST" action="#" data-analytics="demo-form" novalidate>
-                    <div>
-                        <label for="demo-name">Name <span aria-label="required">*</span></label>
-                        <input id="demo-name" name="name" type="text" required aria-required="true" aria-describedby="demo-name-error">
-                        <span class="error-message" id="demo-name-error" role="alert"></span>
+    </section>
+
+    <!-- Forms Section -->
+    <section class="section muted">
+        <div class="container">
+            <div class="forms-grid">
+                <!-- Book a Demo -->
+                <article class="card form-card" id="demo">
+                    <h2>Book a Demo</h2>
+                    <p class="card-subtitle">See IntegrateWise in action. 15-minute walkthrough.</p>
+                    
+                    <!-- Success/Error Messages -->
+                    <div class="form-message success" role="alert" hidden>
+                        Thanks—your message has been sent. We'll reach out within one business day.
                     </div>
-                    <div>
-                        <label for="demo-email">Work Email <span aria-label="required">*</span></label>
-                        <input id="demo-email" name="email" type="email" required aria-required="true" aria-describedby="demo-email-error">
-                        <span class="error-message" id="demo-email-error" role="alert"></span>
+                    <div class="form-message error" role="alert" hidden>
+                        Something went wrong. Please try again or email <a href="mailto:connect@integratewise.co">connect@integratewise.co</a>.
                     </div>
-                    <div>
-                        <label for="demo-company">Company <span aria-label="required">*</span></label>
-                        <input id="demo-company" name="company" type="text" required aria-required="true" aria-describedby="demo-company-error">
-                        <span class="error-message" id="demo-company-error" role="alert"></span>
+                    
+                    <form class="contact-form" method="POST" action="#" data-form="demo" novalidate>
+                        <div class="form-field">
+                            <label for="demo-name">Full Name <span class="required" aria-hidden="true">*</span></label>
+                            <input type="text" id="demo-name" name="name" required aria-required="true" placeholder="John Smith">
+                        </div>
+                        <div class="form-field">
+                            <label for="demo-email">Work Email <span class="required" aria-hidden="true">*</span></label>
+                            <input type="email" id="demo-email" name="email" required aria-required="true" placeholder="john@company.com">
+                        </div>
+                        <div class="form-field">
+                            <label for="demo-company">Company <span class="required" aria-hidden="true">*</span></label>
+                            <input type="text" id="demo-company" name="company" required aria-required="true" placeholder="Acme Inc.">
+                        </div>
+                        <div class="form-field">
+                            <label for="demo-size">Team Size</label>
+                            <input type="number" id="demo-size" name="size" min="1" placeholder="50">
+                        </div>
+                        <div class="form-field full">
+                            <label for="demo-focus">What would you like to focus on?</label>
+                            <textarea id="demo-focus" name="focus" rows="3" placeholder="Health scoring, churn prevention, integrations..."></textarea>
+                        </div>
+                        <div class="form-field full">
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="consent" required aria-required="true">
+                                <span>I agree to be contacted about IntegrateWise <span class="required" aria-hidden="true">*</span></span>
+                            </label>
+                            <p class="privacy-notice">We'll only use your information to contact you about IntegrateWise. You can unsubscribe anytime. See our <a href="privacy.html">Privacy Policy</a>.</p>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Book a Demo</button>
+                    </form>
+                    <p class="calendly-link">Or <a href="https://calendly.com/integratewise/demo" target="_blank" rel="noopener">schedule directly on Calendly</a></p>
+                </article>
+
+                <!-- Start Assessment -->
+                <article class="card form-card" id="assessment">
+                    <h2>Start Assessment</h2>
+                    <p class="card-subtitle">2-week diagnostic with ROI model. $5K–$10K.</p>
+                    
+                    <div class="form-message success" role="alert" hidden>
+                        Thanks—your message has been sent. We'll reach out within one business day.
                     </div>
-                    <div>
-                        <label for="demo-size">Team Size</label>
-                        <input id="demo-size" name="size" type="number" min="1" aria-label="Team size">
+                    <div class="form-message error" role="alert" hidden>
+                        Something went wrong. Please try again or email <a href="mailto:connect@integratewise.co">connect@integratewise.co</a>.
                     </div>
-                    <div class="full">
-                        <label for="demo-notes">Focus</label>
-                        <textarea id="demo-notes" name="notes" rows="3" aria-describedby="demo-notes-hint"></textarea>
-                        <span class="mini-text" id="demo-notes-hint">Optional: Tell us what you'd like to focus on</span>
+                    
+                    <form class="contact-form" method="POST" action="#" data-form="assessment" novalidate>
+                        <div class="form-field">
+                            <label for="assess-name">Full Name <span class="required" aria-hidden="true">*</span></label>
+                            <input type="text" id="assess-name" name="name" required aria-required="true" placeholder="John Smith">
+                        </div>
+                        <div class="form-field">
+                            <label for="assess-email">Work Email <span class="required" aria-hidden="true">*</span></label>
+                            <input type="email" id="assess-email" name="email" required aria-required="true" placeholder="john@company.com">
+                        </div>
+                        <div class="form-field">
+                            <label for="assess-company">Company <span class="required" aria-hidden="true">*</span></label>
+                            <input type="text" id="assess-company" name="company" required aria-required="true" placeholder="Acme Inc.">
+                        </div>
+                        <div class="form-field">
+                            <label for="assess-crm">Primary CRM</label>
+                            <select id="assess-crm" name="crm">
+                                <option value="">Select your CRM</option>
+                                <option value="salesforce">Salesforce</option>
+                                <option value="hubspot">HubSpot</option>
+                                <option value="dynamics">Dynamics</option>
+                                <option value="zoho">Zoho</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-field full">
+                            <label for="assess-scope">Integration Scope</label>
+                            <textarea id="assess-scope" name="scope" rows="3" placeholder="Describe your current integrations and pain points..."></textarea>
+                        </div>
+                        <div class="form-field full">
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="consent" required aria-required="true">
+                                <span>I agree to be contacted about IntegrateWise <span class="required" aria-hidden="true">*</span></span>
+                            </label>
+                            <p class="privacy-notice">We'll only use your information to contact you about IntegrateWise. You can unsubscribe anytime.</p>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Start Assessment</button>
+                    </form>
+                </article>
+
+                <!-- Implementation -->
+                <article class="card form-card" id="implementation">
+                    <h2>Get Started</h2>
+                    <p class="card-subtitle">Implementation packages from 4–12 weeks.</p>
+                    
+                    <div class="form-message success" role="alert" hidden>
+                        Thanks—your message has been sent. We'll reach out within one business day.
                     </div>
-                    <button class="btn btn-primary" type="submit" data-analytics="submit-demo">Submit</button>
-                </form>
-            </article>
-            <article class="card" id="assessment">
-                <h3>Start Assessment</h3>
-                <form class="form-grid" method="POST" action="#" data-analytics="assessment-form" novalidate>
-                    <div>
-                        <label for="assess-name">Name <span aria-label="required">*</span></label>
-                        <input id="assess-name" name="name" type="text" required aria-required="true" aria-describedby="assess-name-error">
-                        <span class="error-message" id="assess-name-error" role="alert"></span>
+                    <div class="form-message error" role="alert" hidden>
+                        Something went wrong. Please try again or email <a href="mailto:connect@integratewise.co">connect@integratewise.co</a>.
                     </div>
-                    <div>
-                        <label for="assess-email">Work Email <span aria-label="required">*</span></label>
-                        <input id="assess-email" name="email" type="email" required aria-required="true" aria-describedby="assess-email-error">
-                        <span class="error-message" id="assess-email-error" role="alert"></span>
+                    
+                    <form class="contact-form" method="POST" action="#" data-form="implementation" novalidate>
+                        <div class="form-field">
+                            <label for="impl-name">Full Name <span class="required" aria-hidden="true">*</span></label>
+                            <input type="text" id="impl-name" name="name" required aria-required="true" placeholder="John Smith">
+                        </div>
+                        <div class="form-field">
+                            <label for="impl-email">Work Email <span class="required" aria-hidden="true">*</span></label>
+                            <input type="email" id="impl-email" name="email" required aria-required="true" placeholder="john@company.com">
+                        </div>
+                        <div class="form-field">
+                            <label for="impl-company">Company <span class="required" aria-hidden="true">*</span></label>
+                            <input type="text" id="impl-company" name="company" required aria-required="true" placeholder="Acme Inc.">
+                        </div>
+                        <div class="form-field">
+                            <label for="impl-package">Package</label>
+                            <select id="impl-package" name="package">
+                                <option value="">Select a package</option>
+                                <option value="foundation">Foundation (4 weeks)</option>
+                                <option value="professional">Professional (6 weeks)</option>
+                                <option value="enterprise">Enterprise (8–12 weeks)</option>
+                            </select>
+                        </div>
+                        <div class="form-field full">
+                            <label for="impl-timeline">Preferred Timeline</label>
+                            <textarea id="impl-timeline" name="timeline" rows="3" placeholder="Any deadlines or preferred start dates..."></textarea>
+                        </div>
+                        <div class="form-field full">
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="consent" required aria-required="true">
+                                <span>I agree to be contacted about IntegrateWise <span class="required" aria-hidden="true">*</span></span>
+                            </label>
+                            <p class="privacy-notice">We'll only use your information to contact you about IntegrateWise. You can unsubscribe anytime.</p>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Get Started</button>
+                    </form>
+                </article>
+
+                <!-- Managed Ops -->
+                <article class="card form-card" id="retainer">
+                    <h2>Managed Ops</h2>
+                    <p class="card-subtitle">Ongoing support with Bronze to Platinum SLAs.</p>
+                    
+                    <div class="form-message success" role="alert" hidden>
+                        Thanks—your message has been sent. We'll reach out within one business day.
                     </div>
-                    <div>
-                        <label for="assess-crm">Primary CRM</label>
-                        <input id="assess-crm" name="crm" type="text" placeholder="e.g., Salesforce, HubSpot">
+                    <div class="form-message error" role="alert" hidden>
+                        Something went wrong. Please try again or email <a href="mailto:connect@integratewise.co">connect@integratewise.co</a>.
                     </div>
-                    <div class="full">
-                        <label for="assess-scope">Scope</label>
-                        <textarea id="assess-scope" name="scope" rows="3" aria-describedby="assess-scope-hint"></textarea>
-                        <span class="mini-text" id="assess-scope-hint">Optional: Describe your integration scope</span>
+                    
+                    <form class="contact-form" method="POST" action="#" data-form="retainer" novalidate>
+                        <div class="form-field">
+                            <label for="retainer-name">Full Name <span class="required" aria-hidden="true">*</span></label>
+                            <input type="text" id="retainer-name" name="name" required aria-required="true" placeholder="John Smith">
+                        </div>
+                        <div class="form-field">
+                            <label for="retainer-email">Work Email <span class="required" aria-hidden="true">*</span></label>
+                            <input type="email" id="retainer-email" name="email" required aria-required="true" placeholder="john@company.com">
+                        </div>
+                        <div class="form-field">
+                            <label for="retainer-company">Company <span class="required" aria-hidden="true">*</span></label>
+                            <input type="text" id="retainer-company" name="company" required aria-required="true" placeholder="Acme Inc.">
+                        </div>
+                        <div class="form-field">
+                            <label for="retainer-tier">SLA Tier</label>
+                            <select id="retainer-tier" name="tier">
+                                <option value="">Select a tier</option>
+                                <option value="bronze">Bronze (24h response)</option>
+                                <option value="silver">Silver (12h response)</option>
+                                <option value="gold">Gold (4h response)</option>
+                                <option value="platinum">Platinum (1h response)</option>
+                            </select>
+                        </div>
+                        <div class="form-field full">
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="consent" required aria-required="true">
+                                <span>I agree to be contacted about IntegrateWise <span class="required" aria-hidden="true">*</span></span>
+                            </label>
+                            <p class="privacy-notice">We'll only use your information to contact you about IntegrateWise. You can unsubscribe anytime.</p>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Learn More</button>
+                    </form>
+                </article>
+
+                <!-- Custom Quote -->
+                <article class="card form-card" id="quote">
+                    <h2>Get Custom Quote</h2>
+                    <p class="card-subtitle">Outcome-tied pricing and enterprise agreements.</p>
+                    
+                    <div class="form-message success" role="alert" hidden>
+                        Thanks—your message has been sent. We'll reach out within one business day.
                     </div>
-                    <button class="btn btn-primary" type="submit" data-analytics="submit-assessment">Submit</button>
-                </form>
-            </article>
-            <article class="card" id="implementation">
-                <h3>Implementation</h3>
-                <form class="form-grid" method="POST" action="#" data-analytics="implementation-form" novalidate>
-                    <div>
-                        <label for="impl-name">Name <span aria-label="required">*</span></label>
-                        <input id="impl-name" name="name" type="text" required aria-required="true" aria-describedby="impl-name-error">
-                        <span class="error-message" id="impl-name-error" role="alert"></span>
+                    <div class="form-message error" role="alert" hidden>
+                        Something went wrong. Please try again or email <a href="mailto:connect@integratewise.co">connect@integratewise.co</a>.
                     </div>
-                    <div>
-                        <label for="impl-email">Work Email <span aria-label="required">*</span></label>
-                        <input id="impl-email" name="email" type="email" required aria-required="true" aria-describedby="impl-email-error">
-                        <span class="error-message" id="impl-email-error" role="alert"></span>
-                    </div>
-                    <div>
-                        <label for="impl-tier">Package</label>
-                        <select id="impl-tier" name="tier" aria-label="Select package tier">
-                            <option value="">Select a package</option>
-                            <option value="foundation">Foundation</option>
-                            <option value="professional">Professional</option>
-                            <option value="enterprise">Enterprise</option>
-                        </select>
-                    </div>
-                    <div class="full">
-                        <label for="impl-notes">Timeline</label>
-                        <textarea id="impl-notes" name="timeline" rows="3" aria-describedby="impl-notes-hint"></textarea>
-                        <span class="mini-text" id="impl-notes-hint">Optional: Preferred timeline or deadlines</span>
-                    </div>
-                    <button class="btn btn-primary" type="submit" data-analytics="submit-implementation">Submit</button>
-                </form>
-            </article>
-            <article class="card" id="retainer">
-                <h3>Managed Ops</h3>
-                <form class="form-grid" method="POST" action="#" data-analytics="retainer-form" novalidate>
-                    <div>
-                        <label for="retainer-name">Name <span aria-label="required">*</span></label>
-                        <input id="retainer-name" name="name" type="text" required aria-required="true" aria-describedby="retainer-name-error">
-                        <span class="error-message" id="retainer-name-error" role="alert"></span>
-                    </div>
-                    <div>
-                        <label for="retainer-email">Work Email <span aria-label="required">*</span></label>
-                        <input id="retainer-email" name="email" type="email" required aria-required="true" aria-describedby="retainer-email-error">
-                        <span class="error-message" id="retainer-email-error" role="alert"></span>
-                    </div>
-                    <div>
-                        <label for="retainer-tier">Tier</label>
-                        <select id="retainer-tier" name="tier" aria-label="Select managed ops tier">
-                            <option value="">Select a tier</option>
-                            <option value="bronze">Bronze (24h)</option>
-                            <option value="silver">Silver (12h)</option>
-                            <option value="gold">Gold (4h)</option>
-                            <option value="platinum">Platinum (1h)</option>
-                        </select>
-                    </div>
-                    <button class="btn btn-primary" type="submit" data-analytics="submit-retainer">Submit</button>
-                </form>
-            </article>
-            <article class="card" id="quote">
-                <h3>Custom Quote</h3>
-                <form class="form-grid" method="POST" action="#" data-analytics="quote-form" novalidate>
-                    <div>
-                        <label for="quote-name">Name <span aria-label="required">*</span></label>
-                        <input id="quote-name" name="name" type="text" required aria-required="true" aria-describedby="quote-name-error">
-                        <span class="error-message" id="quote-name-error" role="alert"></span>
-                    </div>
-                    <div>
-                        <label for="quote-email">Work Email <span aria-label="required">*</span></label>
-                        <input id="quote-email" name="email" type="email" required aria-required="true" aria-describedby="quote-email-error">
-                        <span class="error-message" id="quote-email-error" role="alert"></span>
-                    </div>
-                    <div>
-                        <label for="quote-outcome">Outcome-tied component</label>
-                        <input id="quote-outcome" name="outcome" type="text" placeholder="Documented savings/retained revenue" aria-describedby="quote-outcome-hint">
-                        <span class="mini-text" id="quote-outcome-hint">Optional: Expected savings or revenue impact</span>
-                    </div>
-                    <div class="full">
-                        <label for="quote-notes">Notes</label>
-                        <textarea id="quote-notes" name="notes" rows="3" aria-describedby="quote-notes-hint"></textarea>
-                        <span class="mini-text" id="quote-notes-hint">Optional: Additional requirements or questions</span>
-                    </div>
-                    <button class="btn btn-primary" type="submit" data-analytics="submit-quote">Submit</button>
-                </form>
-            </article>
+                    
+                    <form class="contact-form" method="POST" action="#" data-form="quote" novalidate>
+                        <div class="form-field">
+                            <label for="quote-name">Full Name <span class="required" aria-hidden="true">*</span></label>
+                            <input type="text" id="quote-name" name="name" required aria-required="true" placeholder="John Smith">
+                        </div>
+                        <div class="form-field">
+                            <label for="quote-email">Work Email <span class="required" aria-hidden="true">*</span></label>
+                            <input type="email" id="quote-email" name="email" required aria-required="true" placeholder="john@company.com">
+                        </div>
+                        <div class="form-field">
+                            <label for="quote-company">Company <span class="required" aria-hidden="true">*</span></label>
+                            <input type="text" id="quote-company" name="company" required aria-required="true" placeholder="Acme Inc.">
+                        </div>
+                        <div class="form-field">
+                            <label for="quote-outcome">Expected Outcome</label>
+                            <input type="text" id="quote-outcome" name="outcome" placeholder="Documented savings or retained revenue">
+                        </div>
+                        <div class="form-field full">
+                            <label for="quote-notes">Additional Notes</label>
+                            <textarea id="quote-notes" name="notes" rows="3" placeholder="Requirements, questions, or special considerations..."></textarea>
+                        </div>
+                        <div class="form-field full">
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="consent" required aria-required="true">
+                                <span>I agree to be contacted about IntegrateWise <span class="required" aria-hidden="true">*</span></span>
+                            </label>
+                            <p class="privacy-notice">We'll only use your information to contact you about IntegrateWise. You can unsubscribe anytime.</p>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Get Custom Quote</button>
+                    </form>
+                </article>
+            </div>
         </div>
-    </div>
+    </section>
+
+    <!-- Contact Info Section -->
+    <section class="section">
+        <div class="container">
+            <div class="contact-info-grid">
+                <div class="contact-block">
+                    <h2>Direct Contact</h2>
+                    <ul class="contact-list">
+                        <li>
+                            <strong>Email</strong>
+                            <a href="mailto:connect@integratewise.co">connect@integratewise.co</a>
+                        </li>
+                        <li>
+                            <strong>Phone</strong>
+                            <a href="tel:+917019746296">+91 70197 46296</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="contact-block">
+                    <h2>Schedule a Call</h2>
+                    <p>Book a 15-minute demo directly on our calendar.</p>
+                    <a href="https://calendly.com/integratewise/demo" target="_blank" rel="noopener" class="btn btn-outline">Open Calendly</a>
+                </div>
+                <div class="contact-block">
+                    <h2>Remote-First</h2>
+                    <p>HQ in Bengaluru with global delivery.</p>
+                    <ul class="hours-list">
+                        <li><strong>India (IST):</strong> 9 AM – 6 PM</li>
+                        <li><strong>US (EST):</strong> 9 AM – 5 PM</li>
+                        <li><strong>Europe (CET):</strong> 9 AM – 5 PM</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
 </main>
+
 <footer class="site-footer">
-    <div class="container footer-grid">
-        <div><div class="logo">IntegrateWise</div><p class="mini-text">Normalize once. Render anywhere.</p></div>
-        <div><h4>Docs</h4><a class="text-link" href="docs/index.html">Technical Docs</a></div>
-        <div><h4>Call or email</h4><p class="mini-text">connect@integratewise.co · +91 70197 46296</p></div>
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <a class="logo" href="index.html">
+                    <svg class="logo-icon" width="36" height="36" viewBox="0 0 36 36" fill="none" aria-hidden="true">
+                        <rect width="36" height="36" rx="8" fill="#10b981"/>
+                        <path d="M10 18l6 6 10-12" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span class="logo-text">IntegrateWise</span>
+                </a>
+                <p class="footer-tagline">Normalize once. Render anywhere.</p>
+            </div>
+            <div class="footer-links">
+                <div class="footer-col">
+                    <h4>Platform</h4>
+                    <ul>
+                        <li><a href="platform.html">Platform</a></li>
+                        <li><a href="agents.html">Agents</a></li>
+                        <li><a href="docs/index.html">Technical Docs</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="pricing.html">Pricing</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Connect</h4>
+                    <ul>
+                        <li><a href="mailto:connect@integratewise.co">connect@integratewise.co</a></li>
+                        <li><a href="tel:+917019746296">+91 70197 46296</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-acceptance">
+            <strong>Acceptance Criteria:</strong> Ingest ≥98% • Health compute &lt;2 min • Agent uptime &gt;99.9% • Rotation compliance 100%
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 IntegrateWise LLP. All rights reserved.</p>
+            <div class="footer-legal">
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Terms of Service</a>
+            </div>
+        </div>
     </div>
-    <p class="mini-text center">Ingest ≥98% • Health compute &lt;2 min • Agent uptime &gt;99.9% • Rotation compliance 100%</p>
 </footer>
 <script src="script.js" defer></script>
 </body>
