@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Model | IntegrateWise Technical Docs</title>
+    <meta name="description" content="Complete canonical data model specification: entities, relationships, keys, types, and constraints.">
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../pages.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../" class="logo">
+                <svg class="logo-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="40" height="40" rx="8" fill="#10B981"/>
+                    <path d="M12 20L18 26L28 14" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span>IntegrateWise</span>
+            </a>
+            <div class="nav-links">
+                <a href="../platform/">Platform</a>
+                <a href="../agents/">Agents</a>
+                <a href="../services/">Services</a>
+                <a href="./" class="active">Technical Docs</a>
+            </div>
+            <div class="nav-cta">
+                <a href="../contact/" class="btn btn-primary">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="page-hero">
+        <div class="container">
+            <div class="page-hero-content">
+                <span class="section-badge">Data Model</span>
+                <h1>Canonical Data <span class="highlight">Model</span></h1>
+                <p class="hero-subtitle">Complete specification of all entities, relationships, keys, types, and constraints.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Core Entities -->
+    <section class="content-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Core <span class="highlight">Entities</span></h2>
+                <p>The canonical model normalizes data from all sources into these core entities.</p>
+            </div>
+
+            <div style="max-width: 1200px; margin: 0 auto;">
+                <!-- Accounts -->
+                <div style="background: var(--white); border: 1px solid var(--gray-200); border-radius: 12px; padding: 32px; margin-bottom: 24px;">
+                    <h3 style="font-size: 20px; margin-bottom: 16px;">accounts</h3>
+                    <table style="width: 100%; border-collapse: collapse;">
+                        <thead>
+                            <tr style="background: var(--gray-50); border-bottom: 2px solid var(--gray-200);">
+                                <th style="padding: 12px; text-align: left; font-weight: 600;">Field</th>
+                                <th style="padding: 12px; text-align: left; font-weight: 600;">Type</th>
+                                <th style="padding: 12px; text-align: left; font-weight: 600;">Constraints</th>
+                                <th style="padding: 12px; text-align: left; font-weight: 600;">Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="border-bottom: 1px solid var(--gray-100);">
+                                <td style="padding: 12px;"><code>id</code></td>
+                                <td style="padding: 12px;">UUID</td>
+                                <td style="padding: 12px;">PRIMARY KEY</td>
+                                <td style="padding: 12px;">Unique identifier</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid var(--gray-100);">
+                                <td style="padding: 12px;"><code>name</code></td>
+                                <td style="padding: 12px;">VARCHAR(255)</td>
+                                <td style="padding: 12px;">NOT NULL</td>
+                                <td style="padding: 12px;">Account name</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid var(--gray-100);">
+                                <td style="padding: 12px;"><code>domain</code></td>
+                                <td style="padding: 12px;">VARCHAR(255)</td>
+                                <td style="padding: 12px;">UNIQUE</td>
+                                <td style="padding: 12px;">Primary domain</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid var(--gray-100);">
+                                <td style="padding: 12px;"><code>health_score</code></td>
+                                <td style="padding: 12px;">DECIMAL(5,2)</td>
+                                <td style="padding: 12px;">CHECK (0-100)</td>
+                                <td style="padding: 12px;">Current health score</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 12px;"><code>created_at</code></td>
+                                <td style="padding: 12px;">TIMESTAMP</td>
+                                <td style="padding: 12px;">NOT NULL</td>
+                                <td style="padding: 12px;">Record creation time</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Contacts -->
+                <div style="background: var(--white); border: 1px solid var(--gray-200); border-radius: 12px; padding: 32px; margin-bottom: 24px;">
+                    <h3 style="font-size: 20px; margin-bottom: 16px;">contacts</h3>
+                    <table style="width: 100%; border-collapse: collapse;">
+                        <thead>
+                            <tr style="background: var(--gray-50); border-bottom: 2px solid var(--gray-200);">
+                                <th style="padding: 12px; text-align: left; font-weight: 600;">Field</th>
+                                <th style="padding: 12px; text-align: left; font-weight: 600;">Type</th>
+                                <th style="padding: 12px; text-align: left; font-weight: 600;">Constraints</th>
+                                <th style="padding: 12px; text-align: left; font-weight: 600;">Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="border-bottom: 1px solid var(--gray-100);">
+                                <td style="padding: 12px;"><code>id</code></td>
+                                <td style="padding: 12px;">UUID</td>
+                                <td style="padding: 12px;">PRIMARY KEY</td>
+                                <td style="padding: 12px;">Unique identifier</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid var(--gray-100);">
+                                <td style="padding: 12px;"><code>account_id</code></td>
+                                <td style="padding: 12px;">UUID</td>
+                                <td style="padding: 12px;">FOREIGN KEY → accounts.id</td>
+                                <td style="padding: 12px;">Associated account</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid var(--gray-100);">
+                                <td style="padding: 12px;"><code>email</code></td>
+                                <td style="padding: 12px;">VARCHAR(255)</td>
+                                <td style="padding: 12px;">NOT NULL, UNIQUE</td>
+                                <td style="padding: 12px;">Contact email</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 12px;"><code>role</code></td>
+                                <td style="padding: 12px;">VARCHAR(100)</td>
+                                <td style="padding: 12px;">NULL</td>
+                                <td style="padding: 12px;">Job title/role</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Additional entities note -->
+                <div style="background: var(--gray-50); border-radius: 12px; padding: 24px; margin-top: 32px;">
+                    <h4 style="font-size: 16px; margin-bottom: 12px;">Additional Core Entities</h4>
+                    <p style="color: var(--gray-600); font-size: 14px; margin-bottom: 12px;">The complete model also includes:</p>
+                    <ul style="color: var(--gray-600); font-size: 14px; padding-left: 24px;">
+                        <li><code>stakeholders</code> - Key decision makers and influencers</li>
+                        <li><code>integrations</code> - Connected systems and adapters</li>
+                        <li><code>workflows</code> - Automated processes and agent configurations</li>
+                        <li><code>runs</code> - Execution logs and results</li>
+                        <li><code>events</code> - Time-series event data</li>
+                        <li><code>secrets_vault</code> - Encrypted credential storage</li>
+                        <li><code>health_scores</code> - Historical health score snapshots</li>
+                    </ul>
+                    <p style="color: var(--gray-600); font-size: 14px; margin-top: 16px;">For the complete schema specification, see <a href="../downloads/IntegrateWise_Schema_v1.json" style="color: #10B981;">IntegrateWise_Schema_v1.json</a>.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <a href="../" class="logo">
+                        <svg class="logo-icon" viewBox="0 0 40 40" fill="none">
+                            <rect width="40" height="40" rx="8" fill="#10B981"/>
+                            <path d="M12 20L18 26L28 14" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <span>IntegrateWise</span>
+                    </a>
+                    <p class="footer-tagline-primary">Normalize once. Render anywhere.</p>
+                    <p class="footer-tagline-secondary">Connect. Automate. Elevate.</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Platform</h4>
+                        <a href="../platform/">Platform</a>
+                        <a href="../agents/">Agents</a>
+                        <a href="./">Technical Docs</a>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Company</h4>
+                        <a href="../services/">Services</a>
+                        <a href="../pricing/">Pricing</a>
+                        <a href="../contact/">Contact</a>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Connect</h4>
+                        <a href="mailto:connect@integratewise.co">connect@integratewise.co</a>
+                        <a href="tel:+917019746296">+91 70197 46296</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-acceptance">
+                <p><strong>Acceptance Criteria:</strong> Ingest ≥98% • Health compute &lt;2 min • Agent uptime &gt;99.9% • Rotation compliance 100%</p>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2024 IntegrateWise LLP. All rights reserved. | <a href="../privacy/">Privacy Policy</a> | <a href="../terms/">Terms of Service</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+</body>
+</html>
+

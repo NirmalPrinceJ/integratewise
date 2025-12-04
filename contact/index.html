@@ -5,18 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact | IntegrateWise — Normalize once. Render anywhere.</title>
     <meta name="description" content="Book a 15-minute discovery call. Normalize once, render anywhere. Email: connect@integratewise.co, Phone: +91 70197 46296.">
-    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="pages.css">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../pages.css">
 </head>
 <body>
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
-            <a href="index.html" class="logo">
+            <a href="../" class="logo">
                 <svg class="logo-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <rect width="40" height="40" rx="8" fill="#10B981"/>
                     <path d="M12 20L18 26L28 14" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
@@ -24,16 +24,12 @@
                 <span>IntegrateWise</span>
             </a>
             <div class="nav-links">
-                <a href="about.html">About</a>
-                <a href="platform.html">Platform</a>
-                <a href="agents.html">Agents</a>
-                <a href="services.html">Services</a>
-                <a href="solutions.html">Solutions</a>
-                <a href="pricing.html">Pricing</a>
-                <a href="resources.html">Resources</a>
+                <a href="../platform/">Platform</a>
+                <a href="../pricing/">Pricing</a>
+                <a href="../resources/">Resources</a>
             </div>
             <div class="nav-cta">
-                <a href="contact.html" class="btn btn-primary active">Book Assessment</a>
+                <a href="../contact/" class="btn btn-primary active">Book Assessment</a>
             </div>
             <button class="mobile-menu-btn" aria-label="Toggle menu">
                 <span></span>
@@ -57,6 +53,65 @@
     <!-- Contact Section -->
     <section class="content-section">
         <div class="container">
+            <!-- Quick Actions -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 24px; margin-bottom: 64px;">
+                <a href="#demo" style="background: var(--white); border: 1px solid var(--gray-200); border-radius: 12px; padding: 24px; text-decoration: none; transition: all 0.2s;">
+                    <h3 style="font-size: 18px; margin-bottom: 8px; color: var(--gray-900);">Book a Demo</h3>
+                    <p style="font-size: 14px; color: var(--gray-600);">See the platform in action</p>
+                </a>
+                <a href="#assessment" style="background: var(--white); border: 1px solid var(--gray-200); border-radius: 12px; padding: 24px; text-decoration: none; transition: all 0.2s;">
+                    <h3 style="font-size: 18px; margin-bottom: 8px; color: var(--gray-900);">Start Assessment</h3>
+                    <p style="font-size: 14px; color: var(--gray-600);">2-week discovery engagement</p>
+                </a>
+                <a href="#implementation" style="background: var(--white); border: 1px solid var(--gray-200); border-radius: 12px; padding: 24px; text-decoration: none; transition: all 0.2s;">
+                    <h3 style="font-size: 18px; margin-bottom: 8px; color: var(--gray-900);">Get Started</h3>
+                    <p style="font-size: 14px; color: var(--gray-600);">Implementation packages</p>
+                </a>
+                <a href="#retainer" style="background: var(--white); border: 1px solid var(--gray-200); border-radius: 12px; padding: 24px; text-decoration: none; transition: all 0.2s;">
+                    <h3 style="font-size: 18px; margin-bottom: 8px; color: var(--gray-900);">Managed Ops</h3>
+                    <p style="font-size: 14px; color: var(--gray-600);">Ongoing support retainer</p>
+                </a>
+                <a href="#quote" style="background: var(--white); border: 1px solid var(--gray-200); border-radius: 12px; padding: 24px; text-decoration: none; transition: all 0.2s;">
+                    <h3 style="font-size: 18px; margin-bottom: 8px; color: var(--gray-900);">Get Quote</h3>
+                    <p style="font-size: 14px; color: var(--gray-600);">Custom pricing</p>
+                </a>
+            </div>
+
+            <!-- Demo Anchor -->
+            <div id="demo" style="scroll-margin-top: 100px; padding: 40px; background: var(--gray-50); border-radius: 12px; margin-bottom: 48px;">
+                <h2 style="font-size: 24px; margin-bottom: 16px;">Book a Demo</h2>
+                <p style="color: var(--gray-600); margin-bottom: 24px;">Schedule a 15-minute demo to see how IntegrateWise can transform your CSM operations.</p>
+                <a href="https://calendly.com/integratewise/demo" class="btn btn-primary" target="_blank">Schedule Demo</a>
+            </div>
+
+            <!-- Assessment Anchor -->
+            <div id="assessment" style="scroll-margin-top: 100px; padding: 40px; background: var(--gray-50); border-radius: 12px; margin-bottom: 48px;">
+                <h2 style="font-size: 24px; margin-bottom: 16px;">Start Assessment</h2>
+                <p style="color: var(--gray-600); margin-bottom: 16px;">2-week assessment ($5K–$10K) to baseline health diagnostics, architecture gap analysis, ROI hypothesis, and executive readout.</p>
+                <p style="color: var(--gray-600); margin-bottom: 24px;">Fill out the form below or <a href="mailto:connect@integratewise.co" style="color: #10B981;">email us</a> to get started.</p>
+            </div>
+
+            <!-- Implementation Anchor -->
+            <div id="implementation" style="scroll-margin-top: 100px; padding: 40px; background: var(--gray-50); border-radius: 12px; margin-bottom: 48px;">
+                <h2 style="font-size: 24px; margin-bottom: 16px;">Implementation Packages</h2>
+                <p style="color: var(--gray-600); margin-bottom: 16px;">Foundation ($15K–$25K, 4 weeks), Professional ($25K–$50K, 6 weeks), or Enterprise ($50K–$75K, 8–12 weeks).</p>
+                <p style="color: var(--gray-600); margin-bottom: 24px;">Fill out the form below to discuss your implementation needs.</p>
+            </div>
+
+            <!-- Retainer Anchor -->
+            <div id="retainer" style="scroll-margin-top: 100px; padding: 40px; background: var(--gray-50); border-radius: 12px; margin-bottom: 48px;">
+                <h2 style="font-size: 24px; margin-bottom: 16px;">Managed Operations Retainer</h2>
+                <p style="color: var(--gray-600); margin-bottom: 16px;">Monthly retainer ($5K–$20K) with Bronze (24h), Silver (12h), Gold (4h), or Platinum (1h) response windows.</p>
+                <p style="color: var(--gray-600); margin-bottom: 24px;">Contact us to discuss your support needs.</p>
+            </div>
+
+            <!-- Quote Anchor -->
+            <div id="quote" style="scroll-margin-top: 100px; padding: 40px; background: var(--gray-50); border-radius: 12px; margin-bottom: 48px;">
+                <h2 style="font-size: 24px; margin-bottom: 16px;">Get Custom Quote</h2>
+                <p style="color: var(--gray-600); margin-bottom: 16px;">Interested in outcome-tied pricing or custom engagement? Fill out the form below and we'll prepare a tailored quote.</p>
+                <p style="color: var(--gray-600); margin-bottom: 24px;">Or <a href="mailto:connect@integratewise.co" style="color: #10B981;">email us</a> directly at connect@integratewise.co</p>
+            </div>
+
             <div class="contact-grid">
                 
                 <!-- Contact Form -->
@@ -212,7 +267,7 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-brand">
-                    <a href="index.html" class="logo">
+                    <a href="../" class="logo">
                         <svg class="logo-icon" viewBox="0 0 40 40" fill="none">
                             <rect width="40" height="40" rx="8" fill="#10B981"/>
                             <path d="M12 20L18 26L28 14" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
@@ -225,21 +280,21 @@
                 <div class="footer-links">
                     <div class="footer-column">
                         <h4>Platform</h4>
-                        <a href="platform.html">Atlas Spine</a>
-                        <a href="agents.html">AI Agents</a>
-                        <a href="solutions.html">Solutions</a>
+                        <a href="../platform/">Atlas Spine</a>
+                        <a href="../agents/">AI Agents</a>
+                        <a href="../solutions/">Solutions</a>
                     </div>
                     <div class="footer-column">
                         <h4>Company</h4>
-                        <a href="about.html">About</a>
-                        <a href="services.html">Services</a>
-                        <a href="pricing.html">Pricing</a>
+                        <a href="../about/">About</a>
+                        <a href="../services/">Services</a>
+                        <a href="../pricing/">Pricing</a>
                     </div>
                     <div class="footer-column">
                         <h4>Connect</h4>
                         <a href="mailto:connect@integratewise.co">connect@integratewise.co</a>
                         <a href="tel:+917019746296">+91 70197 46296</a>
-                        <a href="contact.html">Contact</a>
+                        <a href="../contact/">Contact</a>
                     </div>
                 </div>
             </div>
@@ -247,12 +302,12 @@
                 <p><strong>Acceptance Criteria:</strong> Ingest ≥98% • Health compute &lt;2 min • Agent uptime &gt;99.9% • Rotation compliance 100%</p>
             </div>
             <div class="footer-bottom">
-                <p>© 2024 IntegrateWise LLP. All rights reserved. | <a href="privacy.html">Privacy Policy</a> | <a href="terms.html">Terms of Service</a></p>
+                <p>© 2024 IntegrateWise LLP. All rights reserved. | <a href="../privacy/">Privacy Policy</a> | <a href="../terms/">Terms of Service</a></p>
             </div>
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script src="../script.js"></script>
 </body>
 </html>
 
