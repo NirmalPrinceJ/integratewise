@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Data Model | IntegrateWise</title>
+<meta name="description" content="Canonical tables, keys, and constraints for IntegrateWise Atlas Spine.">
+<link rel="canonical" href="https://integratewise.co/docs/data-model.html">
+<link rel="stylesheet" href="../pages.css">
+</head>
+<body>
+<header><div class="header-inner"><a href="/docs/index.html">Docs</a><nav><a href="/platform.html">Platform</a><a href="/contact.html#quote">Contact</a></nav></div></header>
+<main>
+<section>
+<h1 class="section-title">Atlas Spine Data Model</h1>
+<p>Canonical entity list with primary keys, required fields, and constraints.</p>
+<div class="table-wrap"><table class="table">
+<thead><tr><th>Table</th><th>Primary Key</th><th>Required Fields</th><th>Constraints</th></tr></thead>
+<tbody>
+<tr><td>accounts</td><td>account_id (UUID)</td><td>name, external_id, lifecycle_stage</td><td>external_id unique per crm; lifecycle_stage in {prospect, active, risk, churned}</td></tr>
+<tr><td>contacts</td><td>contact_id (UUID)</td><td>account_id, email, role</td><td>email unique; FK account_id → accounts.account_id</td></tr>
+<tr><td>stakeholders</td><td>stakeholder_id (UUID)</td><td>account_id, name, influence_score</td><td>FK account_id; influence_score 0–100</td></tr>
+<tr><td>integrations</td><td>integration_id (UUID)</td><td>type, status, last_sync_at</td><td>type in {salesforce, hubspot, dynamics, zoho}; status in {active, paused}</td></tr>
+<tr><td>workflows</td><td>workflow_id (UUID)</td><td>name, trigger, owner</td><td>trigger enum {event, schedule, api}; owner references stakeholders</td></tr>
+<tr><td>runs</td><td>run_id (UUID)</td><td>workflow_id, started_at, status</td><td>FK workflow_id; status in {pending, running, success, failed}</td></tr>
+<tr><td>events</td><td>event_id (UUID)</td><td>account_id, type, occurred_at</td><td>type in {usage, support, billing, sentiment}; FK account_id</td></tr>
+<tr><td>secrets_vault</td><td>secret_id (UUID)</td><td>integration_id, rotation_date, scope</td><td>rotation_date not null; scope mapped to least-privilege policy; FK integration_id</td></tr>
+<tr><td>health_scores</td><td>health_id (UUID)</td><td>account_id, score, computed_at</td><td>score 0–100; SLA compute &lt;120s per account; FK account_id</td></tr>
+</tbody></table></div>
+<p class="small">Refer to docs/architecture for deployment and storage guarantees.</p>
+</section>
+</main>
+<footer>Technical Docs · Data Model</footer>
+</body>
+</html>

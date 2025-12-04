@@ -1,0 +1,15 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Architecture | IntegrateWise</title><meta name="description" content="Atlas Spine deployment, health compute window, and retry/backoff strategy."><link rel="canonical" href="https://integratewise.co/docs/architecture.html"><link rel="stylesheet" href="../pages.css"></head><body>
+<header><div class="header-inner"><a href="/docs/index.html">Docs</a><nav><a href="/platform.html">Platform</a></nav></div></header>
+<main>
+<section>
+<h1 class="section-title">Architecture</h1>
+<div class="cards">
+<div class="card"><h3>Atlas Spine Deployment</h3><p>Edge workers fronted by Cloudflare; data plane in regional KV + R2 buckets; Postgres for configuration and audits; all traffic TLS 1.2+.</p></div>
+<div class="card"><h3>Health Compute Window</h3><p>SuccessPilot runs on rolling 15-minute windows with batch backfill every 6 hours; max compute per account &lt;120 seconds.</p></div>
+<div class="card"><h3>Retry/Backoff</h3><p>Exponential backoff (2^n seconds up to 5 retries) for connectors; idempotent run_ids prevent double writes; dead-letter queue alerts routed to Ops.</p></div>
+<div class="card"><h3>Observability</h3><p>Structured logs per run, metrics exported to Prometheus-compatible endpoint, alert policies tied to managed ops tiers.</p></div>
+</div>
+</section>
+</main>
+<footer>Technical Docs · Architecture</footer>
+</body></html>
