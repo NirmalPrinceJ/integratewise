@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IntegrateWise | Normalize once. Render anywhere.</title>
+    <title>Normalize Once. Render Anywhere. | IntegrateWise</title>
     <meta name="description" content="Unified customer hub for mid-market SaaS. Normalize CRM data once and render health scores across Notion, Airtable, Asana, ClickUp, Monday, Sheets.">
     <link rel="canonical" href="https://integratewise.co/">
     <meta property="og:title" content="IntegrateWise | Normalize once. Render anywhere.">
@@ -17,38 +17,31 @@
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        .hero {background: radial-gradient(circle at 20% 20%, rgba(16,185,129,0.15), transparent 35%), radial-gradient(circle at 80% 0%, rgba(59,130,246,0.2), transparent 30%), #0b1021; color: #fff; padding: 4rem 1.5rem 3rem; position: relative; overflow: hidden;}
-        .hero .container {max-width: 1140px; margin: 0 auto; display: grid; gap: 2rem; align-items: center;}
-        .hero-title {font-size: clamp(2.4rem, 4vw, 3.6rem); line-height: 1.1; margin: 0 0 1rem; letter-spacing: -0.02em;}
-        .hero-subtitle {color: #d9e2ec; font-size: 1.05rem; max-width: 640px; margin-bottom: 1.5rem;}
-        .btn {display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; padding: 0.85rem 1.2rem; border-radius: 0.8rem; text-decoration: none; font-weight: 600; transition: transform 0.15s ease, box-shadow 0.15s ease;}
-        .btn-primary {background: #10b981; color: #0b1021; box-shadow: 0 12px 30px rgba(16,185,129,0.35);} .btn-outline {color: #fff; border: 1px solid rgba(255,255,255,0.4);} .btn:hover {transform: translateY(-2px);} 
-        .stat-strip {display: grid; grid-template-columns: repeat(auto-fit,minmax(140px,1fr)); gap: 0.75rem; margin: 1rem 0 0;}
-        .stat-card {border: 1px solid rgba(255,255,255,0.12); background: rgba(255,255,255,0.04); padding: 0.85rem 1rem; border-radius: 0.9rem; text-align: center; color: #fff;}
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+<a href="#main-content" class="skip-to-content">Skip to main content</a>
+
+<!-- Navigation -->
 <header class="site-header">
     <div class="nav-container">
         <a class="logo" href="index.html" aria-label="IntegrateWise home">
-            <span class="logo-mark" aria-hidden="true">IW</span>
+            <svg class="logo-icon" width="36" height="36" viewBox="0 0 36 36" fill="none" aria-hidden="true">
+                <rect width="36" height="36" rx="8" fill="#10b981"/>
+                <path d="M10 18l6 6 10-12" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
             <span class="logo-text">IntegrateWise</span>
         </a>
         <nav class="nav-links" aria-label="Main navigation">
             <a href="platform.html">Platform</a>
             <a href="agents.html">Agents</a>
             <a href="services.html">Services</a>
-            <a href="solutions.html">Solutions</a>
             <a href="pricing.html">Pricing</a>
-            <a href="resources.html">Resources</a>
-            <a href="about.html">About</a>
             <a href="docs/index.html">Technical Docs</a>
         </nav>
         <div class="nav-actions">
-            <a class="btn btn-outline" href="contact.html#demo">Book a Demo</a>
+            <a class="btn btn-primary" href="contact.html#demo">Book a Demo</a>
             <button class="mobile-menu-btn" aria-label="Toggle navigation" aria-expanded="false">
                 <span></span><span></span><span></span>
             </button>
@@ -56,141 +49,426 @@
     </div>
 </header>
 
-<main>
-    <section class="hero" id="top">
+<main id="main-content">
+    <!-- Hero Section -->
+    <section class="hero">
         <div class="container">
-            <div>
-                <p class="eyebrow">Connect. Automate. Elevate.</p>
-                <h1 class="hero-title">Normalize once.<br><span class="highlight">Render anywhere.</span></h1>
-                <p class="hero-subtitle">Built for mid-market SaaS teams (50–500). Plug Salesforce, HubSpot, or Dynamics in once and deliver health scores and renewal signals into Notion, Airtable, Asana, ClickUp, Monday, and Google Sheets.</p>
+            <span class="hero-badge">
+                <span class="badge-dot"></span>
+                Unified Customer Success Platform
+            </span>
+            <h1 class="hero-title">Normalize once.<br><span class="hero-accent">Render anywhere.</span></h1>
+            <p class="hero-subtitle">Mid-market SaaS (50–500) on Salesforce, HubSpot, or Dynamics. Views in Notion, Airtable, Asana, ClickUp, Monday, Sheets.</p>
+            <p class="hero-metrics"><strong>15–25% churn reduction</strong> • <strong>30–40% efficiency gains</strong> • <strong>3–5× ROI in 90 days</strong></p>
                 <div class="cta-row">
-                    <a class="btn btn-primary" href="contact.html#demo">Book a Demo</a>
-                    <a class="btn btn-outline" href="platform.html">See Platform</a>
+                <a class="btn btn-primary btn-lg" href="contact.html#demo">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    Book a Demo
+                </a>
+                <a class="btn btn-outline btn-lg" href="platform.html">See Platform</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Strip -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">15–25%</div>
+                    <div class="stat-label">Churn Reduction</div>
                 </div>
-                <div class="stat-strip" aria-label="Outcome metrics">
-                    <div class="stat-card"><div class="stat-number">15–25%</div><div class="stat-label">Churn reduction</div></div>
-                    <div class="stat-card"><div class="stat-number">30–40%</div><div class="stat-label">Efficiency gains</div></div>
-                    <div class="stat-card"><div class="stat-number">3–5x</div><div class="stat-label">ROI per engagement</div></div>
-                    <div class="stat-card"><div class="stat-number">90 days</div><div class="stat-label">Time to value</div></div>
+                <div class="stat-card">
+                    <div class="stat-number">30–40%</div>
+                    <div class="stat-label">Efficiency Gains</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">3–5×</div>
+                    <div class="stat-label">ROI in 90 Days</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">≥45 Days</div>
+                    <div class="stat-label">Churn Lead Time</div>
                 </div>
             </div>
-            <div class="card panel">
-                <h2 class="section-title">Connect → Automate → Elevate</h2>
-                <ol class="flow-list">
-                    <li><strong>Connect:</strong> Normalize your CRM schema once and map destinations for every workspace tool.</li>
-                    <li><strong>Automate:</strong> Agents orchestrate syncs, deduping, scoring, and runbooks without manual tickets.</li>
-                    <li><strong>Elevate:</strong> Health, renewals, and playbooks surface where CSMs and revenue teams already work.</li>
+        </div>
+    </section>
+
+    <!-- Why IntegrateWise -->
+    <section class="section" id="why">
+        <div class="container">
+            <div class="section-header center">
+                <h2 class="section-title">Why IntegrateWise</h2>
+                <p class="section-subtitle">Measurable results in 90 days. No vendor lock-in. Works with your existing stack.</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon red">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+                    </div>
+                    <h3>Reduce Churn by 15–25%</h3>
+                    <p>Early risk detection gives you ≥45 days to intervene before renewal.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon blue">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                    </div>
+                    <h3>Free CSM Time by 30–40%</h3>
+                    <p>Automate reporting and manual data gathering. Focus on customers, not spreadsheets.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon purple">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                    </div>
+                    <h3>3–5× ROI in 90 Days</h3>
+                    <p>Transparent metrics and clear value tracking from day one.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon orange">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+                    </div>
+                    <h3>Works With Your Stack</h3>
+                    <p>Salesforce, HubSpot, Notion, Airtable, Sheets, and more. No vendor lock-in.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="section muted" id="how">
+        <div class="container">
+            <div class="section-header center">
+                <h2 class="section-title">How It <span class="accent">Works</span></h2>
+            </div>
+            <ol class="steps-grid">
+                <li class="step-card">
+                    <div class="step-number" aria-hidden="true">1</div>
+                    <h3>Connect</h3>
+                    <p>Unify CRM, product, and operations data into one canonical model.</p>
+                </li>
+                <li class="step-card">
+                    <div class="step-number" aria-hidden="true">2</div>
+                    <h3>Automate</h3>
+                    <p>AI agents score health, detect churn, and push insights automatically.</p>
+                </li>
+                <li class="step-card">
+                    <div class="step-number" aria-hidden="true">3</div>
+                    <h3>Elevate</h3>
+                    <p>Deliver insights everywhere your team works—Notion, Airtable, Sheets, and more.</p>
+                </li>
                 </ol>
-                <p class="mini-text">Unified customer hub + automated syncs + health scores everywhere.</p>
-            </div>
         </div>
     </section>
 
-    <section class="section" id="agents">
+    <!-- Integration Logos -->
+    <section class="section logos-section">
         <div class="container">
-            <div class="section-header">
-                <p class="eyebrow">Agents that deliver outcomes</p>
-                <h2 class="section-title">Purpose-built automations with clear KPIs</h2>
-                <p class="section-subtitle">Seven core agents align to retention, efficiency, and governance. Each comes with tracked SLAs and auditability.</p>
-            </div>
-            <div class="grid cards-3">
-                <article class="card">
-                    <div class="card-header"><h3>SuccessPilot</h3><span class="kpi">Health compute &lt;120s</span></div>
-                    <p>Weights usage, sentiment, support, and contract data into a single health score with trend flags.</p>
-                    <a class="text-link" href="docs/agents/successpilot.html">View agent spec</a>
-                </article>
-                <article class="card">
-                    <div class="card-header"><h3>ChurnShield</h3><span class="kpi">85%+ signal precision</span></div>
-                    <p>Surfaces churn risks early with playbooks for renewals and expansions routed to the right owners.</p>
-                    <a class="text-link" href="docs/agents/churnshield.html">View agent spec</a>
-                </article>
-                <article class="card">
-                    <div class="card-header"><h3>ArchitectIQ</h3><span class="kpi">Design approvals &lt;48h</span></div>
-                    <p>Standardizes integration patterns, enforces schema governance, and validates rollout plans.</p>
-                    <a class="text-link" href="docs/agents/architectiq.html">View agent spec</a>
-                </article>
-                <article class="card">
-                    <div class="card-header"><h3>DataSentinel</h3><span class="kpi">98%+ ingest accuracy</span></div>
-                    <p>Monitors pipelines, dedupes records, and maintains data quality scorecards across CRMs and views.</p>
-                    <a class="text-link" href="docs/agents/datasentinel.html">View agent spec</a>
-                </article>
-                <article class="card">
-                    <div class="card-header"><h3>VaultGuard</h3><span class="kpi">Rotation compliance 100%</span></div>
-                    <p>Handles secrets rotation, RBAC audits, and least-privilege policy checks across connectors.</p>
-                    <a class="text-link" href="docs/agents/vaultguard.html">View agent spec</a>
-                </article>
-                <article class="card">
-                    <div class="card-header"><h3>TemplateForge</h3><span class="kpi">Playbook rollout &lt;1 day</span></div>
-                    <p>Publishes reusable runbooks to Notion, Airtable, and Sheets with versioned templates.</p>
-                    <a class="text-link" href="docs/agents/templateforge.html">View agent spec</a>
-                </article>
-                <article class="card">
-                    <div class="card-header"><h3>DealDesk</h3><span class="kpi">Approval cycles &lt;6h</span></div>
-                    <p>Automates renewal and expansion approvals with contract context, MSA coverage, and pricing checks.</p>
-                    <a class="text-link" href="docs/agents/dealdesk.html">View agent spec</a>
-                </article>
+            <p class="logos-label">Works seamlessly with your existing stack</p>
+            <div class="logos-grid">
+                <div class="logo-item">
+                    <svg width="40" height="40" viewBox="0 0 40 40" role="img" aria-label="Salesforce"><title>Salesforce</title><circle cx="20" cy="20" r="18" fill="#00A1E0"/><path d="M20 10c-5.5 0-10 4.5-10 10s4.5 10 10 10 10-4.5 10-10-4.5-10-10-10zm0 15c-2.8 0-5-2.2-5-5s2.2-5 5-5 5 2.2 5 5-2.2 5-5 5z" fill="#fff"/></svg>
+                    <span>Salesforce</span>
+                </div>
+                <div class="logo-item">
+                    <svg width="40" height="40" viewBox="0 0 40 40" role="img" aria-label="HubSpot"><title>HubSpot</title><circle cx="20" cy="20" r="18" fill="#FF7A59"/><path d="M20 12c-4.4 0-8 3.6-8 8s3.6 8 8 8 8-3.6 8-8-3.6-8-8-8z" fill="#fff"/></svg>
+                    <span>HubSpot</span>
+                </div>
+                <div class="logo-item">
+                    <svg width="40" height="40" viewBox="0 0 40 40" role="img" aria-label="Microsoft Dynamics"><title>Microsoft Dynamics</title><rect width="40" height="40" rx="8" fill="#002050"/><path d="M10 12h9v16h-9zM21 12h9v10h-9z" fill="#fff"/></svg>
+                    <span>Dynamics</span>
+                </div>
+                <div class="logo-item">
+                    <svg width="40" height="40" viewBox="0 0 40 40" role="img" aria-label="Zoho"><title>Zoho</title><rect width="40" height="40" rx="8" fill="#C8202B"/><circle cx="20" cy="20" r="8" fill="#fff"/><circle cx="20" cy="20" r="4" fill="#C8202B"/></svg>
+                    <span>Zoho</span>
+                </div>
+                <div class="logo-item">
+                    <svg width="40" height="40" viewBox="0 0 40 40" role="img" aria-label="Notion"><title>Notion</title><rect width="40" height="40" rx="8" fill="#000"/><path d="M12 12h6v6h-6zM22 12h6v6h-6zM12 22h6v6h-6zM22 22h6v6h-6z" fill="#fff"/></svg>
+                    <span>Notion</span>
+                </div>
+                <div class="logo-item">
+                    <svg width="40" height="40" viewBox="0 0 40 40" role="img" aria-label="Airtable"><title>Airtable</title><rect width="40" height="40" rx="8" fill="#FCB400"/><path d="M12 14h16v3H12zM12 20h16v3H12zM12 26h10v3H12z" fill="#fff"/></svg>
+                    <span>Airtable</span>
+                </div>
+                <div class="logo-item">
+                    <svg width="40" height="40" viewBox="0 0 40 40" role="img" aria-label="Asana"><title>Asana</title><rect width="40" height="40" rx="8" fill="#F06A6A"/><circle cx="20" cy="14" r="5" fill="#fff"/><circle cx="13" cy="26" r="5" fill="#fff"/><circle cx="27" cy="26" r="5" fill="#fff"/></svg>
+                    <span>Asana</span>
+                </div>
+                <div class="logo-item">
+                    <svg width="40" height="40" viewBox="0 0 40 40" role="img" aria-label="ClickUp"><title>ClickUp</title><rect width="40" height="40" rx="8" fill="#7B68EE"/><path d="M20 10l-8 12h5v8h6v-8h5z" fill="#fff"/></svg>
+                    <span>ClickUp</span>
+                </div>
+                <div class="logo-item">
+                    <svg width="40" height="40" viewBox="0 0 40 40" role="img" aria-label="Monday.com"><title>Monday.com</title><rect width="40" height="40" rx="8" fill="#FF3D57"/><circle cx="14" cy="20" r="4" fill="#fff"/><circle cx="26" cy="20" r="4" fill="#FFCB00"/><circle cx="20" cy="28" r="4" fill="#00CA72"/></svg>
+                    <span>Monday</span>
+                </div>
+                <div class="logo-item">
+                    <svg width="40" height="40" viewBox="0 0 40 40" role="img" aria-label="Google Sheets"><title>Google Sheets</title><rect width="40" height="40" rx="8" fill="#34A853"/><rect x="10" y="12" width="20" height="16" rx="2" fill="#fff"/><path d="M14 18h12M14 22h8" stroke="#34A853" stroke-width="2"/></svg>
+                    <span>Sheets</span>
+                </div>
             </div>
         </div>
     </section>
 
-    <section class="section muted" id="solution">
-        <div class="container dual">
-            <div>
-                <h2 class="section-title">Built for mid-market SaaS reality</h2>
-                <p class="section-subtitle">Designed for teams balancing velocity with governance across Salesforce, HubSpot, or Dynamics while collaborating in Notion, Airtable, Asana, ClickUp, Monday, and Sheets.</p>
-                <div class="pill-row">
-                    <span class="pill">Assessment → Implementation → Managed Ops</span>
-                    <span class="pill">SaaS tiers + outcome-tied component</span>
+    <!-- The Problem -->
+    <section class="section" id="problem">
+        <div class="container">
+            <div class="problem-grid">
+                <div class="problem-header">
+                    <span class="section-badge">The Problem</span>
+                    <h2 class="section-title">Customer Success teams are drowning in fragmented data</h2>
+                    <p class="section-subtitle">Your team spends more time hunting data than helping customers. IntegrateWise fixes that.</p>
                 </div>
-                <div class="cta-row">
-                    <a class="btn btn-primary" href="contact.html#assessment">Start Assessment</a>
-                    <a class="btn btn-outline" href="docs/index.html">Technical Docs</a>
+                <div class="problem-cards">
+                    <div class="problem-card">
+                        <div class="problem-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+                        </div>
+                        <h3>Late Churn Visibility</h3>
+                        <p>Risks surface after renewal is already at risk. By the time you see warning signs, it's too late to intervene.</p>
+                    </div>
+                    <div class="problem-card">
+                        <div class="problem-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg>
+                        </div>
+                        <h3>Manual Reporting Overload</h3>
+                        <p>4–8 hours per week wasted on status updates. CSMs spend more time reporting than engaging customers.</p>
+                    </div>
                 </div>
             </div>
-            <div class="card list-card">
-                <h3>Acceptance badges</h3>
-                <ul>
-                    <li>Ingest quality ≥98%</li>
-                    <li>Health compute &lt;2 minutes</li>
-                    <li>Agent uptime &gt;99.9%</li>
-                    <li>Rotation compliance 100%</li>
-                </ul>
+        </div>
+    </section>
+
+    <!-- The Solution -->
+    <section class="section solution-section" id="solution">
+        <div class="container">
+            <div class="solution-grid">
+                <div class="solution-content">
+                    <span class="section-badge">The Solution</span>
+                    <h2 class="section-title">Unified Customer Success Platform + AI Intelligence</h2>
+                    <p class="section-subtitle">IntegrateWise normalizes your data once and delivers clean, actionable insights to the tools your team already uses.</p>
+                    <p>Connect your CRM, product data, and customer operations into a single source of truth. Get real-time health scores, churn predictions, and insights delivered directly to Notion, Airtable, Sheets, and more.</p>
+                    <p><strong>No vendor lock-in.</strong> Your data stays portable and accessible in the tools you already use.</p>
+                </div>
+                <div class="solution-cta">
+                    <div class="cta-card">
+                        <svg class="cta-icon" width="48" height="48" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+                            <rect width="48" height="48" rx="12" fill="#10b981"/>
+                            <path d="M14 24l8 8 12-16" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <p>Want technical details? See our <a href="docs/index.html" class="text-link">Technical Docs</a> for specifications, API documentation, and integration guides.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Agents -->
+    <section class="section agents-section" id="agents">
+        <div class="container">
+            <div class="section-header center">
+                <span class="section-badge">AI Agents</span>
+                <h2 class="section-title">7 Autonomous Agents Working 24/7</h2>
+                <p class="section-subtitle">Specialized AI agents that automate CSM operations across health scoring, churn prevention, integration design, and data governance.</p>
+            </div>
+            <div class="agents-grid">
+                <article class="agent-card">
+                    <h3>SuccessPilot</h3>
+                    <p>Real-time health scoring that predicts customer success outcomes. Monitors engagement patterns, usage metrics, and sentiment signals.</p>
+                    <div class="agent-kpi">
+                        <span class="kpi-label">KPIs</span>
+                        <span class="kpi-value">Accuracy &gt;85% • Lead time ≥45 days</span>
+                    </div>
+                    <a class="text-link" href="docs/agents/successpilot.html">View agent spec →</a>
+                </article>
+                <article class="agent-card">
+                    <h3>ChurnShield</h3>
+                    <p>Proactive churn prevention with early warning signals and intervention playbooks. Predicts renewal outcomes and recommends save actions.</p>
+                    <div class="agent-kpi">
+                        <span class="kpi-label">KPIs</span>
+                        <span class="kpi-value">Churn reduction 15–25% • Forecast accuracy &gt;80%</span>
+                    </div>
+                    <a class="text-link" href="docs/agents/churnshield.html">View agent spec →</a>
+                </article>
+                <article class="agent-card">
+                    <h3>ArchitectIQ</h3>
+                    <p>Intelligent integration design that maps optimal data architecture. Performs root cause analysis and maintains pattern libraries.</p>
+                    <div class="agent-kpi">
+                        <span class="kpi-label">KPIs</span>
+                        <span class="kpi-value">Design time −50% • Error resolution &lt;4h</span>
+                    </div>
+                    <a class="text-link" href="docs/agents/architectiq.html">View agent spec →</a>
+                </article>
+                <article class="agent-card">
+                    <h3>DataSentinel</h3>
+                    <p>Continuous data governance monitoring with automated quality enforcement. Tracks schema changes and maintains normalization maps.</p>
+                    <div class="agent-kpi">
+                        <span class="kpi-label">KPIs</span>
+                        <span class="kpi-value">Data quality &gt;95% • Drift detection &lt;1h</span>
+                    </div>
+                    <a class="text-link" href="docs/agents/datasentinel.html">View agent spec →</a>
+                </article>
+                <article class="agent-card">
+                    <h3>VaultGuard</h3>
+                    <p>Secure secrets management with automated rotation and access controls. Performs scope audits and access reviews.</p>
+                    <div class="agent-kpi">
+                        <span class="kpi-label">KPIs</span>
+                        <span class="kpi-value">Rotation compliance 100% • Zero credential leaks</span>
+                    </div>
+                    <a class="text-link" href="docs/agents/vaultguard.html">View agent spec →</a>
+                </article>
+                <article class="agent-card">
+                    <h3>TemplateForge</h3>
+                    <p>Automated deployment templates, documentation generation, and sample dataset creation. Maintains knowledge base and runbooks.</p>
+                    <div class="agent-kpi">
+                        <span class="kpi-label">KPIs</span>
+                        <span class="kpi-value">Template reuse &gt;80% • Onboarding time −40%</span>
+                    </div>
+                    <a class="text-link" href="docs/agents/templateforge.html">View agent spec →</a>
+                </article>
+                <article class="agent-card">
+                    <h3>DealDesk</h3>
+                    <p>Pricing guardrails, approval routing, and margin insights. Ensures deal compliance and optimizes commercial outcomes.</p>
+                    <div class="agent-kpi">
+                        <span class="kpi-label">KPIs</span>
+                        <span class="kpi-value">Margin improvement &gt;5% • Approval time −60%</span>
+                    </div>
+                    <a class="text-link" href="docs/agents/dealdesk.html">View agent spec →</a>
+                </article>
+            </div>
+            <div class="cta-row center">
+                <a class="btn btn-outline" href="agents.html">View All Agents</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing -->
+    <section class="section pricing-section" id="pricing">
+        <div class="container">
+            <div class="section-header center">
+                <span class="section-badge">Pricing</span>
+                <h2 class="section-title">Simple, transparent pricing</h2>
+                <p class="section-subtitle">Start with an assessment, scale with implementation, and grow with ongoing support.</p>
+            </div>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3>Assessment</h3>
+                        <div class="pricing-amount">$5K–$10K</div>
+                        <div class="pricing-term">2 weeks</div>
+                    </div>
+                    <ul class="pricing-features">
+                        <li>Stack audit & data quality assessment</li>
+                        <li>ROI model & opportunity quantification</li>
+                        <li>Implementation roadmap</li>
+                    </ul>
+                    <a class="btn btn-outline" href="contact.html#assessment">Get Started</a>
+                </div>
+                <div class="pricing-card featured">
+                    <div class="pricing-badge">Most Popular</div>
+                    <div class="pricing-header">
+                        <h3>Implementation</h3>
+                        <div class="pricing-amount">$15K–$75K</div>
+                        <div class="pricing-term">4–12 weeks</div>
+                    </div>
+                    <ul class="pricing-features">
+                        <li>Full platform deployment</li>
+                        <li>CRM & view platform integrations</li>
+                        <li>Team training & documentation</li>
+                        <li>Hypercare support period</li>
+                    </ul>
+                    <a class="btn btn-primary" href="contact.html#implementation">Get Started</a>
+                </div>
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3>Retainer</h3>
+                        <div class="pricing-amount">$5K–$20K</div>
+                        <div class="pricing-term">per month</div>
+                    </div>
+                    <ul class="pricing-features">
+                        <li>24/7 monitoring & alerts</li>
+                        <li>Quarterly business reviews</li>
+                        <li>Continuous enhancements</li>
+                        <li>Bronze/Silver/Gold/Platinum SLAs</li>
+                    </ul>
+                    <a class="btn btn-outline" href="contact.html#retainer">Learn More</a>
+                </div>
+            </div>
+            <div class="cta-row center">
+                <a class="text-link" href="pricing.html">View Full Pricing Details →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="section cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2 class="section-title">Ready to transform your Customer Success operations?</h2>
+                <p class="section-subtitle">Book a 15-minute demo to see how IntegrateWise can reduce churn and free your CSM team's time.</p>
+                <div class="cta-row">
+                    <a class="btn btn-primary btn-lg" href="contact.html#demo">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                        Book a Demo
+                    </a>
+                    <a class="btn btn-outline btn-lg" href="platform.html">See Platform</a>
+                </div>
             </div>
         </div>
     </section>
 </main>
 
+<!-- Footer -->
 <footer class="site-footer">
-    <div class="container footer-grid">
-        <div>
-            <div class="logo">IntegrateWise</div>
-            <p class="mini-text">Normalize once. Render anywhere.</p>
-            <p class="badge-line">Ingest ≥98% • Health compute &lt;2 min • Agent uptime &gt;99.9% • Rotation compliance 100%</p>
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <a class="logo" href="index.html">
+                    <svg class="logo-icon" width="36" height="36" viewBox="0 0 36 36" fill="none" aria-hidden="true">
+                        <rect width="36" height="36" rx="8" fill="#10b981"/>
+                        <path d="M10 18l6 6 10-12" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span class="logo-text">IntegrateWise</span>
+                </a>
+                <p class="footer-tagline">Normalize once. Render anywhere.</p>
+                <p class="footer-tagline-sub">Connect. Automate. Elevate.</p>
         </div>
-        <div>
-            <h4>Explore</h4>
+            <div class="footer-links">
+                <div class="footer-col">
+                    <h4>Platform</h4>
             <ul>
                 <li><a href="platform.html">Platform</a></li>
-                <li><a href="services.html">Services</a></li>
-                <li><a href="solutions.html">Solutions</a></li>
-                <li><a href="pricing.html">Pricing</a></li>
+                        <li><a href="agents.html">Agents</a></li>
+                        <li><a href="docs/index.html">Technical Docs</a></li>
             </ul>
         </div>
-        <div>
+                <div class="footer-col">
             <h4>Company</h4>
             <ul>
-                <li><a href="about.html">About</a></li>
-                <li><a href="resources.html">Resources</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="pricing.html">Pricing</a></li>
                 <li><a href="contact.html">Contact</a></li>
-                <li><a href="docs/index.html">Technical Docs</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Connect</h4>
+                    <ul>
+                        <li><a href="mailto:connect@integratewise.co">connect@integratewise.co</a></li>
+                        <li><a href="tel:+917019746296">+91 70197 46296</a></li>
             </ul>
+                </div>
+            </div>
         </div>
-        <div>
-            <h4>Get in touch</h4>
-            <a class="btn btn-primary" href="contact.html#demo">Book a Demo</a>
+        <div class="footer-acceptance">
+            <strong>Acceptance Criteria:</strong> Ingest ≥98% • Health compute &lt;2 min • Agent uptime &gt;99.9% • Rotation compliance 100%
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 IntegrateWise LLP. All rights reserved.</p>
+            <div class="footer-legal">
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Terms of Service</a>
+            </div>
         </div>
     </div>
-    <p class="mini-text center">© 2025 IntegrateWise. All rights reserved.</p>
 </footer>
 <script src="script.js" defer></script>
 </body>

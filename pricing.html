@@ -1,128 +1,190 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>IntegrateWise Pricing | SaaS & Services</title>
-<meta name="description" content="Starter, Pro, and Enterprise tiers plus implementation packages and managed ops SLAs. Optional outcome-tied component.">
-<link rel="canonical" href="https://integratewise.co/pricing.html">
-<meta property="og:title" content="IntegrateWise Pricing">
-<meta property="og:description" content="Clear SaaS tiers, implementation packages, managed ops SLAs, and outcome-based options.">
-<meta property="og:type" content="website">
-<meta property="og:image" content="https://integratewise.co/og-image.png">
-<link rel="icon" href="favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="styles.css">
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Product",
-  "name": "IntegrateWise",
-  "description": "Unified customer hub with automation agents",
-  "offers": [
-    {"@type":"Offer","name":"Starter","price":"99","priceCurrency":"USD","category":"SaaS"},
-    {"@type":"Offer","name":"Pro","price":"299","priceCurrency":"USD","category":"SaaS"},
-    {"@type":"Offer","name":"Enterprise","price":"999","priceCurrency":"USD","category":"SaaS"}
-  ]
-}
-</script>
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing | IntegrateWise</title>
+    <meta name="description" content="Starter, Pro, and Enterprise tiers plus implementation packages and managed ops SLAs. Optional outcome-tied component.">
+    <link rel="canonical" href="https://integratewise.co/pricing.html">
+    <meta property="og:title" content="IntegrateWise Pricing">
+    <meta property="og:description" content="Clear SaaS tiers, implementation packages, managed ops SLAs, and outcome-based options.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://integratewise.co/og-image.png">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Product",
+        "name": "IntegrateWise",
+        "description": "Unified customer hub with automation agents",
+        "offers": [
+            {"@type":"Offer","name":"Starter","price":"99","priceCurrency":"USD","category":"SaaS"},
+            {"@type":"Offer","name":"Pro","price":"299","priceCurrency":"USD","category":"SaaS"},
+            {"@type":"Offer","name":"Enterprise","price":"999","priceCurrency":"USD","category":"SaaS"}
+        ]
+    }
+    </script>
 </head>
 <body>
+<a href="#main-content" class="skip-to-content">Skip to main content</a>
 <header class="site-header">
     <div class="nav-container">
-        <a class="logo" href="index.html"><span class="logo-mark">IW</span><span class="logo-text">IntegrateWise</span></a>
+        <a class="logo" href="index.html" aria-label="IntegrateWise home">
+            <svg class="logo-icon" width="36" height="36" viewBox="0 0 36 36" fill="none" aria-hidden="true">
+                <rect width="36" height="36" rx="8" fill="#10b981"/>
+                <path d="M10 18l6 6 10-12" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span class="logo-text">IntegrateWise</span>
+        </a>
         <nav class="nav-links" aria-label="Main navigation">
             <a href="platform.html">Platform</a>
             <a href="agents.html">Agents</a>
             <a href="services.html">Services</a>
-            <a href="solutions.html">Solutions</a>
             <a href="pricing.html" aria-current="page">Pricing</a>
-            <a href="resources.html">Resources</a>
-            <a href="about.html">About</a>
             <a href="docs/index.html">Technical Docs</a>
         </nav>
         <div class="nav-actions">
-            <a class="btn btn-outline" href="contact.html#quote">Get Custom Quote</a>
+            <a class="btn btn-primary" href="contact.html#demo">Book a Demo</a>
             <button class="mobile-menu-btn" aria-label="Toggle navigation" aria-expanded="false"><span></span><span></span><span></span></button>
         </div>
     </div>
 </header>
-<main>
-<section class="section">
-    <div class="container">
-        <div class="section-header">
-            <p class="eyebrow">Transparent pricing</p>
-            <h1 class="section-title">SaaS tiers, services, and response SLAs</h1>
-            <p class="section-subtitle">Annual 15% discount across tiers. Outcome-based acceptance criteria documented in the Technical Docs.</p>
+
+<main id="main-content">
+    <section class="section">
+        <div class="container">
+            <div class="section-header center">
+                <span class="section-badge">Pricing</span>
+                <h1 class="section-title">Simple, transparent pricing</h1>
+                <p class="section-subtitle">Annual plans save 15%. Outcome-based acceptance criteria documented in the Technical Docs.</p>
+            </div>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3>Starter</h3>
+                        <div class="pricing-amount">$99<span class="pricing-period">/mo</span></div>
+                        <div class="pricing-term">Annual: $84/mo (15% off)</div>
+                    </div>
+                    <ul class="pricing-features">
+                        <li>1 CRM integration</li>
+                        <li>1 view destination</li>
+                        <li>Bronze managed ops (24h)</li>
+                    </ul>
+                    <a class="btn btn-outline" href="contact.html#demo">Book a Demo</a>
+                </div>
+                <div class="pricing-card featured">
+                    <div class="pricing-badge">Most Popular</div>
+                    <div class="pricing-header">
+                        <h3>Pro</h3>
+                        <div class="pricing-amount">$299<span class="pricing-period">/mo</span></div>
+                        <div class="pricing-term">Annual: $254/mo (15% off)</div>
+                    </div>
+                    <ul class="pricing-features">
+                        <li>2 CRM integrations</li>
+                        <li>3 view destinations</li>
+                        <li>5 AI agents</li>
+                        <li>Silver managed ops (12h)</li>
+                    </ul>
+                    <a class="btn btn-primary" href="contact.html#demo">Book a Demo</a>
+                </div>
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3>Enterprise</h3>
+                        <div class="pricing-amount">$999<span class="pricing-period">/mo</span></div>
+                        <div class="pricing-term">Annual: $849/mo (15% off)</div>
+                    </div>
+                    <ul class="pricing-features">
+                        <li>Unlimited CRMs & views</li>
+                        <li>All 7 AI agents</li>
+                        <li>Custom adapters</li>
+                        <li>Gold/Platinum managed ops</li>
+                    </ul>
+                    <a class="btn btn-outline" href="contact.html#quote">Get Custom Quote</a>
+                </div>
+            </div>
         </div>
-        <div class="grid cards-3">
-            <article class="card">
-                <h3>Starter</h3>
-                <p class="kpi">$99/mo • annual -15%</p>
-                <ul class="list-card">
-                    <li>1 CRM</li>
-                    <li>1 view</li>
-                    <li>Bronze managed ops</li>
-                </ul>
-            </article>
-            <article class="card">
-                <h3>Pro</h3>
-                <p class="kpi">$299/mo • annual -15%</p>
-                <ul class="list-card">
-                    <li>2 CRMs</li>
-                    <li>3 views</li>
-                    <li>5 agents + Silver managed ops</li>
-                </ul>
-            </article>
-            <article class="card">
-                <h3>Enterprise</h3>
-                <p class="kpi">$999/mo • annual -15%</p>
-                <ul class="list-card">
-                    <li>Unlimited CRMs/views</li>
-                    <li>All 7 agents</li>
-                    <li>Custom adapters + Gold/Platinum</li>
-                </ul>
-            </article>
+    </section>
+
+    <section class="section muted">
+        <div class="container">
+            <div class="pricing-details-grid">
+                <div>
+                    <h2 class="section-title">Implementation Packages</h2>
+                    <p class="section-subtitle">Outcome-based acceptance: live agents, validated dashboards, training, and hypercare with documented exit criteria.</p>
+                    <ul class="timeline">
+                        <li><strong>Foundation (4 wks):</strong> Single CRM, SuccessPilot live, first health dashboard, training.</li>
+                        <li><strong>Professional (6 wks):</strong> Multi-CRM, dedupe rules, two destination views, enablement.</li>
+                        <li><strong>Enterprise (8–12 wks):</strong> All agents, custom adapters, governance workflows, hypercare.</li>
+                    </ul>
+                </div>
+                <div>
+                    <h2 class="section-title">Managed Ops SLAs</h2>
+                    <p class="section-subtitle">Response windows with monitoring and proactive optimization included.</p>
+                    <ul class="list-card">
+                        <li>Bronze: 24h response</li>
+                        <li>Silver: 12h response</li>
+                        <li>Gold: 4h response</li>
+                        <li>Platinum: 1h response</li>
+                    </ul>
+                    <h3>Outcome-Tied Component</h3>
+                    <p class="mini-text">Optional 10–20% of documented savings or retained revenue, measured quarterly with caps.</p>
+                </div>
+            </div>
+            <div class="cta-row center">
+                <a class="btn btn-primary" href="contact.html#quote">Get Custom Quote</a>
+                <a class="btn btn-outline" href="docs/index.html">See Acceptance Criteria</a>
+            </div>
         </div>
-    </div>
-</section>
-<section class="section muted">
-    <div class="container dual">
-        <div>
-            <h2 class="section-title">Implementation packages</h2>
-            <p class="section-subtitle">Outcome-based acceptance: live agents, validated dashboards, training, and hypercare with documented exit criteria.</p>
-            <ul class="timeline">
-                <li><strong>Foundation (4 wks):</strong> Single CRM, SuccessPilot live, first health dashboard, training.</li>
-                <li><strong>Professional (6 wks):</strong> Multi-CRM, dedupe rules, two destination views, enablement.</li>
-                <li><strong>Enterprise (8–12 wks):</strong> All agents, custom adapters, governance workflows, hypercare.</li>
-            </ul>
-        </div>
-        <div>
-            <h2 class="section-title">Managed Ops</h2>
-            <p class="section-subtitle">Response-only windows; monitoring and proactive optimization included.</p>
-            <ul class="list-card">
-                <li>Bronze: 24h</li>
-                <li>Silver: 12h</li>
-                <li>Gold: 4h</li>
-                <li>Platinum: 1h</li>
-            </ul>
-            <h2 class="section-title">Outcome-tied component</h2>
-            <p>Optional 10–20% of documented savings or retained revenue, measured quarterly with caps.</p>
-        </div>
-    </div>
-    <div class="container cta-row">
-        <a class="btn btn-primary" href="contact.html#quote">Get Custom Quote</a>
-        <a class="btn btn-outline" href="docs/index.html">See acceptance criteria</a>
-    </div>
-</section>
+    </section>
 </main>
+
 <footer class="site-footer">
-    <div class="container footer-grid">
-        <div><div class="logo">IntegrateWise</div><p class="mini-text">Normalize once. Render anywhere.</p></div>
-        <div><h4>Explore</h4><ul><li><a href="services.html">Services</a></li><li><a href="solutions.html">Solutions</a></li><li><a href="docs/index.html">Technical Docs</a></li></ul></div>
-        <div><h4>Contact</h4><a class="btn btn-primary" href="contact.html#quote">Get Custom Quote</a></div>
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <a class="logo" href="index.html">
+                    <svg class="logo-icon" width="36" height="36" viewBox="0 0 36 36" fill="none" aria-hidden="true">
+                        <rect width="36" height="36" rx="8" fill="#10b981"/>
+                        <path d="M10 18l6 6 10-12" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span class="logo-text">IntegrateWise</span>
+                </a>
+                <p class="footer-tagline">Normalize once. Render anywhere.</p>
+            </div>
+            <div class="footer-links">
+                <div class="footer-col">
+                    <h4>Platform</h4>
+                    <ul>
+                        <li><a href="platform.html">Platform</a></li>
+                        <li><a href="agents.html">Agents</a></li>
+                        <li><a href="docs/index.html">Technical Docs</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="pricing.html">Pricing</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-acceptance">
+            <strong>Acceptance Criteria:</strong> Ingest ≥98% • Health compute &lt;2 min • Agent uptime &gt;99.9% • Rotation compliance 100%
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 IntegrateWise LLP. All rights reserved.</p>
+            <div class="footer-legal">
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Terms of Service</a>
+            </div>
+        </div>
     </div>
-    <p class="mini-text center">Ingest ≥98% • Health compute &lt;2 min • Agent uptime &gt;99.9% • Rotation compliance 100%</p>
 </footer>
 <script src="script.js" defer></script>
 </body>

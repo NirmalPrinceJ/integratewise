@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IntegrateWise Platform | Unified customer hub</title>
-    <meta name="description" content="Unified customer hub plus automated syncs and health scores everywhere. Works with Salesforce, HubSpot, Dynamics, and Zoho.">
+    <title>Platform | IntegrateWise</title>
+    <meta name="description" content="Unified customer hub with automated syncs and health scores everywhere. Works with Salesforce, HubSpot, Dynamics, and Zoho.">
     <link rel="canonical" href="https://integratewise.co/platform.html">
     <meta property="og:title" content="IntegrateWise Platform | Unified customer hub">
     <meta property="og:description" content="Normalize once, sync everywhere. Customer health, workflows, and automations across your CRM and workspaces.">
@@ -15,107 +15,157 @@
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+<a href="#main-content" class="skip-to-content">Skip to main content</a>
 <header class="site-header">
     <div class="nav-container">
-        <a class="logo" href="index.html"><span class="logo-mark">IW</span><span class="logo-text">IntegrateWise</span></a>
+        <a class="logo" href="index.html" aria-label="IntegrateWise home">
+            <svg class="logo-icon" width="36" height="36" viewBox="0 0 36 36" fill="none" aria-hidden="true">
+                <rect width="36" height="36" rx="8" fill="#10b981"/>
+                <path d="M10 18l6 6 10-12" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span class="logo-text">IntegrateWise</span>
+        </a>
         <nav class="nav-links" aria-label="Main navigation">
             <a href="platform.html" aria-current="page">Platform</a>
             <a href="agents.html">Agents</a>
             <a href="services.html">Services</a>
-            <a href="solutions.html">Solutions</a>
             <a href="pricing.html">Pricing</a>
-            <a href="resources.html">Resources</a>
-            <a href="about.html">About</a>
             <a href="docs/index.html">Technical Docs</a>
         </nav>
         <div class="nav-actions">
-            <a class="btn btn-outline" href="contact.html#demo">Book a Demo</a>
+            <a class="btn btn-primary" href="contact.html#demo">Book a Demo</a>
             <button class="mobile-menu-btn" aria-label="Toggle navigation" aria-expanded="false"><span></span><span></span><span></span></button>
         </div>
     </div>
 </header>
-<main>
+
+<main id="main-content">
     <section class="section">
-        <div class="container dual">
-            <div>
-                <p class="eyebrow">Unified customer hub</p>
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">Unified Customer Hub</span>
                 <h1 class="section-title">One schema, automated syncs, health scores everywhere</h1>
                 <p class="section-subtitle">Normalize customer data once and ship it to every workspace. Atlas Spine keeps accounts, contacts, and stakeholders aligned while agents orchestrate syncs and compute health in under two minutes.</p>
-                <div class="cta-row">
-                    <a class="btn btn-primary" href="contact.html#demo">Book a Demo</a>
-                    <a class="btn btn-outline" href="docs/data-model.html">See full data model</a>
-                </div>
-                <div class="badges">
-                    <span class="badge">Ingest ≥98%</span>
-                    <span class="badge">Health compute &lt;2 min</span>
-                    <span class="badge">Agent uptime &gt;99.9%</span>
-                </div>
             </div>
-            <div class="card">
-                <h3>Core entities</h3>
-                <div class="tile-grid">
-                    <div class="tile"><h4>accounts</h4></div>
-                    <div class="tile"><h4>contacts</h4></div>
-                    <div class="tile"><h4>stakeholders</h4></div>
-                    <div class="tile"><h4>integrations</h4></div>
-                    <div class="tile"><h4>workflows</h4></div>
-                    <div class="tile"><h4>runs</h4></div>
-                    <div class="tile"><h4>events</h4></div>
-                    <div class="tile"><h4>secrets_vault</h4></div>
-                    <div class="tile"><h4>health_scores</h4></div>
+            <div class="platform-grid">
+                <div class="platform-content">
+                    <div class="cta-row">
+                        <a class="btn btn-primary" href="contact.html#demo">Book a Demo</a>
+                        <a class="btn btn-outline" href="docs/data-model.html">See Full Data Model</a>
+                    </div>
+                    <div class="badges">
+                        <span class="badge">Ingest ≥98%</span>
+                        <span class="badge">Health compute &lt;2 min</span>
+                        <span class="badge">Lead time ≥45 days</span>
+                        <span class="badge">Agent uptime &gt;99.9%</span>
+                    </div>
+                </div>
+                <div class="card">
+                    <h3>Core Entities</h3>
+                    <div class="tile-grid">
+                        <div class="tile"><h4>accounts</h4></div>
+                        <div class="tile"><h4>contacts</h4></div>
+                        <div class="tile"><h4>stakeholders</h4></div>
+                        <div class="tile"><h4>integrations</h4></div>
+                        <div class="tile"><h4>workflows</h4></div>
+                        <div class="tile"><h4>runs</h4></div>
+                        <div class="tile"><h4>events</h4></div>
+                        <div class="tile"><h4>secrets_vault</h4></div>
+                        <div class="tile"><h4>health_scores</h4></div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <section class="section muted">
-        <div class="container dual">
-            <div>
+        <div class="container">
+            <div class="section-header">
                 <h2 class="section-title">Works where your teams work</h2>
                 <p class="section-subtitle">Salesforce, HubSpot, Dynamics, and Zoho on the CRM side. Views in Notion, Airtable, Asana, ClickUp, Monday, and Google Sheets so every team stays aligned.</p>
-                <div class="cta-row">
-                    <a class="btn btn-primary" href="services.html">Explore delivery models</a>
-                    <a class="btn btn-outline" href="pricing.html">View pricing</a>
+            </div>
+            <div class="platform-grid">
+                <div class="platform-content">
+                    <div class="cta-row">
+                        <a class="btn btn-primary" href="services.html">Explore Services</a>
+                        <a class="btn btn-outline" href="pricing.html">View Pricing</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <h3>Supported Platforms</h3>
+                    <ul class="list-card">
+                        <li>Salesforce</li>
+                        <li>HubSpot</li>
+                        <li>Dynamics</li>
+                        <li>Zoho</li>
+                    </ul>
+                    <p class="mini-text">Destinations: Notion, Airtable, Asana, ClickUp, Monday, Google Sheets.</p>
                 </div>
             </div>
-            <div class="card">
-                <h3>Supported platforms</h3>
-                <ul class="list-card">
-                    <li>Salesforce</li>
-                    <li>HubSpot</li>
-                    <li>Dynamics</li>
-                    <li>Zoho</li>
-                </ul>
-                <p class="mini-text">Destinations: Notion, Airtable, Asana, ClickUp, Monday, Google Sheets.</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <div class="section-header center">
+                <h2 class="section-title">Outcomes you can measure</h2>
+                <p class="section-subtitle">15–25% churn reduction • 30–40% efficiency gains • 3–5× ROI in 90 days</p>
+            </div>
+            <div class="cta-row center">
+                <a class="btn btn-primary btn-lg" href="contact.html#demo">Book a Demo</a>
+                <a class="btn btn-outline btn-lg" href="docs/index.html">Technical Docs</a>
             </div>
         </div>
     </section>
 </main>
+
 <footer class="site-footer">
-    <div class="container footer-grid">
-        <div>
-            <div class="logo">IntegrateWise</div>
-            <p class="mini-text">Normalize once. Render anywhere.</p>
-            <a class="text-link" href="docs/index.html">Technical Docs</a>
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <a class="logo" href="index.html">
+                    <svg class="logo-icon" width="36" height="36" viewBox="0 0 36 36" fill="none" aria-hidden="true">
+                        <rect width="36" height="36" rx="8" fill="#10b981"/>
+                        <path d="M10 18l6 6 10-12" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span class="logo-text">IntegrateWise</span>
+                </a>
+                <p class="footer-tagline">Normalize once. Render anywhere.</p>
+            </div>
+            <div class="footer-links">
+                <div class="footer-col">
+                    <h4>Platform</h4>
+                    <ul>
+                        <li><a href="platform.html">Platform</a></li>
+                        <li><a href="agents.html">Agents</a></li>
+                        <li><a href="docs/index.html">Technical Docs</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="pricing.html">Pricing</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
         </div>
-        <div>
-            <h4>Navigation</h4>
-            <ul>
-                <li><a href="services.html">Services</a></li>
-                <li><a href="solutions.html">Solutions</a></li>
-                <li><a href="agents.html">Agents</a></li>
-            </ul>
+        <div class="footer-acceptance">
+            <strong>Acceptance Criteria:</strong> Ingest ≥98% • Health compute &lt;2 min • Agent uptime &gt;99.9% • Rotation compliance 100%
         </div>
-        <div>
-            <h4>Get in touch</h4>
-            <a class="btn btn-primary" href="contact.html#demo">Book a Demo</a>
+        <div class="footer-bottom">
+            <p>© 2025 IntegrateWise LLP. All rights reserved.</p>
+            <div class="footer-legal">
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Terms of Service</a>
+            </div>
         </div>
     </div>
-    <p class="mini-text center">Ingest ≥98% • Health compute &lt;2 min • Agent uptime &gt;99.9% • Rotation compliance 100%</p>
 </footer>
 <script src="script.js" defer></script>
 </body>
