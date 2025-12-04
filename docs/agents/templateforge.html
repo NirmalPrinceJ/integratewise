@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TemplateForge Agent Spec</title>
+    <meta name="description" content="Inputs, outputs, webhooks, SLAs, and versioning for the TemplateForge agent.">
+    <link rel="canonical" href="https://integratewise.co/docs/agents/templateforge.html">
+    <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+    <link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+    <main class="content-section">
+        <div class="container">
+            <p class="hero-badge">Agent Spec</p>
+            <h1>TemplateForge</h1>
+            <p class="section-subtitle">Playbooks and dashboards templated per workspace.</p>
+            <div class="cards-grid">
+                <div class="card"><h3>Inputs</h3><p>workspace preferences, role matrix, metrics dictionary, approved playbooks, dashboard layouts.</p></div>
+                <div class="card"><h3>Outputs</h3><p>templated assets delivered to Notion/Airtable/Asana/ClickUp/Monday/Sheets with change logs and owner.</p></div>
+                <div class="card"><h3>Webhooks</h3><p>template.published and template.updated events with workspace_id, asset_uri, checksum, owner.</p></div>
+                <div class="card"><h3>SLAs</h3><p>Generation <60s for standard templates; adoption tracking available within 15 minutes; uptime >99.9%.</p></div>
+                <div class="card"><h3>Versioning</h3><p>Templates versioned per workspace; major when layout/fields change; minor for copy or metric adjustments.</p></div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

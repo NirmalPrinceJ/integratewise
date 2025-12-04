@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ArchitectIQ Agent Spec</title>
+    <meta name="description" content="Inputs, outputs, webhooks, SLAs, and versioning for the ArchitectIQ agent.">
+    <link rel="canonical" href="https://integratewise.co/docs/agents/architectiq.html">
+    <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+    <link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+    <main class="content-section">
+        <div class="container">
+            <p class="hero-badge">Agent Spec</p>
+            <h1>ArchitectIQ</h1>
+            <p class="section-subtitle">Integration blueprinting and adapter readiness.</p>
+            <div class="cards-grid">
+                <div class="card"><h3>Inputs</h3><p>integrations inventory, api_schema samples, mapping rules, rate_limit policies, secrets_vault references.</p></div>
+                <div class="card"><h3>Outputs</h3><p>blueprint (jsonb) with field mappings, retry/backoff guidance, and adapter readiness score.</p></div>
+                <div class="card"><h3>Webhooks</h3><p>blueprint.ready and blueprint.blocked events with adapter coverage %, missing fields, and remediation steps.</p></div>
+                <div class="card"><h3>SLAs</h3><p>Coverage ≥90% for mapped objects; blueprint generation <90s; uptime >99.9%.</p></div>
+                <div class="card"><h3>Versioning</h3><p>Blueprint schema versioned per adapter; major increments on mapping changes; minor on scoring tweaks.</p></div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

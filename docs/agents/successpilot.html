@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SuccessPilot Agent Spec</title>
+    <meta name="description" content="Inputs, outputs, webhooks, SLAs, and versioning for the SuccessPilot agent.">
+    <link rel="canonical" href="https://integratewise.co/docs/agents/successpilot.html">
+    <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+    <link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+    <main class="content-section">
+        <div class="container">
+            <p class="hero-badge">Agent Spec</p>
+            <h1>SuccessPilot</h1>
+            <p class="section-subtitle">Predictive health scoring built for mid-market CS teams.</p>
+            <div class="cards-grid">
+                <div class="card"><h3>Inputs</h3><p>accounts, contacts, product_usage (jsonb), support_cases, nps_responses, contract_terms.</p></div>
+                <div class="card"><h3>Outputs</h3><p>health_scores rows with score (0-100), drivers (jsonb), model_version, computed_at, ttl_minutes.</p></div>
+                <div class="card"><h3>Webhooks</h3><p>health_score.updated (payload: account_id, score, drivers, model_version, expires_at); dispatched per workspace subscription.</p></div>
+                <div class="card"><h3>SLAs</h3><p>Compute <120s; accuracy ≥85% against labeled training sets; uptime >99.9%; refresh cadence default 6 hours; lead time ≥30 days for model changes.</p></div>
+                <div class="card"><h3>Versioning</h3><p>Semantic model_version (major.minor.patch). Major introduces driver schema changes; minor adjusts weights; patch fixes defects. Backfill executed on major/minor.</p></div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DealDesk Agent Spec</title>
+    <meta name="description" content="Inputs, outputs, webhooks, SLAs, and versioning for the DealDesk agent.">
+    <link rel="canonical" href="https://integratewise.co/docs/agents/dealdesk.html">
+    <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+    <link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+    <main class="content-section">
+        <div class="container">
+            <p class="hero-badge">Agent Spec</p>
+            <h1>DealDesk</h1>
+            <p class="section-subtitle">Renewal and expansion orchestration.</p>
+            <div class="cards-grid">
+                <div class="card"><h3>Inputs</h3><p>accounts, contracts, forecast data, stakeholder map, playbook definitions, pricing guardrails.</p></div>
+                <div class="card"><h3>Outputs</h3><p>deal_workflow (jsonb) with tasks, owners, due dates, and approvals; updates to health_scores when milestones met.</p></div>
+                <div class="card"><h3>Webhooks</h3><p>deal.stage_changed and approval.requested with deal_id, stage, owner, approvals_required, and SLA timers.</p></div>
+                <div class="card"><h3>SLAs</h3><p>Stage transitions processed <60s; approval fan-out in <30s; uptime >99.9%; audit retention 180 days.</p></div>
+                <div class="card"><h3>Versioning</h3><p>Playbook schema versioned; major when stage definitions change; minor when owners or SLAs shift.</p></div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

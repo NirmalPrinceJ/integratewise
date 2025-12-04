@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Security Controls</title>
+    <meta name="description" content="Rotation policy, RBAC roles, audit retention, and compliance roadmap for IntegrateWise.">
+    <link rel="canonical" href="https://integratewise.co/docs/security.html">
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <main class="content-section">
+        <div class="container">
+            <p class="hero-badge">Security</p>
+            <h1>Controls</h1>
+            <div class="cards-grid">
+                <div class="card"><h3>Rotation policy</h3><p>secrets_vault entries rotate every 30 days by default; critical adapters every 14 days. Failed rotations retried 3x with exponential backoff.</p></div>
+                <div class="card"><h3>RBAC roles</h3><p>viewer (read-only), operator (run workflows), admin (configure adapters and secrets), auditor (export logs only). Scoped per workspace.</p></div>
+                <div class="card"><h3>Audit retention</h3><p>Rotation and access logs retained 400 days; workflow and run logs retained 180 days; exportable CSV + signed checksums.</p></div>
+                <div class="card"><h3>Compliance roadmap</h3><p>SOC 2 Type II evidence collection in progress; ISO 27001 mapping drafted; DPAs and subprocessor list available on request.</p></div>
+            </div>
+            <div class="cta-row">
+                <a class="btn btn-outline" href="../services.html#retainer">Managed Ops</a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

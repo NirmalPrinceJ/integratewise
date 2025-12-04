@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VaultGuard Agent Spec</title>
+    <meta name="description" content="Inputs, outputs, webhooks, SLAs, and versioning for the VaultGuard agent.">
+    <link rel="canonical" href="https://integratewise.co/docs/agents/vaultguard.html">
+    <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+    <link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+    <main class="content-section">
+        <div class="container">
+            <p class="hero-badge">Agent Spec</p>
+            <h1>VaultGuard</h1>
+            <p class="section-subtitle">Secrets rotation and access attestations.</p>
+            <div class="cards-grid">
+                <div class="card"><h3>Inputs</h3><p>secrets_vault entries, rotation_policy_days, rbac assignments, audit_retention config.</p></div>
+                <div class="card"><h3>Outputs</h3><p>rotation events with checksum, rotated_at, expires_at; access attestation logs with actor, scope, duration.</p></div>
+                <div class="card"><h3>Webhooks</h3><p>rotation.required, rotation.completed, attestation.requested events emitted with vault_id and policy metadata.</p></div>
+                <div class="card"><h3>SLAs</h3><p>Rotation compliance 100%; uptime >99.9%; rotation attempts capped at 3 with exponential backoff; audit logs retained 400 days.</p></div>
+                <div class="card"><h3>Versioning</h3><p>Policy schema versioned; major when rotation cadence fields change; minor for additional audit attributes.</p></div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

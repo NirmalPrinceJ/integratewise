@@ -3,36 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us | IntegrateWise — Normalize once. Render anywhere.</title>
-    <meta name="description" content="IntegrateWise LLP: Platform-agnostic spine + AI agents for Customer Success operations. Normalize CRM data once, render insights everywhere. No vendor lock-in.">
+    <title>IntegrateWise | About</title>
+    <meta name="description" content="Who we are, mission, vision, differentiators, and FAQs for IntegrateWise.">
+    <link rel="canonical" href="https://integratewise.co/about.html">
+    <meta property="og:title" content="About IntegrateWise">
+    <meta property="og:description" content="Normalize once. Render anywhere. Built by a remote-first team in Bengaluru.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://integratewise.co/about.html">
+    <meta property="og:image" content="https://integratewise.co/og-image.png">
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="pages.css">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {"@type": "Question", "name": "Which stacks do you support?", "acceptedAnswer": {"@type": "Answer", "text": "Salesforce, HubSpot, Dynamics, Zoho with views in Notion, Airtable, Asana, ClickUp, Monday, Sheets."}},
+            {"@type": "Question", "name": "How fast to value?", "acceptedAnswer": {"@type": "Answer", "text": "Assessment to value in 90 days with Foundation (4 wks), Professional (6 wks), or Enterprise (8–12 wks)."}},
+            {"@type": "Question", "name": "Is there lock-in?", "acceptedAnswer": {"@type": "Answer", "text": "No. Normalize once, keep your data model portable, and export anytime."}}
+        ]
+    }
+    </script>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
+    <nav class="navbar" aria-label="Primary">
         <div class="nav-container">
-            <a href="index.html" class="logo">
-                <svg class="logo-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <a href="index.html" class="logo" aria-label="IntegrateWise home">
+                <svg class="logo-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
                     <rect width="40" height="40" rx="8" fill="#10B981"/>
                     <path d="M12 20L18 26L28 14" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
                 <span>IntegrateWise</span>
             </a>
-            <div class="nav-links">
-                <a href="platform.html">Platform</a>
-                <a href="pricing.html">Pricing</a>
-                <a href="resources.html">Resources</a>
-                <a href="about.html">About</a>
+            <div class="nav-links" role="menu">
+                <a href="platform.html" role="menuitem">Platform</a>
+                <a href="agents.html" role="menuitem">Agents</a>
+                <a href="solutions.html" role="menuitem">Solutions</a>
+                <a href="services.html" role="menuitem">Services</a>
+                <a href="pricing.html" role="menuitem">Pricing</a>
+                <a href="resources.html" role="menuitem">Resources</a>
+                <a href="about.html" role="menuitem">About</a>
+                <a href="docs/index.html" role="menuitem">Technical Docs</a>
             </div>
             <div class="nav-cta">
-                <a href="contact.html" class="btn btn-primary">Contact Us</a>
+                <a href="contact.html#demo" class="btn btn-primary">Schedule Discovery Call</a>
             </div>
-            <button class="mobile-menu-btn" aria-label="Toggle menu">
+            <button class="mobile-menu-btn" aria-label="Toggle navigation" aria-expanded="false">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -40,186 +59,91 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="page-hero">
-        <div class="container">
-            <div class="page-hero-content">
-                <span class="section-badge">About Us</span>
-                <h1>Integrate Smarter.<br><span class="highlight">Scale Faster.</span></h1>
-                <p class="hero-subtitle">Platform-agnostic integration + AI agents for Customer Success operations.</p>
+    <main>
+        <section class="page-hero">
+            <div class="container page-hero-content">
+                <p class="hero-badge">Connect. Automate. Elevate.</p>
+                <h1>Who we are</h1>
+                <p class="hero-subtitle">Mid-market SaaS specialists delivering a unified customer hub and agent suite. HQ in Bengaluru; remote-first global delivery.</p>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Who We Are -->
-    <section class="content-section">
-        <div class="container">
-            <div class="content-grid">
-                <div class="content-main">
-                    <h2>Who We Are</h2>
-                    <p class="lead-text">
-                        IntegrateWise LLP is an enterprise integration and automation company. We normalize operational 
-                        data once (Atlas Spine on PostgreSQL), orchestrate with n8n, and deliver read-only views into 
-                        the tools your teams already use—Notion, Coda, Airtable, Asana, ClickUp, Monday, Sheets.
-                    </p>
-                    <p>
-                        Our 7-agent suite reduces churn, automates reporting, hardens security, and accelerates 
-                        architecture delivery—without vendor lock-in.
-                    </p>
+        <section class="content-section" id="mission">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-badge">Mission</span>
+                    <h2>Normalize once. Render anywhere.</h2>
+                    <p class="section-subtitle">Make customer truth portable across CRMs and workspaces so teams move faster.</p>
                 </div>
-                <div class="content-aside">
-                    <div class="info-card">
-                        <div class="info-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
-                                <circle cx="12" cy="10" r="3"/>
-                            </svg>
-                        </div>
-                        <h4>Headquarters</h4>
-                        <p>Bengaluru, India</p>
-                        <p class="text-muted">Remote-first, global delivery</p>
-                    </div>
+                <div class="cards-grid">
+                    <div class="card"><h3>Vision</h3><p>Customer context that follows every conversation, decision, and renewal.</p></div>
+                    <div class="card"><h3>Differentiators</h3><p>CRM/tool agnostic, outcome-tied options, security-by-design.</p></div>
+                    <div class="card"><h3>Delivery</h3><p>Bengaluru HQ with distributed specialists for integrations, data, and success ops.</p></div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Mission & Vision -->
-    <section class="content-section bg-gray">
-        <div class="container">
-            <div class="two-column-grid">
-                <div class="column-card">
-                    <div class="card-icon mission-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <circle cx="12" cy="12" r="10"/>
-                            <path d="M12 16v-4M12 8h.01"/>
-                        </svg>
-                    </div>
-                    <h3>Our Mission</h3>
-                    <p>
-                        Deliver measurable outcomes in ≤90 days by agentizing CSM operations across any CRM/iPaaS stack.
-                    </p>
+        <section class="content-section bg-gray" id="faq">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-badge">FAQ</span>
+                    <h2>Answers for modern CS teams</h2>
                 </div>
-                <div class="column-card">
-                    <div class="card-icon vision-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
-                            <circle cx="12" cy="12" r="3"/>
-                        </svg>
-                    </div>
-                    <h3>Our Vision</h3>
-                    <p>
-                        Be the default "AI + integration layer" for SaaS Customer Success in APAC and beyond.
-                    </p>
+                <div class="cards-grid">
+                    <div class="card"><h3>Supported stacks</h3><p>Salesforce, HubSpot, Dynamics, Zoho with Notion, Airtable, Asana, ClickUp, Monday, Sheets.</p></div>
+                    <div class="card"><h3>Speed to value</h3><p>Assessment (2 weeks) then Foundation/Professional/Enterprise implementations to value in 90 days.</p></div>
+                    <div class="card"><h3>No lock-in</h3><p>Data model is portable, adapters are API-led, and exports stay accessible.</p></div>
+                </div>
+                <p class="footer-text">Acceptance: Ingest ≥98% • Health compute <2 min • Agent uptime >99.9% • Rotation compliance 100%.</p>
+                <div class="cta-row">
+                    <a class="btn btn-primary" href="contact.html#demo">Schedule Discovery Call</a>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
-    <!-- Differentiation -->
-    <section class="content-section">
-        <div class="container">
-            <div class="section-header">
-                <h2>What Makes Us <span class="highlight">Different</span></h2>
-            </div>
-            <div class="diff-cards">
-                <div class="diff-card-item">
-                    <div class="diff-number">01</div>
-                    <h3>CRM + Tool Agnostic</h3>
-                    <p>Normalize once, display anywhere. No vendor lock-in. Switch tools without rebuilding integrations.</p>
-                </div>
-                <div class="diff-card-item">
-                    <div class="diff-number">02</div>
-                    <h3>Outcome-Tied Components</h3>
-                    <p>Documented ROI with every engagement. We succeed when you see measurable business results.</p>
-                </div>
-                <div class="diff-card-item">
-                    <div class="diff-number">03</div>
-                    <h3>Security-by-Design</h3>
-                    <p>Secrets rotation, access audits, and comprehensive audit trails built into every layer.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FAQ -->
-    <section class="content-section">
-        <div class="container">
-            <div class="section-header">
-                <h2>Frequently Asked <span class="highlight">Questions</span></h2>
-            </div>
-            <div class="faq-list">
-                <div class="faq-item">
-                    <h3>What stacks do you support?</h3>
-                    <p>Salesforce, HubSpot, Dynamics, Zoho; MuleSoft, Workato, Boomi, n8n; Notion, Coda, Airtable, Asana, ClickUp, Monday, Sheets.</p>
-                </div>
-                <div class="faq-item">
-                    <h3>How fast to value?</h3>
-                    <p>Assessments in 2 weeks; first agent impact in ≤30 days; full delivery in 4–12 weeks.</p>
-                </div>
-                <div class="faq-item">
-                    <h3>Do you lock us into any tool?</h3>
-                    <p>No—normalize once, render views anywhere. Your data stays portable and accessible.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA -->
-    <section class="cta-section">
-        <div class="container">
-            <div class="cta-content">
-                <h2>Ready to transform your operations?</h2>
-                <p>Book a 15-minute discovery call to map your stack and quantify your opportunities.</p>
-                <div class="cta-buttons">
-                    <a href="contact.html" class="btn btn-primary btn-large">Schedule Discovery Call</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
     <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-brand">
-                    <a href="index.html" class="logo">
-                        <svg class="logo-icon" viewBox="0 0 40 40" fill="none">
-                            <rect width="40" height="40" rx="8" fill="#10B981"/>
-                            <path d="M12 20L18 26L28 14" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                        <span>IntegrateWise</span>
-                    </a>
-                    <p class="footer-tagline-primary">Normalize once. Render anywhere.</p>
-                    <p class="footer-tagline-secondary">Connect. Automate. Elevate.</p>
-                </div>
-                <div class="footer-links">
-                    <div class="footer-column">
-                        <h4>Product</h4>
-                        <a href="platform.html">Platform</a>
-                        <a href="pricing.html">Pricing</a>
-                        <a href="resources.html">Resources</a>
-                    </div>
-                    <div class="footer-column">
-                        <h4>Company</h4>
-                        <a href="about.html">About</a>
-                        <a href="contact.html">Contact</a>
-                    </div>
-                    <div class="footer-column">
-                        <h4>Get in Touch</h4>
-                        <a href="mailto:connect@integratewise.co">connect@integratewise.co</a>
-                        <a href="tel:+917019746296">+91 70197 46296</a>
-                    </div>
-                </div>
+        <div class="container footer-grid">
+            <div>
+                <div class="footer-logo">IntegrateWise</div>
+                <p class="footer-text">Normalize once. Render anywhere. Built for mid-market SaaS teams on Salesforce, HubSpot, and Dynamics.</p>
+                <p class="footer-text">Acceptance: Ingest ≥98% • Health compute <2 min • Agent uptime >99.9% • Rotation compliance 100%.</p>
+            </div>
+            <div>
+                <h4>Navigate</h4>
+                <ul class="footer-links">
+                    <li><a href="platform.html">Platform</a></li>
+                    <li><a href="agents.html">Agents</a></li>
+                    <li><a href="solutions.html">Solutions</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="pricing.html">Pricing</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Company</h4>
+                <ul class="footer-links">
+                    <li><a href="resources.html">Resources</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="docs/index.html">Technical Docs</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Get in touch</h4>
+                <ul class="footer-links">
+                    <li><a href="mailto:connect@integratewise.co">connect@integratewise.co</a></li>
+                    <li><a href="tel:+917019746296">+91 70197 46296</a></li>
+                    <li><a href="contact.html#quote" class="btn btn-primary" style="margin-top:8px;">Book a Demo</a></li>
+                </ul>
             </div>
         </div>
-            <div class="footer-bottom">
-                <p>© 2025 IntegrateWise LLP. All rights reserved. | <a href="privacy.html">Privacy Policy</a> | <a href="terms.html">Terms of Service</a></p>
+        <div class="footer-bottom">
+            <div class="container">
+                <p>© 2024 IntegrateWise. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
 </body>
 </html>
-

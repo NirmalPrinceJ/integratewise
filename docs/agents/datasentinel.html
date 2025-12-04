@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DataSentinel Agent Spec</title>
+    <meta name="description" content="Inputs, outputs, webhooks, SLAs, and versioning for the DataSentinel agent.">
+    <link rel="canonical" href="https://integratewise.co/docs/agents/datasentinel.html">
+    <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+    <link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+    <main class="content-section">
+        <div class="container">
+            <p class="hero-badge">Agent Spec</p>
+            <h1>DataSentinel</h1>
+            <p class="section-subtitle">Data quality scorecards.</p>
+            <div class="cards-grid">
+                <div class="card"><h3>Inputs</h3><p>accounts, contacts, stakeholders, integrations, workflows, runs, events metadata.</p></div>
+                <div class="card"><h3>Outputs</h3><p>scorecards (jsonb) with completeness, freshness, and conformance metrics; emits health_scores adjustments when thresholds breached.</p></div>
+                <div class="card"><h3>Webhooks</h3><p>scorecard.published with score per entity and remediation checklist; emits alert.triggered when thresholds violated.</p></div>
+                <div class="card"><h3>SLAs</h3><p>Refresh <120s; ingest reliability ≥98%; uptime >99.9%; retention 30 days for scorecard history.</p></div>
+                <div class="card"><h3>Versioning</h3><p>Scorecard schema versioned; major when metric definitions change; minor when thresholds shift; patch for bug fixes.</p></div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

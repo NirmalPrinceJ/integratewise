@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Architecture Notes</title>
+    <meta name="description" content="Atlas Spine deployment notes, health compute window, retry and backoff strategy for IntegrateWise.">
+    <link rel="canonical" href="https://integratewise.co/docs/architecture.html">
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <main class="content-section">
+        <div class="container">
+            <p class="hero-badge">Architecture</p>
+            <h1>Deployment and runtime</h1>
+            <div class="cards-grid">
+                <div class="card"><h3>Atlas Spine</h3><p>Core services deployed on Atlas Spine with stateless workers; adapters isolated per integration with secrets_vault references.</p></div>
+                <div class="card"><h3>Health compute window</h3><p>Health scoring windows run every 6 hours with drift detection; out-of-window runs queued with priority to prevent backlogs.</p></div>
+                <div class="card"><h3>Retry and backoff</h3><p>Runs use exponential backoff (2^n seconds, max 5 attempts) with jitter and dead-letter after final failure; observability via runs/events tables.</p></div>
+                <div class="card"><h3>Data residency</h3><p>Primary region: India; optional EU/US deployment via separate Atlas Spine clusters and dedicated secrets_vault entries.</p></div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

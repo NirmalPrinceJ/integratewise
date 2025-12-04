@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChurnShield Agent Spec</title>
+    <meta name="description" content="Inputs, outputs, webhooks, SLAs, and versioning for the ChurnShield agent.">
+    <link rel="canonical" href="https://integratewise.co/docs/agents/churnshield.html">
+    <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+    <link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+    <main class="content-section">
+        <div class="container">
+            <p class="hero-badge">Agent Spec</p>
+            <h1>ChurnShield</h1>
+            <p class="section-subtitle">Risk detection and proactive tasking.</p>
+            <div class="cards-grid">
+                <div class="card"><h3>Inputs</h3><p>accounts, contacts, product_usage deltas, support backlog, sentiment labels, contract milestones.</p></div>
+                <div class="card"><h3>Outputs</h3><p>risk_signals (jsonb) attached to accounts; tasks pushed to target_workspace with priority and due_at.</p></div>
+                <div class="card"><h3>Webhooks</h3><p>risk.created and risk.resolved payloads include account_id, severity (low/med/high), reason_codes, recommended_actions.</p></div>
+                <div class="card"><h3>SLAs</h3><p>Compute <120s; false-positive rate ≤15%; uptime >99.9%; response fan-out per workspace capped at 50 tasks/min.</p></div>
+                <div class="card"><h3>Versioning</h3><p>Model version pinned per workspace; upgrades announced ≥30 days prior. Backtests stored with checksum for audit.</p></div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

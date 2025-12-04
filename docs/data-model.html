@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IntegrateWise Data Model</title>
+    <meta name="description" content="Canonical tables, keys, types, and constraints for the IntegrateWise platform.">
+    <link rel="canonical" href="https://integratewise.co/docs/data-model.html">
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <main class="content-section">
+        <div class="container">
+            <p class="hero-badge">Technical</p>
+            <h1>Canonical data model</h1>
+            <p class="section-subtitle">Names, keys, types, and constraints for the customer hub. All tables are versioned; foreign keys cascade on delete unless noted.</p>
+
+            <section class="content-section">
+                <h2>Entities</h2>
+                <div class="cards-grid">
+                    <div class="card"><h3>accounts</h3><p>id (uuid, pk), external_id (text, unique), name (text, not null), status (enum: active, churned, prospect), mrr (numeric, default 0), created_at (timestamptz, not null), updated_at (timestamptz, not null).</p></div>
+                    <div class="card"><h3>contacts</h3><p>id (uuid, pk), account_id (uuid fk→accounts.id), email (text, unique), name (text), role (text), created_at, updated_at.</p></div>
+                    <div class="card"><h3>stakeholders</h3><p>id (uuid, pk), account_id (uuid fk→accounts.id), contact_id (uuid fk→contacts.id), influence (enum: sponsor, champion, blocker), notes (jsonb), updated_at.</p></div>
+                    <div class="card"><h3>integrations</h3><p>id (uuid, pk), type (enum: salesforce, hubspot, dynamics, zoho, custom), status (enum: active, paused), last_synced_at (timestamptz), secrets_vault_id (uuid fk→secrets_vault.id).</p></div>
+                    <div class="card"><h3>workflows</h3><p>id (uuid, pk), name (text), description (text), trigger (jsonb), target_workspace (enum: notion, airtable, asana, clickup, monday, sheets), enabled (bool default true), created_at.</p></div>
+                    <div class="card"><h3>runs</h3><p>id (uuid, pk), workflow_id (uuid fk→workflows.id), status (enum: queued, running, succeeded, failed), started_at (timestamptz), completed_at (timestamptz), attempts (int default 0), logs (jsonb).</p></div>
+                    <div class="card"><h3>events</h3><p>id (uuid, pk), run_id (uuid fk→runs.id null on delete cascade), type (text), payload (jsonb), occurred_at (timestamptz).</p></div>
+                    <div class="card"><h3>secrets_vault</h3><p>id (uuid, pk), name (text unique), rotated_at (timestamptz), rotation_policy_days (int), rbac_role (text), checksum (text), audit_ref (text).</p></div>
+                    <div class="card"><h3>health_scores</h3><p>id (uuid, pk), account_id (uuid fk→accounts.id), model_version (text), score (numeric 0-100), drivers (jsonb), computed_at (timestamptz), ttl_minutes (int default 120).</p></div>
+                </div>
+            </section>
+
+            <section class="content-section bg-gray">
+                <h2>Constraints and behaviors</h2>
+                <ul class="feature-list">
+                    <li>All tables include created_at/updated_at triggers with clock skew tolerance ±60s.</li>
+                    <li>health_scores rows expire when computed_at + ttl_minutes is exceeded; downstream views receive last-known-good.</li>
+                    <li>runs enforce max attempts (5) with exponential backoff (2^n seconds) and jitter.</li>
+                    <li>secrets_vault rotation enforced via rotation_policy_days; non-compliance raises VaultGuard alerts.</li>
+                    <li>events payloads are immutable; redactions use checksum field on secrets_vault.</li>
+                </ul>
+                <div class="cta-row">
+                    <a class="btn btn-outline" href="../platform.html">Back to platform</a>
+                    <a class="btn btn-secondary" href="measurement.html">See measurement rules</a>
+                </div>
+            </section>
+        </div>
+    </main>
+</body>
+</html>
