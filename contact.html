@@ -9,14 +9,23 @@
 <meta property="og:title" content="Contact IntegrateWise">
 <meta property="og:description" content="Book demos, assessments, implementations, managed ops, and quotes.">
 <meta property="og:type" content="website">
+<meta property="og:url" content="https://integratewise.co/contact.html">
+<meta property="og:image" content="https://integratewise.co/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Contact IntegrateWise">
+<meta name="twitter:description" content="Book demos, assessments, implementations, managed ops, and quotes.">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="styles.css">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
+<a href="#main-content" class="skip-to-content">Skip to main content</a>
 <header class="site-header">
     <div class="nav-container">
-        <a class="logo" href="index.html"><span class="logo-mark">IW</span><span class="logo-text">IntegrateWise</span></a>
+        <a class="logo" href="index.html" aria-label="IntegrateWise home">
+            <span class="logo-mark" aria-hidden="true">IW</span>
+            <span class="logo-text">IntegrateWise</span>
+        </a>
         <nav class="nav-links" aria-label="Main navigation">
             <a href="platform.html">Platform</a>
             <a href="agents.html">Agents</a>
@@ -33,7 +42,7 @@
         </div>
     </div>
 </header>
-<main class="section">
+<main id="main-content" class="section">
     <div class="container">
         <div class="section-header">
             <p class="eyebrow">Let’s talk</p>
@@ -43,51 +52,138 @@
         <div class="grid cards-2">
             <article class="card" id="demo">
                 <h3>Book a Demo</h3>
-                <form class="form-grid" data-analytics="demo-form">
-                    <div><label for="demo-name">Name</label><input id="demo-name" name="name" required></div>
-                    <div><label for="demo-email">Work Email</label><input id="demo-email" name="email" type="email" required></div>
-                    <div><label for="demo-company">Company</label><input id="demo-company" name="company" required></div>
-                    <div><label for="demo-size">Team Size</label><input id="demo-size" name="size" aria-label="Team size"></div>
-                    <div class="full"><label for="demo-notes">Focus</label><textarea id="demo-notes" name="notes" rows="3"></textarea></div>
+                <form class="form-grid" method="POST" action="#" data-analytics="demo-form" novalidate>
+                    <div>
+                        <label for="demo-name">Name <span aria-label="required">*</span></label>
+                        <input id="demo-name" name="name" type="text" required aria-required="true" aria-describedby="demo-name-error">
+                        <span class="error-message" id="demo-name-error" role="alert"></span>
+                    </div>
+                    <div>
+                        <label for="demo-email">Work Email <span aria-label="required">*</span></label>
+                        <input id="demo-email" name="email" type="email" required aria-required="true" aria-describedby="demo-email-error">
+                        <span class="error-message" id="demo-email-error" role="alert"></span>
+                    </div>
+                    <div>
+                        <label for="demo-company">Company <span aria-label="required">*</span></label>
+                        <input id="demo-company" name="company" type="text" required aria-required="true" aria-describedby="demo-company-error">
+                        <span class="error-message" id="demo-company-error" role="alert"></span>
+                    </div>
+                    <div>
+                        <label for="demo-size">Team Size</label>
+                        <input id="demo-size" name="size" type="number" min="1" aria-label="Team size">
+                    </div>
+                    <div class="full">
+                        <label for="demo-notes">Focus</label>
+                        <textarea id="demo-notes" name="notes" rows="3" aria-describedby="demo-notes-hint"></textarea>
+                        <span class="mini-text" id="demo-notes-hint">Optional: Tell us what you'd like to focus on</span>
+                    </div>
                     <button class="btn btn-primary" type="submit" data-analytics="submit-demo">Submit</button>
                 </form>
             </article>
             <article class="card" id="assessment">
                 <h3>Start Assessment</h3>
-                <form class="form-grid" data-analytics="assessment-form">
-                    <div><label for="assess-name">Name</label><input id="assess-name" name="name" required></div>
-                    <div><label for="assess-email">Work Email</label><input id="assess-email" name="email" type="email" required></div>
-                    <div><label for="assess-crm">Primary CRM</label><input id="assess-crm" name="crm"></div>
-                    <div class="full"><label for="assess-scope">Scope</label><textarea id="assess-scope" name="scope" rows="3"></textarea></div>
+                <form class="form-grid" method="POST" action="#" data-analytics="assessment-form" novalidate>
+                    <div>
+                        <label for="assess-name">Name <span aria-label="required">*</span></label>
+                        <input id="assess-name" name="name" type="text" required aria-required="true" aria-describedby="assess-name-error">
+                        <span class="error-message" id="assess-name-error" role="alert"></span>
+                    </div>
+                    <div>
+                        <label for="assess-email">Work Email <span aria-label="required">*</span></label>
+                        <input id="assess-email" name="email" type="email" required aria-required="true" aria-describedby="assess-email-error">
+                        <span class="error-message" id="assess-email-error" role="alert"></span>
+                    </div>
+                    <div>
+                        <label for="assess-crm">Primary CRM</label>
+                        <input id="assess-crm" name="crm" type="text" placeholder="e.g., Salesforce, HubSpot">
+                    </div>
+                    <div class="full">
+                        <label for="assess-scope">Scope</label>
+                        <textarea id="assess-scope" name="scope" rows="3" aria-describedby="assess-scope-hint"></textarea>
+                        <span class="mini-text" id="assess-scope-hint">Optional: Describe your integration scope</span>
+                    </div>
                     <button class="btn btn-primary" type="submit" data-analytics="submit-assessment">Submit</button>
                 </form>
             </article>
             <article class="card" id="implementation">
                 <h3>Implementation</h3>
-                <form class="form-grid" data-analytics="implementation-form">
-                    <div><label for="impl-name">Name</label><input id="impl-name" name="name" required></div>
-                    <div><label for="impl-email">Work Email</label><input id="impl-email" name="email" type="email" required></div>
-                    <div><label for="impl-tier">Package</label><select id="impl-tier" name="tier"><option>Foundation</option><option>Professional</option><option>Enterprise</option></select></div>
-                    <div class="full"><label for="impl-notes">Timeline</label><textarea id="impl-notes" name="timeline" rows="3"></textarea></div>
+                <form class="form-grid" method="POST" action="#" data-analytics="implementation-form" novalidate>
+                    <div>
+                        <label for="impl-name">Name <span aria-label="required">*</span></label>
+                        <input id="impl-name" name="name" type="text" required aria-required="true" aria-describedby="impl-name-error">
+                        <span class="error-message" id="impl-name-error" role="alert"></span>
+                    </div>
+                    <div>
+                        <label for="impl-email">Work Email <span aria-label="required">*</span></label>
+                        <input id="impl-email" name="email" type="email" required aria-required="true" aria-describedby="impl-email-error">
+                        <span class="error-message" id="impl-email-error" role="alert"></span>
+                    </div>
+                    <div>
+                        <label for="impl-tier">Package</label>
+                        <select id="impl-tier" name="tier" aria-label="Select package tier">
+                            <option value="">Select a package</option>
+                            <option value="foundation">Foundation</option>
+                            <option value="professional">Professional</option>
+                            <option value="enterprise">Enterprise</option>
+                        </select>
+                    </div>
+                    <div class="full">
+                        <label for="impl-notes">Timeline</label>
+                        <textarea id="impl-notes" name="timeline" rows="3" aria-describedby="impl-notes-hint"></textarea>
+                        <span class="mini-text" id="impl-notes-hint">Optional: Preferred timeline or deadlines</span>
+                    </div>
                     <button class="btn btn-primary" type="submit" data-analytics="submit-implementation">Submit</button>
                 </form>
             </article>
             <article class="card" id="retainer">
                 <h3>Managed Ops</h3>
-                <form class="form-grid" data-analytics="retainer-form">
-                    <div><label for="retainer-name">Name</label><input id="retainer-name" name="name" required></div>
-                    <div><label for="retainer-email">Work Email</label><input id="retainer-email" name="email" type="email" required></div>
-                    <div><label for="retainer-tier">Tier</label><select id="retainer-tier" name="tier"><option>Bronze (24h)</option><option>Silver (12h)</option><option>Gold (4h)</option><option>Platinum (1h)</option></select></div>
+                <form class="form-grid" method="POST" action="#" data-analytics="retainer-form" novalidate>
+                    <div>
+                        <label for="retainer-name">Name <span aria-label="required">*</span></label>
+                        <input id="retainer-name" name="name" type="text" required aria-required="true" aria-describedby="retainer-name-error">
+                        <span class="error-message" id="retainer-name-error" role="alert"></span>
+                    </div>
+                    <div>
+                        <label for="retainer-email">Work Email <span aria-label="required">*</span></label>
+                        <input id="retainer-email" name="email" type="email" required aria-required="true" aria-describedby="retainer-email-error">
+                        <span class="error-message" id="retainer-email-error" role="alert"></span>
+                    </div>
+                    <div>
+                        <label for="retainer-tier">Tier</label>
+                        <select id="retainer-tier" name="tier" aria-label="Select managed ops tier">
+                            <option value="">Select a tier</option>
+                            <option value="bronze">Bronze (24h)</option>
+                            <option value="silver">Silver (12h)</option>
+                            <option value="gold">Gold (4h)</option>
+                            <option value="platinum">Platinum (1h)</option>
+                        </select>
+                    </div>
                     <button class="btn btn-primary" type="submit" data-analytics="submit-retainer">Submit</button>
                 </form>
             </article>
             <article class="card" id="quote">
                 <h3>Custom Quote</h3>
-                <form class="form-grid" data-analytics="quote-form">
-                    <div><label for="quote-name">Name</label><input id="quote-name" name="name" required></div>
-                    <div><label for="quote-email">Work Email</label><input id="quote-email" name="email" type="email" required></div>
-                    <div><label for="quote-outcome">Outcome-tied component</label><input id="quote-outcome" name="outcome" placeholder="Documented savings/retained revenue"></div>
-                    <div class="full"><label for="quote-notes">Notes</label><textarea id="quote-notes" name="notes" rows="3"></textarea></div>
+                <form class="form-grid" method="POST" action="#" data-analytics="quote-form" novalidate>
+                    <div>
+                        <label for="quote-name">Name <span aria-label="required">*</span></label>
+                        <input id="quote-name" name="name" type="text" required aria-required="true" aria-describedby="quote-name-error">
+                        <span class="error-message" id="quote-name-error" role="alert"></span>
+                    </div>
+                    <div>
+                        <label for="quote-email">Work Email <span aria-label="required">*</span></label>
+                        <input id="quote-email" name="email" type="email" required aria-required="true" aria-describedby="quote-email-error">
+                        <span class="error-message" id="quote-email-error" role="alert"></span>
+                    </div>
+                    <div>
+                        <label for="quote-outcome">Outcome-tied component</label>
+                        <input id="quote-outcome" name="outcome" type="text" placeholder="Documented savings/retained revenue" aria-describedby="quote-outcome-hint">
+                        <span class="mini-text" id="quote-outcome-hint">Optional: Expected savings or revenue impact</span>
+                    </div>
+                    <div class="full">
+                        <label for="quote-notes">Notes</label>
+                        <textarea id="quote-notes" name="notes" rows="3" aria-describedby="quote-notes-hint"></textarea>
+                        <span class="mini-text" id="quote-notes-hint">Optional: Additional requirements or questions</span>
+                    </div>
                     <button class="btn btn-primary" type="submit" data-analytics="submit-quote">Submit</button>
                 </form>
             </article>
