@@ -1,0 +1,102 @@
+{
+  "version": "2024.12",
+  "generated_at": "2025-12-04T00:00:00Z",
+  "description": "Field-level normalization maps that show how CRM/product attributes land inside the IntegrateWise Atlas Spine.",
+  "spine_tables": [
+    "accounts",
+    "contacts",
+    "subscriptions",
+    "usage_events",
+    "health_scores",
+    "risks",
+    "initiatives",
+    "stakeholders"
+  ],
+  "mappings": [
+    {
+      "source_system": "salesforce",
+      "source_table": "Account",
+      "canonical_table": "accounts",
+      "id_strategy": {
+        "source_id": "Id",
+        "spine_id": "spine_id",
+        "match_rules": [
+          "domain + name fuzzy >= 0.85",
+          "explicit parent-child via ParentId"
+        ]
+      },
+      "field_mappings": {
+        "Name": "accounts.account_name",
+        "Industry": "accounts.industry",
+        "AccountNumber": "accounts.account_number",
+        "OwnerId": "accounts.owner_crm_id",
+        "ARR__c": "accounts.arr",
+        "Customer_Segment__c": "accounts.segment",
+        "Renewal_Date__c": "accounts.renewal_date",
+        "Churn_Risk_Tier__c": "accounts.crm_risk_tier"
+      }
+    },
+    {
+      "source_system": "hubspot",
+      "source_table": "Companies",
+      "canonical_table": "accounts",
+      "field_mappings": {
+        "name": "accounts.account_name",
+        "industry": "accounts.industry",
+        "annualrevenue": "accounts.arr",
+        "hs_lastmodifieddate": "accounts.last_activity_at",
+        "lifecyclestage": "accounts.lifecycle_stage",
+        "hs_parent_company_id": "accounts.parent_crm_id",
+        "domain": "accounts.primary_domain"
+      }
+    },
+    {
+      "source_system": "salesforce",
+      "source_table": "Contact",
+      "canonical_table": "contacts",
+      "field_mappings": {
+        "Id": "contacts.crm_id",
+        "AccountId": "contacts.account_crm_id",
+        "FirstName": "contacts.first_name",
+        "LastName": "contacts.last_name",
+        "Email": "contacts.email",
+        "Phone": "contacts.phone",
+        "Title": "contacts.title",
+        "Lifecycle_Role__c": "contacts.stakeholder_role"
+      }
+    },
+    {
+      "source_system": "segment",
+      "source_table": "track_usage",
+      "canonical_table": "usage_events",
+      "field_mappings": {
+        "userId": "usage_events.contact_external_id",
+        "accountId": "usage_events.account_external_id",
+        "event": "usage_events.event_name",
+        "properties.feature": "usage_events.feature_name",
+        "properties.value": "usage_events.metric_value",
+        "timestamp": "usage_events.occurred_at"
+      }
+    }
+  ],
+  "quality_rules": [
+    {
+      "rule": "accounts.primary_domain must be unique per spine_id",
+      "severity": "critical"
+    },
+    {
+      "rule": "contacts.email required when stakeholder_role != null",
+      "severity": "high"
+    },
+    {
+      "rule": "usage_events.metric_value numeric with tolerance ±0.01",
+      "severity": "medium"
+    }
+  ],
+  "transform_notes": [
+    "All monetary values normalized to USD unless tenant currency specified.",
+    "Dates converted to ISO8601 UTC before persistence.",
+    "Free text picklists coerced to lowercase snake_case for downstream ML models."
+  ]
+}
+
