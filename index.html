@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Normalize once. Render anywhere. | IntegrateWise</title>
-    <meta name="description" content="Platform-agnostic integration + AI agents for CSM. Normalize CRM data once; render health, risk, and renewals in Notion, Coda, Airtable, Asana, ClickUp, Monday, Sheets.">
+    <title>Customer Success Integration Spine | Reduce Churn 15-25% | IntegrateWise</title>
+    <meta name="description" content="Unify Customer Success data across your stack. Normalize CRM data once, render health scores and risk alerts in Notion, Coda, Airtable, Sheets. AI-powered churn prevention. 90-day ROI.">
     <meta property="og:title" content="Normalize once. Render anywhere. | IntegrateWise">
     <meta property="og:description" content="Platform-agnostic integration + AI agents for Customer Success. Normalize CRM data once; render insights everywhere.">
     <meta property="og:image" content="https://integratewise.co/og-image.png">
@@ -15,9 +15,66 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    
+    <!-- Structured Data for SEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "IntegrateWise",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Cloud",
+      "offers": {
+        "@type": "Offer",
+        "price": "99",
+        "priceCurrency": "USD"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.8",
+        "ratingCount": "12"
+      },
+      "description": "Customer Success Integration Spine that normalizes CRM data and renders health scores, risk alerts, and stakeholder maps across Notion, Coda, Airtable, Sheets, and more.",
+      "featureList": [
+        "Canonical data model (PostgreSQL)",
+        "AI-powered health scoring",
+        "Churn prediction (30+ day lead time)",
+        "Read-only views in Notion, Coda, Airtable, Sheets",
+        "7 autonomous AI agents",
+        "15-25% churn reduction",
+        "30-40% efficiency gains"
+      ]
+    }
+    </script>
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "IntegrateWise",
+      "url": "https://integratewise.co",
+      "logo": "https://integratewise.co/favicon.svg",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "email": "connect@integratewise.co",
+        "contactType": "Customer Service"
+      },
+      "sameAs": []
+    }
+    </script>
 </head>
 <body>
     <!-- Navigation -->
+    <!-- Sticky CTA Bar -->
+    <div class="sticky-cta-bar" id="sticky-cta">
+        <div class="container">
+            <div class="sticky-cta-content">
+                <p class="sticky-cta-text">Ready to reduce churn by 15-25%?</p>
+                <a href="#contact" class="btn btn-primary btn-small">Book Assessment</a>
+            </div>
+        </div>
+    </div>
+
     <nav class="navbar">
         <div class="nav-container">
             <a href="index.html" class="logo">
@@ -37,7 +94,7 @@
                 <a href="resources.html">Resources</a>
             </div>
             <div class="nav-cta">
-                <a href="contact.html" class="btn btn-primary">Contact Us</a>
+                <a href="#contact" class="btn btn-primary">Book Assessment</a>
             </div>
             <button class="mobile-menu-btn" aria-label="Toggle menu">
                 <span></span>
@@ -56,21 +113,28 @@
                 AI-Powered Customer Success Platform
             </div>
             <h1 class="hero-title">
-                Normalize once.<br>
-                <span class="highlight">Render anywhere.</span>
+                Stop churn before it starts.<br>
+                <span class="highlight">Unify your Customer Success data.</span>
             </h1>
             <p class="hero-subtitle">
-                A platform-agnostic spine + AI agents for Customer Success. Canonical data model 
-                with read-only views across your tools—Notion, Coda, Airtable, Asana, ClickUp, Monday, Sheets.
+                IntegrateWise is a Customer Success Integration Spine that normalizes your CRM data once 
+                and renders health scores, risk alerts, and stakeholder maps in the tools your team already uses—Notion, Coda, Airtable, Sheets, and more.
             </p>
             <div class="hero-cta">
-                <a href="#demo" class="btn btn-primary btn-large">
-                    Start Your Journey
+                <a href="#contact" class="btn btn-primary btn-large">
+                    Book a 15-min Architecture Assessment
                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
                         <path d="M4.167 10h11.666M10 4.167L15.833 10 10 15.833" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
                 </a>
-                <a href="#solution" class="btn btn-outline btn-large">Learn More</a>
+                <a href="downloads/IntegrateWise_Schema_v1.json" class="btn btn-outline btn-large" download>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                        <polyline points="7 10 12 15 17 10"/>
+                        <line x1="12" y1="15" x2="12" y2="3"/>
+                    </svg>
+                    Download Schema
+                </a>
             </div>
             
             <!-- Stats -->
@@ -93,6 +157,26 @@
                 </div>
             </div>
         </div>
+    </section>
+
+    <!-- Social Proof Section -->
+    <section class="social-proof-section">
+        <div class="container">
+            <p class="logos-label">Trusted by Customer Success teams at mid-market SaaS companies</p>
+            <!-- Customer Logos will be added here -->
+            <div class="testimonial-preview">
+                <div class="testimonial-quote">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="32" height="32">
+                        <path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"/>
+                        <path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"/>
+                    </svg>
+                    <p class="testimonial-text">"We reduced churn by 18% in 90 days. The early warning system caught at-risk accounts 45 days before renewal—something we never had visibility into before."</p>
+                    <div class="testimonial-author">
+                        <strong>VP of Customer Success</strong>
+                        <span>Mid-market SaaS (250 employees)</span>
+                    </div>
+                </div>
+            </div>
     </section>
 
     <!-- Logos Section -->
@@ -998,7 +1082,7 @@
                             Executive presentation
                         </li>
                     </ul>
-                    <a href="#contact" class="btn btn-outline btn-block">Start Assessment</a>
+                    <a href="#contact" class="btn btn-outline btn-block">Book Assessment</a>
                 </div>
 
                 <div class="pricing-card pricing-featured">
@@ -1030,7 +1114,7 @@
                             Documentation & runbooks
                         </li>
                     </ul>
-                    <a href="#contact" class="btn btn-primary btn-block">Get Started</a>
+                    <a href="#contact" class="btn btn-primary btn-block">Book Assessment</a>
                 </div>
 
                 <div class="pricing-card">
@@ -1057,7 +1141,7 @@
                             Priority support access
                         </li>
                     </ul>
-                    <a href="#contact" class="btn btn-outline btn-block">Learn More</a>
+                    <a href="#contact" class="btn btn-outline btn-block">Schedule Discovery</a>
                 </div>
             </div>
 
@@ -1296,6 +1380,78 @@
         </div>
     </section>
 
+    <!-- Role-Specific Benefits Section -->
+    <section class="roles-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">Built for Your Role</span>
+                <h2 class="section-title">See IntegrateWise through <span class="highlight">your lens</span></h2>
+                <p class="section-subtitle">
+                    Different roles, different priorities. Here's what IntegrateWise delivers for each.
+                </p>
+            </div>
+            
+            <div class="roles-tabs">
+                <button class="role-tab active" data-role="cs-leader">For CS Leaders</button>
+                <button class="role-tab" data-role="revops">For RevOps / CS Ops</button>
+                <button class="role-tab" data-role="engineering">For Engineering</button>
+            </div>
+            
+            <div class="roles-content">
+                <div class="role-panel active" data-role="cs-leader">
+                    <div class="role-benefits">
+                        <div class="role-benefit">
+                            <h3>Reduce Churn by 15-25%</h3>
+                            <p>Early warning system catches at-risk accounts 30+ days before renewal. Your CSMs can intervene proactively instead of reacting to cancellation notices.</p>
+                        </div>
+                        <div class="role-benefit">
+                            <h3>Save 4-8 Hours Per Week Per CSM</h3>
+                            <p>Automated health scoring and reporting eliminates manual spreadsheet work. Your team spends more time with customers, less time updating status.</p>
+                        </div>
+                        <div class="role-benefit">
+                            <h3>Unified Customer View</h3>
+                            <p>Health scores, stakeholder maps, and risk alerts live in Notion or Sheets—where your team already works. No new tool to learn.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="role-panel" data-role="revops">
+                    <div class="role-benefits">
+                        <div class="role-benefit">
+                            <h3>Never Rebuild Integrations Again</h3>
+                            <p>Canonical data model means when you switch tools, your integrations stay intact. Change CRM? Add a new view platform? No problem.</p>
+                        </div>
+                        <div class="role-benefit">
+                            <h3>Governance & Quality Built-In</h3>
+                            <p>≥95% data completeness, <1h drift detection, full audit trails. Your data stays clean and compliant automatically.</p>
+                        </div>
+                        <div class="role-benefit">
+                            <h3>2-Week MVP Deployment</h3>
+                            <p>See value fast. Our accelerated implementation gets you to measurable outcomes in weeks, not quarters.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="role-panel" data-role="engineering">
+                    <div class="role-benefits">
+                        <div class="role-benefit">
+                            <h3>Platform-Agnostic Architecture</h3>
+                            <p>PostgreSQL canonical spine + n8n orchestrator. Open schema, API access, no vendor lock-in. Integrate with your existing stack.</p>
+                        </div>
+                        <div class="role-benefit">
+                            <h3>AI Agents Handle the Heavy Lifting</h3>
+                            <p>7 autonomous agents manage health scoring, churn prediction, data quality, and integration design. You focus on core product.</p>
+                        </div>
+                        <div class="role-benefit">
+                            <h3>Enterprise-Grade Reliability</h3>
+                            <p>≥98% ingest success, >99.9% uptime, idempotent processing, dead-letter queues. Production-ready from day one.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- ICP Section -->
     <section class="icp-section">
         <div class="container">
@@ -1350,6 +1506,136 @@
         </div>
     </section>
 
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">FAQ</span>
+                <h2 class="section-title">Frequently asked <span class="highlight">questions</span></h2>
+            </div>
+            
+            <div class="faq-list">
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>What is IntegrateWise?</span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M6 9l6 6 6-6"/>
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>IntegrateWise is a Customer Success Integration Spine that normalizes your CRM data (Salesforce, HubSpot, Dynamics) into a canonical PostgreSQL schema, then renders health scores, risk alerts, and stakeholder maps as read-only views in the tools your team already uses—Notion, Coda, Airtable, Sheets, Asana, ClickUp, Monday.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>How does IntegrateWise reduce churn?</span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M6 9l6 6 6-6"/>
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Our ChurnShield AI agent analyzes customer health data and predicts churn risk 30+ days before renewal. This early warning system allows CSMs to intervene proactively with targeted playbooks, resulting in 15-25% churn reduction.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Do I need to replace my existing tools?</span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M6 9l6 6 6-6"/>
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>No. IntegrateWise works with your existing stack. We pull data from your CRM and render read-only views in Notion, Coda, Airtable, Sheets, or other tools you already use. No vendor lock-in, no tool replacement required.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>How long does implementation take?</span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M6 9l6 6 6-6"/>
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Our 2-week MVP gets you to measurable outcomes fast. Full implementation typically takes 4-12 weeks depending on complexity. We start with a 2-week assessment ($5K-$10K) to map your stack and quantify ROI.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>What's the difference between IntegrateWise and Gainsight/Vitally?</span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M6 9l6 6 6-6"/>
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Gainsight and Vitally are full Customer Success platforms that require you to adopt their interface. IntegrateWise is a platform-agnostic integration spine that renders data in your existing tools. You keep your workflow, we handle the data plumbing.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Is this another iPaaS tool like Zapier or Make?</span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M6 9l6 6 6-6"/>
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>No. iPaaS tools connect apps but don't normalize data or provide canonical schemas. When you change tools, you rebuild integrations. IntegrateWise's canonical data model means your integrations are future-proof—change tools without rebuilding.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>What kind of ROI can I expect?</span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M6 9l6 6 6-6"/>
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Typical engagements show 3-5x ROI within 90 days. This comes from 15-25% churn reduction, 30-40% efficiency gains (4-8 hours/week saved per CSM), and reduced integration maintenance costs. We provide transparent metrics and ROI tracking.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- FAQ Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is IntegrateWise?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "IntegrateWise is a Customer Success Integration Spine that normalizes your CRM data (Salesforce, HubSpot, Dynamics) into a canonical PostgreSQL schema, then renders health scores, risk alerts, and stakeholder maps as read-only views in the tools your team already uses—Notion, Coda, Airtable, Sheets, Asana, ClickUp, Monday."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How does IntegrateWise reduce churn?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Our ChurnShield AI agent analyzes customer health data and predicts churn risk 30+ days before renewal. This early warning system allows CSMs to intervene proactively with targeted playbooks, resulting in 15-25% churn reduction."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do I need to replace my existing tools?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. IntegrateWise works with your existing stack. We pull data from your CRM and render read-only views in Notion, Coda, Airtable, Sheets, or other tools you already use. No vendor lock-in, no tool replacement required."
+          }
+        }
+      ]
+    }
+    </script>
+
     <!-- CTA Section -->
     <section id="contact" class="cta-section">
         <div class="container">
@@ -1357,13 +1643,19 @@
                 <h2>Ready to transform your Customer Success operations?</h2>
                 <p>15-minute discovery call to map your stack, quantify pain, and scope a paid assessment.</p>
                 <div class="cta-buttons">
-                    <a href="mailto:connect@integratewise.co" class="btn btn-primary btn-large">
-                        Schedule Discovery Call
+                    <a href="mailto:connect@integratewise.co?subject=Book Architecture Assessment" class="btn btn-primary btn-large">
+                        Book a 15-min Architecture Assessment
                         <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
                             <path d="M4.167 10h11.666M10 4.167L15.833 10 10 15.833" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
                     </a>
-                    <a href="mailto:connect@integratewise.co" class="btn btn-outline-light btn-large">connect@integratewise.co</a>
+                    <a href="downloads/IntegrateWise_Adapter_Catalog.md" class="btn btn-outline-light btn-large" download>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                            <polyline points="14 2 14 8 20 8"/>
+                        </svg>
+                        View Adapter Catalog
+                    </a>
                 </div>
             </div>
         </div>

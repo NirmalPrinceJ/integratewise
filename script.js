@@ -304,6 +304,61 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    // Sticky CTA bar visibility
+    const stickyCta = document.getElementById('sticky-cta');
+    if (stickyCta) {
+        let lastScroll = 0;
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            const heroHeight = document.querySelector('.hero')?.offsetHeight || 600;
+            
+            if (currentScroll > heroHeight && currentScroll > lastScroll) {
+                stickyCta.classList.add('visible');
+            } else if (currentScroll < heroHeight || currentScroll < lastScroll) {
+                stickyCta.classList.remove('visible');
+            }
+            
+            lastScroll = currentScroll;
+        });
+    }
+
+    // Role tabs functionality
+    const roleTabs = document.querySelectorAll('.role-tab');
+    const rolePanels = document.querySelectorAll('.role-panel');
+    
+    roleTabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            const targetRole = tab.getAttribute('data-role');
+            
+            // Remove active class from all tabs and panels
+            roleTabs.forEach(t => t.classList.remove('active'));
+            rolePanels.forEach(p => p.classList.remove('active'));
+            
+            // Add active class to clicked tab and corresponding panel
+            tab.classList.add('active');
+            document.querySelector(`.role-panel[data-role="${targetRole}"]`).classList.add('active');
+        });
+    });
+
+    // FAQ accordion functionality
+    const faqItems = document.querySelectorAll('.faq-item');
+    
+    faqItems.forEach(item => {
+        const question = item.querySelector('.faq-question');
+        
+        question.addEventListener('click', () => {
+            const isActive = item.classList.contains('active');
+            
+            // Close all FAQ items
+            faqItems.forEach(faq => faq.classList.remove('active'));
+            
+            // Open clicked item if it wasn't active
+            if (!isActive) {
+                item.classList.add('active');
+            }
+        });
+    });
+
     console.log('IntegrateWise landing page loaded successfully');
 });
 
