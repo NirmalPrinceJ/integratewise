@@ -1,0 +1,625 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "IntegrateWise Atlas Spine - Canonical Data Model v1.0",
+  "description": "Platform-agnostic canonical schema for Customer Success data normalization",
+  "version": "1.0.0",
+  "tables": {
+    "accounts": {
+      "description": "Canonical account/company records with unified identity",
+      "columns": {
+        "spine_id": {
+          "type": "uuid",
+          "primary_key": true,
+          "description": "Canonical immutable identifier (golden record)"
+        },
+        "crm_id": {
+          "type": "string",
+          "description": "Source system reference with prefix (sf:, hs:, dyn:)",
+          "example": "sf:0015000000ABC123"
+        },
+        "external_id": {
+          "type": "string",
+          "description": "Original CRM identifier without prefix"
+        },
+        "name": {
+          "type": "string",
+          "required": true,
+          "description": "Account/company name"
+        },
+        "domain": {
+          "type": "string",
+          "description": "Primary email domain for matching",
+          "example": "acme.com"
+        },
+        "industry": {
+          "type": "string",
+          "description": "Industry classification (normalized)"
+        },
+        "employee_count": {
+          "type": "integer",
+          "description": "Number of employees (banded: 1-10, 11-50, 51-200, 201-500, 501-1000, 1000+)"
+        },
+        "arr": {
+          "type": "decimal",
+          "description": "Annual Recurring Revenue in USD"
+        },
+        "mrr": {
+          "type": "decimal",
+          "description": "Monthly Recurring Revenue in USD"
+        },
+        "tier": {
+          "type": "enum",
+          "values": ["enterprise", "growth", "starter", "free"],
+          "description": "Customer tier/segment"
+        },
+        "status": {
+          "type": "enum",
+          "values": ["active", "churned", "prospect", "paused"],
+          "default": "active"
+        },
+        "owner_id": {
+          "type": "uuid",
+          "foreign_key": "users.spine_id",
+          "description": "Assigned CSM/Account Owner"
+        },
+        "parent_account_id": {
+          "type": "uuid",
+          "foreign_key": "accounts.spine_id",
+          "description": "Parent account for hierarchy"
+        },
+        "created_at": {
+          "type": "timestamp",
+          "description": "Record creation timestamp"
+        },
+        "updated_at": {
+          "type": "timestamp",
+          "description": "Last modification timestamp"
+        },
+        "source_system": {
+          "type": "string",
+          "description": "Origin CRM system"
+        },
+        "merged_from": {
+          "type": "array",
+          "items": "uuid",
+          "description": "IDs of accounts merged into this record"
+        }
+      },
+      "indexes": ["domain", "crm_id", "owner_id", "status"],
+      "constraints": {
+        "unique": ["crm_id"],
+        "not_null": ["spine_id", "name"]
+      }
+    },
+    "contacts": {
+      "description": "Individual stakeholders/contacts within accounts",
+      "columns": {
+        "spine_id": {
+          "type": "uuid",
+          "primary_key": true
+        },
+        "crm_id": {
+          "type": "string"
+        },
+        "external_id": {
+          "type": "string"
+        },
+        "account_id": {
+          "type": "uuid",
+          "foreign_key": "accounts.spine_id",
+          "required": true
+        },
+        "email": {
+          "type": "string",
+          "required": true,
+          "description": "Primary email address"
+        },
+        "first_name": {
+          "type": "string"
+        },
+        "last_name": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string",
+          "description": "Job title"
+        },
+        "role": {
+          "type": "enum",
+          "values": ["champion", "economic_buyer", "technical_buyer", "end_user", "executive_sponsor", "influencer", "blocker"],
+          "description": "Stakeholder role classification"
+        },
+        "phone": {
+          "type": "string"
+        },
+        "is_primary": {
+          "type": "boolean",
+          "default": false,
+          "description": "Primary contact for account"
+        },
+        "engagement_score": {
+          "type": "integer",
+          "min": 0,
+          "max": 100,
+          "description": "Contact engagement level (0-100)"
+        },
+        "last_activity_at": {
+          "type": "timestamp"
+        },
+        "status": {
+          "type": "enum",
+          "values": ["active", "inactive", "churned"],
+          "default": "active"
+        },
+        "created_at": {
+          "type": "timestamp"
+        },
+        "updated_at": {
+          "type": "timestamp"
+        }
+      },
+      "indexes": ["account_id", "email", "role"],
+      "constraints": {
+        "unique": ["email", "account_id"]
+      }
+    },
+    "subscriptions": {
+      "description": "Product subscriptions and contract details",
+      "columns": {
+        "spine_id": {
+          "type": "uuid",
+          "primary_key": true
+        },
+        "crm_id": {
+          "type": "string"
+        },
+        "account_id": {
+          "type": "uuid",
+          "foreign_key": "accounts.spine_id",
+          "required": true
+        },
+        "product_name": {
+          "type": "string",
+          "required": true
+        },
+        "product_sku": {
+          "type": "string"
+        },
+        "quantity": {
+          "type": "integer",
+          "description": "Number of seats/units"
+        },
+        "unit_price": {
+          "type": "decimal"
+        },
+        "mrr": {
+          "type": "decimal"
+        },
+        "arr": {
+          "type": "decimal"
+        },
+        "start_date": {
+          "type": "date",
+          "required": true
+        },
+        "end_date": {
+          "type": "date"
+        },
+        "renewal_date": {
+          "type": "date"
+        },
+        "contract_term_months": {
+          "type": "integer"
+        },
+        "billing_frequency": {
+          "type": "enum",
+          "values": ["monthly", "quarterly", "annual", "multi_year"]
+        },
+        "status": {
+          "type": "enum",
+          "values": ["active", "pending", "cancelled", "expired"],
+          "default": "active"
+        },
+        "auto_renew": {
+          "type": "boolean",
+          "default": true
+        },
+        "created_at": {
+          "type": "timestamp"
+        },
+        "updated_at": {
+          "type": "timestamp"
+        }
+      },
+      "indexes": ["account_id", "renewal_date", "status"]
+    },
+    "usage_events": {
+      "description": "Product usage and activity telemetry",
+      "columns": {
+        "event_id": {
+          "type": "uuid",
+          "primary_key": true
+        },
+        "account_id": {
+          "type": "uuid",
+          "foreign_key": "accounts.spine_id",
+          "required": true
+        },
+        "contact_id": {
+          "type": "uuid",
+          "foreign_key": "contacts.spine_id"
+        },
+        "event_type": {
+          "type": "string",
+          "required": true,
+          "description": "Event category (login, feature_use, api_call, etc.)"
+        },
+        "event_name": {
+          "type": "string",
+          "required": true
+        },
+        "event_value": {
+          "type": "decimal",
+          "description": "Numeric value if applicable"
+        },
+        "event_metadata": {
+          "type": "jsonb",
+          "description": "Additional event properties"
+        },
+        "timestamp": {
+          "type": "timestamp",
+          "required": true
+        },
+        "session_id": {
+          "type": "string"
+        },
+        "source": {
+          "type": "string",
+          "description": "Event source system"
+        }
+      },
+      "indexes": ["account_id", "timestamp", "event_type"],
+      "partitioning": {
+        "strategy": "range",
+        "column": "timestamp",
+        "interval": "monthly"
+      }
+    },
+    "health_scores": {
+      "description": "Computed health scores with component breakdown",
+      "columns": {
+        "score_id": {
+          "type": "uuid",
+          "primary_key": true
+        },
+        "account_id": {
+          "type": "uuid",
+          "foreign_key": "accounts.spine_id",
+          "required": true
+        },
+        "computed_at": {
+          "type": "timestamp",
+          "required": true
+        },
+        "overall_score": {
+          "type": "integer",
+          "min": 0,
+          "max": 100,
+          "required": true,
+          "description": "Composite health score"
+        },
+        "health_band": {
+          "type": "enum",
+          "values": ["healthy", "neutral", "at_risk", "critical"],
+          "required": true
+        },
+        "usage_score": {
+          "type": "integer",
+          "min": 0,
+          "max": 100,
+          "description": "Product usage/adoption component"
+        },
+        "engagement_score": {
+          "type": "integer",
+          "min": 0,
+          "max": 100,
+          "description": "Stakeholder engagement component"
+        },
+        "support_score": {
+          "type": "integer",
+          "min": 0,
+          "max": 100,
+          "description": "Support health component (inverse of ticket severity)"
+        },
+        "financial_score": {
+          "type": "integer",
+          "min": 0,
+          "max": 100,
+          "description": "Payment/billing health"
+        },
+        "nps_score": {
+          "type": "integer",
+          "description": "Last NPS response (-100 to 100)"
+        },
+        "trend": {
+          "type": "enum",
+          "values": ["improving", "stable", "declining"],
+          "description": "Score trend over last 30 days"
+        },
+        "score_delta": {
+          "type": "integer",
+          "description": "Change from previous score"
+        },
+        "model_version": {
+          "type": "string",
+          "description": "Scoring model version used"
+        },
+        "feature_weights": {
+          "type": "jsonb",
+          "description": "Feature importance for explainability"
+        }
+      },
+      "indexes": ["account_id", "computed_at", "health_band"]
+    },
+    "risks": {
+      "description": "Identified churn risks and mitigation tracking",
+      "columns": {
+        "risk_id": {
+          "type": "uuid",
+          "primary_key": true
+        },
+        "account_id": {
+          "type": "uuid",
+          "foreign_key": "accounts.spine_id",
+          "required": true
+        },
+        "risk_type": {
+          "type": "enum",
+          "values": ["churn", "downsell", "executive_departure", "competitor", "budget_cut", "poor_adoption", "support_escalation", "payment_issue"],
+          "required": true
+        },
+        "severity": {
+          "type": "enum",
+          "values": ["critical", "high", "medium", "low"],
+          "required": true
+        },
+        "confidence_score": {
+          "type": "decimal",
+          "min": 0,
+          "max": 1,
+          "description": "Model confidence (0-1)"
+        },
+        "detected_at": {
+          "type": "timestamp",
+          "required": true
+        },
+        "days_to_renewal": {
+          "type": "integer",
+          "description": "Days until next renewal when detected"
+        },
+        "risk_signals": {
+          "type": "jsonb",
+          "description": "Contributing factors with weights"
+        },
+        "recommended_playbook_id": {
+          "type": "uuid",
+          "foreign_key": "playbooks.playbook_id"
+        },
+        "status": {
+          "type": "enum",
+          "values": ["open", "in_progress", "mitigated", "realized", "false_positive"],
+          "default": "open"
+        },
+        "assigned_to": {
+          "type": "uuid",
+          "foreign_key": "users.spine_id"
+        },
+        "resolution_notes": {
+          "type": "text"
+        },
+        "resolved_at": {
+          "type": "timestamp"
+        },
+        "created_at": {
+          "type": "timestamp"
+        },
+        "updated_at": {
+          "type": "timestamp"
+        }
+      },
+      "indexes": ["account_id", "risk_type", "severity", "status"]
+    },
+    "initiatives": {
+      "description": "Success plans, projects, and initiatives",
+      "columns": {
+        "initiative_id": {
+          "type": "uuid",
+          "primary_key": true
+        },
+        "account_id": {
+          "type": "uuid",
+          "foreign_key": "accounts.spine_id",
+          "required": true
+        },
+        "name": {
+          "type": "string",
+          "required": true
+        },
+        "description": {
+          "type": "text"
+        },
+        "initiative_type": {
+          "type": "enum",
+          "values": ["onboarding", "expansion", "adoption", "renewal", "qbr", "escalation", "custom"]
+        },
+        "status": {
+          "type": "enum",
+          "values": ["planned", "in_progress", "completed", "on_hold", "cancelled"],
+          "default": "planned"
+        },
+        "priority": {
+          "type": "enum",
+          "values": ["critical", "high", "medium", "low"]
+        },
+        "owner_id": {
+          "type": "uuid",
+          "foreign_key": "users.spine_id"
+        },
+        "start_date": {
+          "type": "date"
+        },
+        "target_date": {
+          "type": "date"
+        },
+        "completed_date": {
+          "type": "date"
+        },
+        "success_criteria": {
+          "type": "text"
+        },
+        "outcome_notes": {
+          "type": "text"
+        },
+        "linked_risk_id": {
+          "type": "uuid",
+          "foreign_key": "risks.risk_id"
+        },
+        "created_at": {
+          "type": "timestamp"
+        },
+        "updated_at": {
+          "type": "timestamp"
+        }
+      },
+      "indexes": ["account_id", "status", "owner_id"]
+    },
+    "stakeholders": {
+      "description": "Extended stakeholder mapping with relationship context",
+      "columns": {
+        "mapping_id": {
+          "type": "uuid",
+          "primary_key": true
+        },
+        "account_id": {
+          "type": "uuid",
+          "foreign_key": "accounts.spine_id",
+          "required": true
+        },
+        "contact_id": {
+          "type": "uuid",
+          "foreign_key": "contacts.spine_id",
+          "required": true
+        },
+        "relationship_strength": {
+          "type": "enum",
+          "values": ["strong", "moderate", "weak", "unknown"],
+          "default": "unknown"
+        },
+        "influence_level": {
+          "type": "enum",
+          "values": ["decision_maker", "influencer", "evaluator", "user", "gatekeeper"]
+        },
+        "sentiment": {
+          "type": "enum",
+          "values": ["advocate", "supporter", "neutral", "detractor", "unknown"],
+          "default": "unknown"
+        },
+        "last_interaction_date": {
+          "type": "date"
+        },
+        "interaction_frequency": {
+          "type": "enum",
+          "values": ["weekly", "biweekly", "monthly", "quarterly", "rarely", "never"]
+        },
+        "notes": {
+          "type": "text"
+        },
+        "change_detected_at": {
+          "type": "timestamp",
+          "description": "Last detected change (title, role, etc.)"
+        },
+        "created_at": {
+          "type": "timestamp"
+        },
+        "updated_at": {
+          "type": "timestamp"
+        }
+      },
+      "indexes": ["account_id", "contact_id", "relationship_strength"]
+    }
+  },
+  "scoring_features": {
+    "description": "Features used by SuccessPilot and ChurnShield agents",
+    "usage_features": {
+      "dau_mau_ratio": "Daily Active Users / Monthly Active Users",
+      "feature_adoption_rate": "% of contracted features actively used",
+      "login_frequency_7d": "Logins per user in last 7 days",
+      "seat_utilization": "Active seats / Licensed seats",
+      "usage_velocity": "Week-over-week usage change %",
+      "time_in_product": "Average session duration (minutes)",
+      "api_call_volume": "API calls in last 30 days"
+    },
+    "engagement_features": {
+      "executive_sponsor_engaged": "Boolean - Executive responded in last 30 days",
+      "champion_activity": "Days since champion last active",
+      "stakeholder_breadth": "Number of distinct users/contacts engaged",
+      "meeting_recency": "Days since last scheduled meeting",
+      "email_response_rate": "% of outreach emails responded to",
+      "support_ticket_trend": "Ticket volume change vs. prior period"
+    },
+    "financial_features": {
+      "payment_delay_days": "Average payment delay",
+      "renewal_t_minus": "Days until next renewal",
+      "expansion_potential": "Estimated upsell ARR",
+      "price_sensitivity": "Discount history / price objections"
+    },
+    "sentiment_features": {
+      "nps_score": "Last NPS response",
+      "csat_average": "Average CSAT score",
+      "support_sentiment": "NLP sentiment of support tickets",
+      "meeting_sentiment": "NLP sentiment of call transcripts"
+    }
+  },
+  "orchestration": {
+    "idempotency": {
+      "description": "All operations use idempotency keys to prevent duplicate processing",
+      "key_format": "{source}:{object_type}:{external_id}:{operation}:{timestamp_bucket}",
+      "ttl_hours": 24
+    },
+    "retry_policy": {
+      "max_attempts": 3,
+      "backoff": "exponential",
+      "initial_delay_ms": 1000,
+      "max_delay_ms": 30000,
+      "retryable_errors": ["timeout", "rate_limit", "transient_failure"]
+    },
+    "dead_letter_queue": {
+      "enabled": true,
+      "retention_days": 30,
+      "alert_threshold": 100
+    },
+    "audit_trail": {
+      "enabled": true,
+      "retention_days": 365,
+      "logged_fields": ["operation", "user_id", "timestamp", "before_state", "after_state", "source_ip"]
+    }
+  },
+  "security": {
+    "secrets_management": {
+      "provider": "HashiCorp Vault / AWS Secrets Manager",
+      "rotation_schedule": "90 days (API keys), 30 days (service accounts)",
+      "encryption": "AES-256-GCM at rest, TLS 1.3 in transit"
+    },
+    "access_control": {
+      "model": "RBAC with attribute-based extensions",
+      "roles": ["admin", "csm", "analyst", "viewer", "integration_service"],
+      "audit_logging": true
+    },
+    "compliance": {
+      "frameworks": ["SOC 2 Type II", "GDPR", "CCPA"],
+      "data_residency": "Configurable per tenant (US, EU, APAC)",
+      "pii_handling": "Encryption + tokenization for sensitive fields"
+    }
+  }
+}
+
