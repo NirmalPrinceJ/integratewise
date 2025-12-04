@@ -422,9 +422,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .logo-item svg {
-    width: 40px;
+    width: 120px;
     height: 40px;
-    opacity: 0.6;
+    opacity: 0.7;
     transition: all var(--transition-fast);
 }
 
@@ -539,6 +539,220 @@ h1, h2, h3, h4, h5, h6 {
 .architecture-visual {
     max-width: 600px;
     margin: 0 auto 48px;
+}
+
+/* Enhanced Architecture Diagram */
+.architecture-diagram {
+    max-width: 1000px;
+    margin: 0 auto 48px;
+}
+
+.arch-diagram-visual {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin-bottom: 48px;
+}
+
+.arch-layer-box {
+    background: var(--white);
+    border: 2px solid var(--gray-200);
+    border-radius: var(--radius-lg);
+    padding: 32px;
+    transition: all var(--transition-base);
+    position: relative;
+}
+
+.arch-layer-box:hover {
+    border-color: var(--primary-green);
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-2px);
+}
+
+.arch-layer-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.arch-layer-number {
+    width: 40px;
+    height: 40px;
+    background: var(--primary-green);
+    color: var(--white);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
+.arch-layer-title-group h3 {
+    font-size: 24px;
+    margin: 0 0 4px 0;
+}
+
+.arch-layer-title-group .arch-tech {
+    font-size: 13px;
+    color: var(--gray-500);
+}
+
+.arch-layer-visual {
+    background: var(--gray-50);
+    border-radius: var(--radius-md);
+    padding: 24px;
+    margin-bottom: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.arch-layer-visual svg {
+    max-width: 100%;
+    height: auto;
+}
+
+.arch-layer-details {
+    background: var(--gray-50);
+    border-radius: var(--radius-md);
+    padding: 20px;
+}
+
+.arch-layer-details ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.arch-layer-details li {
+    font-size: 14px;
+    color: var(--gray-600);
+    padding: 8px 0;
+    padding-left: 24px;
+    position: relative;
+    line-height: 1.6;
+}
+
+.arch-layer-details li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--primary-green);
+    font-weight: 700;
+}
+
+.arch-layer-details li strong {
+    color: var(--gray-900);
+}
+
+.arch-arrow {
+    display: flex;
+    justify-content: center;
+    padding: 16px 0;
+}
+
+.arch-arrow svg {
+    width: 40px;
+    height: 60px;
+}
+
+/* Data Flow Diagram */
+.arch-data-flow {
+    background: var(--gray-50);
+    border-radius: var(--radius-lg);
+    padding: 32px;
+    border: 1px solid var(--gray-200);
+}
+
+.arch-data-flow h4 {
+    text-align: center;
+    font-size: 18px;
+    margin-bottom: 24px;
+    color: var(--gray-700);
+}
+
+.data-flow-diagram {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.flow-source,
+.flow-spine,
+.flow-database,
+.flow-agents,
+.flow-views {
+    flex: 0 0 140px;
+    text-align: center;
+    padding: 20px;
+    background: var(--white);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--gray-200);
+}
+
+.flow-icon {
+    font-size: 32px;
+    margin-bottom: 8px;
+}
+
+.flow-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--gray-900);
+    margin-bottom: 8px;
+}
+
+.flow-detail,
+.flow-sources-list {
+    font-size: 11px;
+    color: var(--gray-500);
+    line-height: 1.4;
+}
+
+.flow-arrow {
+    font-size: 24px;
+    color: var(--primary-green);
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
+@media (max-width: 1024px) {
+    .arch-diagram-visual {
+        gap: 16px;
+    }
+    
+    .arch-arrow {
+        transform: rotate(90deg);
+        padding: 8px 0;
+    }
+    
+    .arch-arrow svg {
+        width: 60px;
+        height: 40px;
+    }
+    
+    .data-flow-diagram {
+        flex-direction: column;
+    }
+    
+    .flow-arrow {
+        transform: rotate(90deg);
+    }
+    
+    .flow-source,
+    .flow-spine,
+    .flow-database,
+    .flow-agents,
+    .flow-views {
+        flex: 0 0 auto;
+        width: 100%;
+        max-width: 300px;
+    }
 }
 
 .arch-layer {
