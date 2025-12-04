@@ -3,355 +3,120 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Platform | IntegrateWise — Normalize once. Render anywhere.</title>
-    <meta name="description" content="Connect your CRM to the tools your team actually uses. Real-time customer health scores in Notion, Airtable, Asana, ClickUp, Monday, or Sheets.">
-    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <title>IntegrateWise Platform | Unified customer hub</title>
+    <meta name="description" content="Unified customer hub plus automated syncs and health scores everywhere. Works with Salesforce, HubSpot, Dynamics, and Zoho.">
+    <link rel="canonical" href="https://integratewise.co/platform.html">
+    <meta property="og:title" content="IntegrateWise Platform | Unified customer hub">
+    <meta property="og:description" content="Normalize once, sync everywhere. Customer health, workflows, and automations across your CRM and workspaces.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://integratewise.co/platform.html">
+    <meta property="og:image" content="https://integratewise.co/og-image.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="pages.css">
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <a href="index.html" class="logo">
-                <svg class="logo-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <rect width="40" height="40" rx="8" fill="#10B981"/>
-                    <path d="M12 20L18 26L28 14" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-                <span>IntegrateWise</span>
-            </a>
-            <div class="nav-links">
-                <a href="platform.html">Platform</a>
-                <a href="pricing.html">Pricing</a>
-                <a href="resources.html">Resources</a>
-                <a href="about.html">About</a>
-            </div>
-            <div class="nav-cta">
-                <a href="contact.html" class="btn btn-primary">Contact Us</a>
-            </div>
-            <button class="mobile-menu-btn" aria-label="Toggle menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
+<header class="site-header">
+    <div class="nav-container">
+        <a class="logo" href="index.html"><span class="logo-mark">IW</span><span class="logo-text">IntegrateWise</span></a>
+        <nav class="nav-links" aria-label="Main navigation">
+            <a href="platform.html" aria-current="page">Platform</a>
+            <a href="agents.html">Agents</a>
+            <a href="services.html">Services</a>
+            <a href="solutions.html">Solutions</a>
+            <a href="pricing.html">Pricing</a>
+            <a href="resources.html">Resources</a>
+            <a href="about.html">About</a>
+            <a href="docs/index.html">Technical Docs</a>
+        </nav>
+        <div class="nav-actions">
+            <a class="btn btn-outline" href="contact.html#demo">Book a Demo</a>
+            <button class="mobile-menu-btn" aria-label="Toggle navigation" aria-expanded="false"><span></span><span></span><span></span></button>
         </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section class="page-hero">
-        <div class="container">
-            <div class="page-hero-content">
-                <span class="section-badge">Platform</span>
-                <h1>One Platform.<br><span class="highlight">All Your Tools.</span></h1>
-                <p class="hero-subtitle">Connect your CRM, automate your workflows, see customer health everywhere.</p>
+    </div>
+</header>
+<main>
+    <section class="section">
+        <div class="container dual">
+            <div>
+                <p class="eyebrow">Unified customer hub</p>
+                <h1 class="section-title">One schema, automated syncs, health scores everywhere</h1>
+                <p class="section-subtitle">Normalize customer data once and ship it to every workspace. Atlas Spine keeps accounts, contacts, and stakeholders aligned while agents orchestrate syncs and compute health in under two minutes.</p>
+                <div class="cta-row">
+                    <a class="btn btn-primary" href="contact.html#demo">Book a Demo</a>
+                    <a class="btn btn-outline" href="docs/data-model.html">See full data model</a>
+                </div>
+                <div class="badges">
+                    <span class="badge">Ingest ≥98%</span>
+                    <span class="badge">Health compute &lt;2 min</span>
+                    <span class="badge">Agent uptime &gt;99.9%</span>
+                </div>
             </div>
-        </div>
-    </section>
-
-    <!-- Key Benefits -->
-    <section class="metrics-bar">
-        <div class="container">
-            <div class="metrics-grid">
-                <div class="metric-item">
-                    <span class="metric-value">Real-time</span>
-                    <span class="metric-label">Data Sync</span>
-                </div>
-                <div class="metric-item">
-                    <span class="metric-value">Any CRM</span>
-                    <span class="metric-label">Works with yours</span>
-                </div>
-                <div class="metric-item">
-                    <span class="metric-value">7 Tools</span>
-                    <span class="metric-label">Notion, Airtable, etc.</span>
-                </div>
-                <div class="metric-item">
-                    <span class="metric-value">AI-Powered</span>
-                    <span class="metric-label">Health Scores</span>
+            <div class="card">
+                <h3>Core entities</h3>
+                <div class="tile-grid">
+                    <div class="tile"><h4>accounts</h4></div>
+                    <div class="tile"><h4>contacts</h4></div>
+                    <div class="tile"><h4>stakeholders</h4></div>
+                    <div class="tile"><h4>integrations</h4></div>
+                    <div class="tile"><h4>workflows</h4></div>
+                    <div class="tile"><h4>runs</h4></div>
+                    <div class="tile"><h4>events</h4></div>
+                    <div class="tile"><h4>secrets_vault</h4></div>
+                    <div class="tile"><h4>health_scores</h4></div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Atlas Spine -->
-    <section class="content-section">
-        <div class="container">
-            <div class="platform-section">
-                <div class="platform-header">
-                    <div class="platform-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <ellipse cx="12" cy="5" rx="9" ry="3"/>
-                            <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/>
-                            <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>
-                        </svg>
-                    </div>
-                    <div>
-                        <h2>Unified Customer Data</h2>
-                        <span class="tech-badge">Central Hub</span>
-                    </div>
+    <section class="section muted">
+        <div class="container dual">
+            <div>
+                <h2 class="section-title">Works where your teams work</h2>
+                <p class="section-subtitle">Salesforce, HubSpot, Dynamics, and Zoho on the CRM side. Views in Notion, Airtable, Asana, ClickUp, Monday, and Google Sheets so every team stays aligned.</p>
+                <div class="cta-row">
+                    <a class="btn btn-primary" href="services.html">Explore delivery models</a>
+                    <a class="btn btn-outline" href="pricing.html">View pricing</a>
                 </div>
-                <p class="platform-desc">
-                    All your customer data in one place. No more switching between tools
-                    or copying data between spreadsheets.
-                </p>
-                
-                <h3>Core Entities</h3>
-                <div class="entity-grid">
-                    <div class="entity-card">
-                        <code>accounts</code>
-                        <p>Customer accounts with MRR, lifecycle, and health data</p>
-                    </div>
-                    <div class="entity-card">
-                        <code>contacts</code>
-                        <p>Stakeholder contacts and communication preferences</p>
-                    </div>
-                    <div class="entity-card">
-                        <code>stakeholders</code>
-                        <p>Key decision makers and champions</p>
-                    </div>
-                    <div class="entity-card">
-                        <code>integrations</code>
-                        <p>Connected systems and API configurations</p>
-                    </div>
-                    <div class="entity-card">
-                        <code>workflows</code>
-                        <p>Automation definitions and triggers</p>
-                    </div>
-                    <div class="entity-card">
-                        <code>runs</code>
-                        <p>Execution history and status tracking</p>
-                    </div>
-                    <div class="entity-card">
-                        <code>events</code>
-                        <p>System events and webhooks</p>
-                    </div>
-                    <div class="entity-card">
-                        <code>secrets_vault</code>
-                        <p>Encrypted credentials and tokens</p>
-                    </div>
-                    <div class="entity-card">
-                        <code>health_scores</code>
-                        <p>Computed health metrics and trends</p>
-                    </div>
-                </div>
+            </div>
+            <div class="card">
+                <h3>Supported platforms</h3>
+                <ul class="list-card">
+                    <li>Salesforce</li>
+                    <li>HubSpot</li>
+                    <li>Dynamics</li>
+                    <li>Zoho</li>
+                </ul>
+                <p class="mini-text">Destinations: Notion, Airtable, Asana, ClickUp, Monday, Google Sheets.</p>
             </div>
         </div>
     </section>
-
-    <!-- Orchestrator -->
-    <section class="content-section bg-gray">
-        <div class="container">
-            <div class="platform-section">
-                <div class="platform-header">
-                    <div class="platform-icon orchestrator-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <polyline points="16 18 22 12 16 6"/>
-                            <polyline points="8 6 2 12 8 18"/>
-                        </svg>
-                    </div>
-                    <div>
-                        <h2>Smart Automation</h2>
-                        <span class="tech-badge">Always Running</span>
-                    </div>
-                </div>
-                <p class="platform-desc">
-                    Automated data syncs that just work. Your customer data stays up-to-date across all tools.
-                </p>
-                
-                <div class="feature-list">
-                    <div class="feature-item">
-                        <div class="feature-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
-                                <polyline points="22 4 12 14.01 9 11.01"/>
-                            </svg>
-                        </div>
-                        <div>
-                            <h4>No Duplicate Data</h4>
-                            <p>Smart syncing ensures clean data with no duplicates</p>
-                        </div>
-                    </div>
-                    <div class="feature-item">
-                        <div class="feature-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <polyline points="23 4 23 10 17 10"/>
-                                <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/>
-                            </svg>
-                        </div>
-                        <div>
-                            <h4>Auto-Retry</h4>
-                            <p>If something fails, we automatically retry so you don't have to</p>
-                        </div>
-                    </div>
-                    <div class="feature-item">
-                        <div class="feature-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                                <polyline points="14 2 14 8 20 8"/>
-                                <line x1="16" y1="13" x2="8" y2="13"/>
-                                <line x1="16" y1="17" x2="8" y2="17"/>
-                            </svg>
-                        </div>
-                        <div>
-                            <h4>Full History</h4>
-                            <p>See what changed, when, and why—complete audit trail</p>
-                        </div>
-                    </div>
-                    <div class="feature-item">
-                        <div class="feature-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-                                <polyline points="22,6 12,13 2,6"/>
-                            </svg>
-                        </div>
-                        <div>
-                            <h4>Real-Time Updates</h4>
-                            <p>Changes in your CRM appear everywhere instantly</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+</main>
+<footer class="site-footer">
+    <div class="container footer-grid">
+        <div>
+            <div class="logo">IntegrateWise</div>
+            <p class="mini-text">Normalize once. Render anywhere.</p>
+            <a class="text-link" href="docs/index.html">Technical Docs</a>
         </div>
-    </section>
-
-    <!-- Adapters -->
-    <section class="content-section">
-        <div class="container">
-            <div class="platform-section">
-                <div class="platform-header">
-                    <div class="platform-icon adapter-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
-                            <line x1="8" y1="21" x2="16" y2="21"/>
-                            <line x1="12" y1="17" x2="12" y2="21"/>
-                        </svg>
-                    </div>
-                    <div>
-                        <h2>See Data Everywhere</h2>
-                        <span class="tech-badge">Your Tools</span>
-                    </div>
-                </div>
-                <p class="platform-desc">
-                    Your customer data shows up in the tools your team already uses—Notion, Airtable, and more.
-                </p>
-
-                <h3>Key Information</h3>
-                <div class="constraints-grid">
-                    <div class="constraint-card">
-                        <h4>Customer Overview</h4>
-                        <p>Account name, health score, renewal date, risk flags—all in one view</p>
-                    </div>
-                    <div class="constraint-card">
-                        <h4>Always Fresh</h4>
-                        <p>Data updates automatically so you always see the latest</p>
-                    </div>
-                    <div class="constraint-card">
-                        <h4>Fast Loading</h4>
-                        <p>Optimized for speed so your dashboards load instantly</p>
-                    </div>
-                    <div class="constraint-card">
-                        <h4>Secure Access</h4>
-                        <p>Team members only see data they're allowed to see</p>
-                    </div>
-                </div>
-
-                <h3>Supported Platforms</h3>
-                <div class="platform-logos">
-                    <span class="platform-logo">Notion</span>
-                    <span class="platform-logo">Coda</span>
-                    <span class="platform-logo">Airtable</span>
-                    <span class="platform-logo">Asana</span>
-                    <span class="platform-logo">ClickUp</span>
-                    <span class="platform-logo">Monday</span>
-                    <span class="platform-logo">Sheets</span>
-                </div>
-            </div>
+        <div>
+            <h4>Navigation</h4>
+            <ul>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="solutions.html">Solutions</a></li>
+                <li><a href="agents.html">Agents</a></li>
+            </ul>
         </div>
-    </section>
-
-    <!-- Architecture Diagram -->
-    <section class="content-section bg-dark">
-        <div class="container">
-            <div class="section-header light">
-                <h2>Architecture Overview</h2>
-            </div>
-            <div class="architecture-flow">
-                <div class="arch-box">
-                    <h4>Your CRM</h4>
-                    <p>Salesforce, HubSpot, Zoho</p>
-                </div>
-                <div class="arch-arrow">→</div>
-                <div class="arch-box highlight-box">
-                    <h4>IntegrateWise</h4>
-                    <p>Unified + AI Health Scores</p>
-                </div>
-                <div class="arch-arrow">→</div>
-                <div class="arch-box">
-                    <h4>Your Tools</h4>
-                    <p>Notion, Airtable, Sheets</p>
-                </div>
-            </div>
+        <div>
+            <h4>Get in touch</h4>
+            <a class="btn btn-primary" href="contact.html#demo">Book a Demo</a>
         </div>
-    </section>
-
-    <!-- CTA -->
-    <section class="cta-section">
-        <div class="container">
-            <div class="cta-content">
-                <h2>Ready to see it in action?</h2>
-                <p>Book a call to see how IntegrateWise can simplify your customer success operations.</p>
-                <div class="cta-buttons">
-                    <a href="contact.html" class="btn btn-primary btn-large">Book a Demo</a>
-                    <a href="pricing.html" class="btn btn-outline-light btn-large">See Pricing</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-brand">
-                    <a href="index.html" class="logo">
-                        <svg class="logo-icon" viewBox="0 0 40 40" fill="none">
-                            <rect width="40" height="40" rx="8" fill="#10B981"/>
-                            <path d="M12 20L18 26L28 14" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                        <span>IntegrateWise</span>
-                    </a>
-                    <p class="footer-tagline-primary">Normalize once. Render anywhere.</p>
-                    <p class="footer-tagline-secondary">Connect. Automate. Elevate.</p>
-                </div>
-                <div class="footer-links">
-                    <div class="footer-column">
-                        <h4>Product</h4>
-                        <a href="platform.html">Platform</a>
-                        <a href="pricing.html">Pricing</a>
-                        <a href="resources.html">Resources</a>
-                    </div>
-                    <div class="footer-column">
-                        <h4>Company</h4>
-                        <a href="about.html">About</a>
-                        <a href="contact.html">Contact</a>
-                    </div>
-                    <div class="footer-column">
-                        <h4>Get in Touch</h4>
-                        <a href="mailto:connect@integratewise.co">connect@integratewise.co</a>
-                        <a href="tel:+917019746296">+91 70197 46296</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-            <div class="footer-bottom">
-                <p>© 2025 IntegrateWise LLP. All rights reserved. | <a href="privacy.html">Privacy Policy</a> | <a href="terms.html">Terms of Service</a></p>
-            </div>
-        </div>
-    </footer>
-
-    <script src="script.js"></script>
+    </div>
+    <p class="mini-text center">Ingest ≥98% • Health compute &lt;2 min • Agent uptime &gt;99.9% • Rotation compliance 100%</p>
+</footer>
+<script src="script.js" defer></script>
 </body>
 </html>
-
