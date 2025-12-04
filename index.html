@@ -409,7 +409,7 @@
                             <div class="arch-layer-number">1</div>
                             <div class="arch-layer-title-group">
                                 <h3>Atlas Spine</h3>
-                                <span class="arch-tech">PostgreSQL • Canonical Data Model</span>
+                                <span class="arch-tech">Unified Data Model</span>
                             </div>
                         </div>
                         <div class="arch-layer-visual">
@@ -430,10 +430,9 @@
                         </div>
                         <div class="arch-layer-details">
                             <ul>
-                                <li><strong>8 core tables:</strong> accounts, contacts, subscriptions, usage_events, health_scores, risks, initiatives, stakeholders</li>
-                                <li><strong>Canonical IDs:</strong> spine_id (UUID) + crm_id (source reference) + external_id</li>
-                                <li><strong>Normalization:</strong> Domain matching, fuzzy deduplication, merge rules</li>
-                                <li><strong>Data Quality:</strong> ≥95% completeness, <1h drift detection</li>
+                                <li><strong>Unified data model:</strong> Accounts, contacts, subscriptions, health scores, risks, and more</li>
+                                <li><strong>Smart deduplication:</strong> Automatically matches and merges duplicate records</li>
+                                <li><strong>Data quality:</strong> ≥95% completeness with real-time monitoring</li>
                             </ul>
                         </div>
                     </div>
@@ -451,7 +450,7 @@
                             <div class="arch-layer-number">2</div>
                             <div class="arch-layer-title-group">
                                 <h3>n8n Orchestrator</h3>
-                                <span class="arch-tech">Enterprise ETL/ELT • Workflow Engine</span>
+                                <span class="arch-tech">Data Integration Engine</span>
                             </div>
                         </div>
                         <div class="arch-layer-visual">
@@ -479,10 +478,10 @@
                         </div>
                         <div class="arch-layer-details">
                             <ul>
-                                <li><strong>Idempotency keys:</strong> Prevents duplicate processing (24h TTL)</li>
-                                <li><strong>Retry policy:</strong> Exponential backoff, 3 max attempts, handles rate limits</li>
-                                <li><strong>Dead-letter queue:</strong> Failed records retained 30 days for analysis</li>
-                                <li><strong>Audit trail:</strong> Full operation log with before/after states (365-day retention)</li>
+                                <li><strong>Reliable sync:</strong> Automatic retries and error handling</li>
+                                <li><strong>No duplicates:</strong> Smart deduplication prevents data issues</li>
+                                <li><strong>Full visibility:</strong> Complete audit trail of all data changes</li>
+                                <li><strong>High reliability:</strong> ≥98% success rate with automatic recovery</li>
                             </ul>
                         </div>
                     </div>
@@ -554,7 +553,7 @@
                         <div class="flow-database">
                             <div class="flow-icon">💾</div>
                             <div class="flow-label">Atlas Spine</div>
-                            <div class="flow-detail">PostgreSQL<br>Canonical Schema</div>
+                            <div class="flow-detail">Unified<br>Data Model</div>
                         </div>
                         <div class="flow-arrow">→</div>
                         <div class="flow-agents">
@@ -626,7 +625,7 @@
                         </svg>
                     </div>
                     <h4>Normalize</h4>
-                    <p>Map to canonical schema with ID resolution</p>
+                    <p>Standardize data format and remove duplicates</p>
                     <div class="stage-metrics">
                         <span class="metric-badge metric-sla">Dedup: 99.5%</span>
                         <span class="metric-badge">Transform: &lt;5s</span>
@@ -725,53 +724,25 @@
             <!-- Canonical ID Strategy -->
             <div class="id-strategy-card">
                 <div class="id-strategy-header">
-                    <h3>Canonical ID Strategy</h3>
-                    <span class="tech-badge">Identity Resolution</span>
+                    <h3>Unified Customer Identity</h3>
+                    <span class="tech-badge">Smart Matching</span>
                 </div>
                 <div class="id-strategy-content">
-                    <div class="id-type">
-                        <code>external_id</code>
-                        <p>Original CRM identifier (SF Account ID, HubSpot Company ID)</p>
-                    </div>
-                    <div class="id-arrow">→</div>
-                    <div class="id-type">
-                        <code>crm_id</code>
-                        <p>Source system reference with prefix (sf:, hs:, dyn:)</p>
-                    </div>
-                    <div class="id-arrow">→</div>
-                    <div class="id-type id-type-primary">
-                        <code>spine_id</code>
-                        <p>Canonical UUID in Atlas Spine (immutable golden record)</p>
-                    </div>
-                </div>
-                <div class="id-rules">
-                    <h4>Merge & Dedup Rules</h4>
-                    <ul>
-                        <li><strong>Domain match:</strong> Email domain + company name fuzzy match (≥85% confidence)</li>
-                        <li><strong>Explicit link:</strong> Parent-child relationships via CRM hierarchy</li>
-                        <li><strong>Uniqueness:</strong> One spine_id per logical entity; soft-delete on merge</li>
-                        <li><strong>Audit trail:</strong> All merges logged with source IDs and timestamp</li>
-                    </ul>
+                    <p style="text-align: center; color: var(--gray-600); margin: 0;">
+                        IntegrateWise automatically matches customer records across all your systems, creating a single source of truth for each account. No more duplicate data or manual reconciliation.
+                    </p>
                 </div>
             </div>
 
             <div class="tech-docs-cta">
-                <a href="downloads/IntegrateWise_Schema_v1.json" class="btn btn-primary" download>
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
-                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-                        <polyline points="7 10 12 15 17 10"/>
-                        <line x1="12" y1="15" x2="12" y2="3"/>
-                    </svg>
-                    Download Schema (JSON)
-                </a>
-                <a href="downloads/IntegrateWise_Adapter_Catalog.pdf" class="btn btn-outline" download>
+                <a href="downloads/IntegrateWise_Adapter_Catalog.pdf" class="btn btn-primary" download>
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
                         <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
                         <polyline points="14 2 14 8 20 8"/>
                     </svg>
                     Adapter Catalog (PDF)
                 </a>
-                <a href="downloads/Notion_View_Template.zip" class="btn btn-secondary" download>
+                <a href="downloads/Notion_View_Template.zip" class="btn btn-outline" download>
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
                         <rect x="3" y="3" width="18" height="18" rx="2"/>
                         <path d="M9 3v18"/>
@@ -926,10 +897,10 @@
                         <div class="flip-card-back">
                             <h4>Functions</h4>
                             <ul>
-                                <li>Normalization maps</li>
-                                <li>Schema diffs</li>
-                                <li>Quality scorecards</li>
-                                <li>Data lineage</li>
+                                <li>Data quality monitoring</li>
+                                <li>Change detection</li>
+                                <li>Quality reporting</li>
+                                <li>Data tracking</li>
                             </ul>
                             <div class="kpi-section">
                                 <h4>KPIs</h4>
