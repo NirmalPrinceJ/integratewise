@@ -1,5 +1,14 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40">
-  <rect width="40" height="40" rx="8" fill="#10B981"/>
-  <path d="M12 20L18 26L28 14" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Spine: three vertical nodes connected by central line -->
+  <circle cx="12" cy="6" r="2" fill="#2563EB" stroke="#2563EB" stroke-width="2"/>
+  <circle cx="12" cy="12" r="2" fill="#2563EB" stroke="#2563EB" stroke-width="2"/>
+  <circle cx="12" cy="18" r="2" fill="#2563EB" stroke="#2563EB" stroke-width="2"/>
+  <line x1="12" y1="8" x2="12" y2="16" stroke="#2563EB" stroke-width="2" stroke-linecap="round"/>
+  
+  <!-- Render: right-facing bracket/frame around top node -->
+  <line x1="6" y1="4" x2="6" y2="8" stroke="#2563EB" stroke-width="2" stroke-linecap="round"/>
+  <line x1="6" y1="4" x2="10" y2="4" stroke="#2563EB" stroke-width="2" stroke-linecap="round"/>
+  <line x1="14" y1="4" x2="18" y2="4" stroke="#2563EB" stroke-width="2" stroke-linecap="round"/>
+  <line x1="6" y1="8" x2="10" y2="8" stroke="#2563EB" stroke-width="2" stroke-linecap="round"/>
+  <line x1="18" y1="4" x2="18" y2="6" stroke="#2563EB" stroke-width="2" stroke-linecap="round"/>
 </svg>
-

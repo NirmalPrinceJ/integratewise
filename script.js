@@ -18,17 +18,34 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Navbar scroll effect
+    // Navbar scroll effect and sticky CTA
     const navbar = document.querySelector('.navbar');
+    const stickyCta = document.getElementById('sticky-cta');
+    const heroSection = document.querySelector('.hero');
+    const ctaSection = document.getElementById('contact');
     let lastScroll = 0;
     
     window.addEventListener('scroll', () => {
         const currentScroll = window.pageYOffset;
         
+        // Navbar shadow
         if (currentScroll > 100) {
             navbar.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.08)';
         } else {
             navbar.style.boxShadow = 'none';
+        }
+        
+        // Sticky CTA visibility
+        if (stickyCta) {
+            const heroBottom = heroSection ? heroSection.offsetTop + heroSection.offsetHeight : 500;
+            const ctaTop = ctaSection ? ctaSection.offsetTop - window.innerHeight : document.body.scrollHeight;
+            
+            // Show sticky CTA after scrolling past hero, hide when near CTA section
+            if (currentScroll > heroBottom && currentScroll < ctaTop) {
+                stickyCta.classList.add('visible');
+            } else {
+                stickyCta.classList.remove('visible');
+            }
         }
         
         lastScroll = currentScroll;
