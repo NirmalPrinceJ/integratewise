@@ -29,7 +29,7 @@
         </nav>
         <div class="nav-actions">
             <a class="btn btn-outline" href="#demo">Book a Demo</a>
-            <button class="mobile-menu-btn" aria-label="Toggle navigation" aria-expanded="false"><span></span><span></span><span></span></button>
+            <button type="button" class="mobile-menu-btn" aria-label="Toggle navigation" aria-expanded="false"><span></span><span></span><span></span></button>
         </div>
     </div>
 </header>
@@ -38,16 +38,16 @@
         <div class="section-header">
             <p class="eyebrow">Let’s talk</p>
             <h1 class="section-title">Connect. Automate. Elevate.</h1>
-            <p class="section-subtitle">Email <a href="mailto:connect@integratewise.co">connect@integratewise.co</a> or call <a href="tel:+917019746296">+91 70197 46296</a>. Use the anchors below to reach the right team.</p>
+            <p class="section-subtitle">Email <a href="mailto:connect@integratewise.co">connect@integratewise.co</a> or call <a href="tel:+917019746296">+91&nbsp;70197&nbsp;46296</a>. Use the anchors below to reach the right team.</p>
         </div>
         <div class="grid cards-2">
             <article class="card" id="demo">
                 <h3>Book a Demo</h3>
                 <form class="form-grid" data-analytics="demo-form">
-                    <div><label for="demo-name">Name</label><input id="demo-name" name="name" required></div>
+                    <div><label for="demo-name">Name</label><input type="text" id="demo-name" name="name" required></div>
                     <div><label for="demo-email">Work Email</label><input id="demo-email" name="email" type="email" required></div>
-                    <div><label for="demo-company">Company</label><input id="demo-company" name="company" required></div>
-                    <div><label for="demo-size">Team Size</label><input id="demo-size" name="size" aria-label="Team size"></div>
+                    <div><label for="demo-company">Company</label><input type="text" id="demo-company" name="company" required></div>
+                    <div><label for="demo-size">Team Size</label><input type="text" id="demo-size" name="size" aria-label="Team size"></div>
                     <div class="full"><label for="demo-notes">Focus</label><textarea id="demo-notes" name="notes" rows="3"></textarea></div>
                     <button class="btn btn-primary" type="submit" data-analytics="submit-demo">Submit</button>
                 </form>
@@ -55,9 +55,9 @@
             <article class="card" id="assessment">
                 <h3>Start Assessment</h3>
                 <form class="form-grid" data-analytics="assessment-form">
-                    <div><label for="assess-name">Name</label><input id="assess-name" name="name" required></div>
+                    <div><label for="assess-name">Name</label><input type="text" id="assess-name" name="name" required></div>
                     <div><label for="assess-email">Work Email</label><input id="assess-email" name="email" type="email" required></div>
-                    <div><label for="assess-crm">Primary CRM</label><input id="assess-crm" name="crm"></div>
+                    <div><label for="assess-crm">Primary CRM</label><input type="text" id="assess-crm" name="crm"></div>
                     <div class="full"><label for="assess-scope">Scope</label><textarea id="assess-scope" name="scope" rows="3"></textarea></div>
                     <button class="btn btn-primary" type="submit" data-analytics="submit-assessment">Submit</button>
                 </form>
@@ -65,7 +65,7 @@
             <article class="card" id="implementation">
                 <h3>Implementation</h3>
                 <form class="form-grid" data-analytics="implementation-form">
-                    <div><label for="impl-name">Name</label><input id="impl-name" name="name" required></div>
+                    <div><label for="impl-name">Name</label><input type="text" id="impl-name" name="name" required></div>
                     <div><label for="impl-email">Work Email</label><input id="impl-email" name="email" type="email" required></div>
                     <div><label for="impl-tier">Package</label><select id="impl-tier" name="tier"><option>Foundation</option><option>Professional</option><option>Enterprise</option></select></div>
                     <div class="full"><label for="impl-notes">Timeline</label><textarea id="impl-notes" name="timeline" rows="3"></textarea></div>
@@ -75,7 +75,7 @@
             <article class="card" id="retainer">
                 <h3>Managed Ops</h3>
                 <form class="form-grid" data-analytics="retainer-form">
-                    <div><label for="retainer-name">Name</label><input id="retainer-name" name="name" required></div>
+                    <div><label for="retainer-name">Name</label><input type="text" id="retainer-name" name="name" required></div>
                     <div><label for="retainer-email">Work Email</label><input id="retainer-email" name="email" type="email" required></div>
                     <div><label for="retainer-tier">Tier</label><select id="retainer-tier" name="tier"><option>Bronze (24h)</option><option>Silver (12h)</option><option>Gold (4h)</option><option>Platinum (1h)</option></select></div>
                     <button class="btn btn-primary" type="submit" data-analytics="submit-retainer">Submit</button>
@@ -84,9 +84,9 @@
             <article class="card" id="quote">
                 <h3>Custom Quote</h3>
                 <form class="form-grid" data-analytics="quote-form">
-                    <div><label for="quote-name">Name</label><input id="quote-name" name="name" required></div>
+                    <div><label for="quote-name">Name</label><input type="text" id="quote-name" name="name" required></div>
                     <div><label for="quote-email">Work Email</label><input id="quote-email" name="email" type="email" required></div>
-                    <div><label for="quote-outcome">Outcome-tied component</label><input id="quote-outcome" name="outcome" placeholder="Documented savings/retained revenue"></div>
+                    <div><label for="quote-outcome">Outcome-tied component</label><input type="text" id="quote-outcome" name="outcome" placeholder="Documented savings/retained revenue"></div>
                     <div class="full"><label for="quote-notes">Notes</label><textarea id="quote-notes" name="notes" rows="3"></textarea></div>
                     <button class="btn btn-primary" type="submit" data-analytics="submit-quote">Submit</button>
                 </form>
