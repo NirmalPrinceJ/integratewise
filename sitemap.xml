@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://integratewise.co/</loc></url>
-  <url><loc>https://integratewise.co/platform.html</loc></url>
+  <url><loc>https://integratewise.co/platform/</loc></url>
   <url><loc>https://integratewise.co/agents.html</loc></url>
-  <url><loc>https://integratewise.co/services.html</loc></url>
-  <url><loc>https://integratewise.co/solutions.html</loc></url>
-  <url><loc>https://integratewise.co/pricing.html</loc></url>
-  <url><loc>https://integratewise.co/resources.html</loc></url>
-  <url><loc>https://integratewise.co/about.html</loc></url>
-  <url><loc>https://integratewise.co/contact.html</loc></url>
-  <url><loc>https://integratewise.co/docs/index.html</loc></url>
+  <url><loc>https://integratewise.co/services/</loc></url>
+  <url><loc>https://integratewise.co/solutions/</loc></url>
+  <url><loc>https://integratewise.co/pricing/</loc></url>
+  <url><loc>https://integratewise.co/resources/</loc></url>
+  <url><loc>https://integratewise.co/about/</loc></url>
+  <url><loc>https://integratewise.co/contact/</loc></url>
+  <url><loc>https://integratewise.co/privacy/</loc></url>
+  <url><loc>https://integratewise.co/terms/</loc></url>
+  <url><loc>https://integratewise.co/docs/</loc></url>
   <url><loc>https://integratewise.co/docs/data-model.html</loc></url>
   <url><loc>https://integratewise.co/docs/measurement.html</loc></url>
   <url><loc>https://integratewise.co/docs/security.html</loc></url>
