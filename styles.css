@@ -387,6 +387,174 @@ h1, h2, h3, h4, h5, h6 {
     }
 }
 
+/* Trust Indicators */
+.trust-indicators {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    margin-bottom: 48px;
+    animation: fadeInUp 0.6s ease 0.35s forwards;
+    opacity: 0;
+}
+
+.trust-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    color: var(--gray-500);
+}
+
+.trust-item svg {
+    color: var(--primary-green);
+    flex-shrink: 0;
+}
+
+/* Stat Context */
+.stat-context {
+    font-size: 12px;
+    color: var(--gray-400);
+    margin-top: 4px;
+}
+
+/* Social Proof Section */
+.social-proof-section {
+    padding: 80px 0;
+    background: var(--white);
+    border-bottom: 1px solid var(--gray-100);
+}
+
+.social-proof-header {
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+.social-proof-label {
+    font-size: 14px;
+    color: var(--gray-400);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.customer-logos {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 48px;
+    flex-wrap: wrap;
+    margin-bottom: 48px;
+}
+
+.customer-logo {
+    opacity: 0.6;
+    transition: opacity var(--transition-fast);
+}
+
+.customer-logo:hover {
+    opacity: 1;
+}
+
+.logo-placeholder {
+    padding: 12px 24px;
+    background: var(--gray-100);
+    border-radius: var(--radius-md);
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--gray-400);
+    border: 1px dashed var(--gray-200);
+}
+
+/* Testimonial Card */
+.testimonial-card {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 48px;
+    background: var(--gray-50);
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius-xl);
+    padding: 48px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.testimonial-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.testimonial-quote {
+    font-size: 18px;
+    line-height: 1.7;
+    color: var(--gray-700);
+    font-style: italic;
+    margin-bottom: 24px;
+    position: relative;
+    padding-left: 24px;
+    border-left: 3px solid var(--primary-green);
+}
+
+.testimonial-author {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-top: auto;
+}
+
+.author-avatar {
+    width: 48px;
+    height: 48px;
+    background: var(--primary-green);
+    color: var(--white);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.author-name {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--gray-900);
+}
+
+.author-company {
+    font-size: 13px;
+    color: var(--gray-500);
+}
+
+.testimonial-metrics {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    justify-content: center;
+}
+
+.testimonial-metric {
+    text-align: center;
+    padding: 20px;
+    background: var(--white);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--gray-200);
+}
+
+.testimonial-metric .metric-value {
+    display: block;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--primary-green);
+}
+
+.testimonial-metric .metric-label {
+    display: block;
+    font-size: 12px;
+    color: var(--gray-500);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-top: 4px;
+}
+
 /* Logos Section */
 .logos-section {
     padding: 60px 0;
@@ -528,6 +696,125 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 15px;
     color: var(--gray-500);
     line-height: 1.7;
+}
+
+.problem-stat {
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid var(--gray-200);
+}
+
+.problem-stat .stat-value {
+    display: block;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--accent-red);
+    margin-bottom: 4px;
+}
+
+.problem-stat .stat-desc {
+    font-size: 12px;
+    color: var(--gray-400);
+}
+
+/* Role Value Section */
+.role-value-section {
+    padding: var(--section-padding) 0;
+    background: var(--white);
+}
+
+.role-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+}
+
+.role-card {
+    background: var(--gray-50);
+    border: 1px solid var(--gray-100);
+    border-radius: var(--radius-lg);
+    padding: 40px;
+    transition: all var(--transition-base);
+}
+
+.role-card:hover {
+    background: var(--white);
+    border-color: var(--primary-green-subtle);
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-4px);
+}
+
+.role-icon {
+    width: 56px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--primary-green-ultra-light);
+    border-radius: var(--radius-md);
+    margin-bottom: 20px;
+}
+
+.role-icon svg {
+    width: 28px;
+    height: 28px;
+    stroke: var(--primary-green);
+}
+
+.role-card h3 {
+    font-size: 20px;
+    margin-bottom: 8px;
+}
+
+.role-tagline {
+    font-size: 15px;
+    color: var(--primary-green);
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+
+.role-benefits {
+    list-style: none;
+    margin-bottom: 24px;
+}
+
+.role-benefits li {
+    font-size: 14px;
+    color: var(--gray-600);
+    padding: 8px 0;
+    padding-left: 24px;
+    position: relative;
+    line-height: 1.5;
+}
+
+.role-benefits li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--primary-green);
+    font-weight: 600;
+}
+
+.role-cta {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--primary-green);
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    transition: gap var(--transition-fast);
+}
+
+.role-cta:hover {
+    gap: 8px;
+}
+
+@media (max-width: 1024px) {
+    .role-cards {
+        grid-template-columns: 1fr;
+        max-width: 500px;
+        margin: 0 auto;
+    }
 }
 
 /* Solution Section */
@@ -2302,6 +2589,175 @@ h1, h2, h3, h4, h5, h6 {
     
     .outcomes-showcase {
         grid-template-columns: 1fr;
+    }
+}
+
+/* FAQ Section */
+.faq-section {
+    padding: var(--section-padding) 0;
+    background: var(--white);
+}
+
+.faq-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.faq-item {
+    background: var(--gray-50);
+    border: 1px solid var(--gray-100);
+    border-radius: var(--radius-lg);
+    padding: 32px;
+    transition: all var(--transition-base);
+}
+
+.faq-item:hover {
+    background: var(--white);
+    border-color: var(--primary-green-subtle);
+    box-shadow: var(--shadow-lg);
+}
+
+.faq-question {
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--gray-900);
+    margin-bottom: 12px;
+    line-height: 1.4;
+}
+
+.faq-answer {
+    font-size: 15px;
+    color: var(--gray-600);
+    line-height: 1.7;
+}
+
+.faq-answer strong {
+    color: var(--primary-green-dark);
+    font-weight: 600;
+}
+
+/* CTA Note */
+.cta-note {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.7);
+    margin-top: 24px;
+}
+
+/* Sticky CTA Bar */
+.sticky-cta {
+    position: fixed;
+    bottom: -80px;
+    left: 0;
+    right: 0;
+    background: var(--gray-900);
+    padding: 16px 24px;
+    z-index: 999;
+    transition: bottom 0.3s ease;
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.sticky-cta.visible {
+    bottom: 0;
+}
+
+.sticky-cta-content {
+    max-width: var(--container-max);
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+}
+
+.sticky-cta-text {
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.sticky-cta-text strong {
+    font-weight: 600;
+}
+
+.sticky-cta-text span {
+    color: var(--gray-400);
+    font-size: 14px;
+}
+
+.sticky-cta .btn-primary {
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+/* Responsive adjustments for new elements */
+@media (max-width: 1024px) {
+    .testimonial-card {
+        grid-template-columns: 1fr;
+        gap: 32px;
+    }
+    
+    .testimonial-metrics {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .testimonial-metric {
+        flex: 0 0 calc(33.333% - 16px);
+        min-width: 120px;
+    }
+    
+    .faq-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .trust-indicators {
+        flex-direction: column;
+        gap: 12px;
+        align-items: center;
+    }
+    
+    .customer-logos {
+        gap: 24px;
+    }
+    
+    .testimonial-card {
+        padding: 32px 24px;
+    }
+    
+    .testimonial-quote {
+        font-size: 16px;
+    }
+    
+    .testimonial-metric {
+        flex: 0 0 100%;
+    }
+    
+    .sticky-cta-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 12px;
+    }
+    
+    .sticky-cta-text {
+        flex-direction: column;
+        gap: 4px;
+    }
+    
+    .sticky-cta .btn-primary {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .customer-logos {
+        flex-direction: column;
     }
 }
 
