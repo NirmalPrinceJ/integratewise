@@ -182,7 +182,27 @@
     <!-- Logos Section -->
     <section class="logos-section">
         <div class="container">
-            <p class="logos-label">Works seamlessly with your existing stack</p>
+            <p class="logos-label">Trusted by Customer Success teams at mid-market SaaS companies</p>
+            <div class="customer-logos-grid">
+                <div class="customer-logo-item">
+                    <div class="logo-placeholder">Company A</div>
+                    <span>250 employees</span>
+                </div>
+                <div class="customer-logo-item">
+                    <div class="logo-placeholder">Company B</div>
+                    <span>180 employees</span>
+                </div>
+                <div class="customer-logo-item">
+                    <div class="logo-placeholder">Company C</div>
+                    <span>320 employees</span>
+                </div>
+                <div class="customer-logo-item">
+                    <div class="logo-placeholder">Company D</div>
+                    <span>150 employees</span>
+                </div>
+            </div>
+            
+            <p class="logos-label" style="margin-top: 48px;">Works seamlessly with your existing stack</p>
             <div class="logos-grid">
                 <!-- CRM Sources -->
                 <div class="logo-item" data-category="crm">
@@ -389,12 +409,20 @@
                             </svg>
                         </div>
                         <div class="arch-layer-details">
-                            <ul>
-                                <li><strong>8 core tables:</strong> accounts, contacts, subscriptions, usage_events, health_scores, risks, initiatives, stakeholders</li>
-                                <li><strong>Canonical IDs:</strong> spine_id (UUID) + crm_id (source reference) + external_id</li>
-                                <li><strong>Normalization:</strong> Domain matching, fuzzy deduplication, merge rules</li>
-                                <li><strong>Data Quality:</strong> ≥95% completeness, <1h drift detection</li>
-                            </ul>
+                            <button class="tech-details-toggle" data-target="layer1-details">
+                                <span>View Technical Details</span>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M6 9l6 6 6-6"/>
+                                </svg>
+                            </button>
+                            <div class="tech-details-content" id="layer1-details">
+                                <ul>
+                                    <li><strong>8 core tables:</strong> accounts, contacts, subscriptions, usage_events, health_scores, risks, initiatives, stakeholders</li>
+                                    <li><strong>Canonical IDs:</strong> spine_id (UUID) + crm_id (source reference) + external_id</li>
+                                    <li><strong>Normalization:</strong> Domain matching, fuzzy deduplication, merge rules</li>
+                                    <li><strong>Data Quality:</strong> ≥95% completeness, <1h drift detection</li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
 
@@ -438,12 +466,20 @@
                             </svg>
                         </div>
                         <div class="arch-layer-details">
-                            <ul>
-                                <li><strong>Idempotency keys:</strong> Prevents duplicate processing (24h TTL)</li>
-                                <li><strong>Retry policy:</strong> Exponential backoff, 3 max attempts, handles rate limits</li>
-                                <li><strong>Dead-letter queue:</strong> Failed records retained 30 days for analysis</li>
-                                <li><strong>Audit trail:</strong> Full operation log with before/after states (365-day retention)</li>
-                            </ul>
+                            <button class="tech-details-toggle" data-target="layer2-details">
+                                <span>View Technical Details</span>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M6 9l6 6 6-6"/>
+                                </svg>
+                            </button>
+                            <div class="tech-details-content" id="layer2-details">
+                                <ul>
+                                    <li><strong>Idempotency keys:</strong> Prevents duplicate processing (24h TTL)</li>
+                                    <li><strong>Retry policy:</strong> Exponential backoff, 3 max attempts, handles rate limits</li>
+                                    <li><strong>Dead-letter queue:</strong> Failed records retained 30 days for analysis</li>
+                                    <li><strong>Audit trail:</strong> Full operation log with before/after states (365-day retention)</li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
 
@@ -485,12 +521,20 @@
                             </svg>
                         </div>
                         <div class="arch-layer-details">
-                            <ul>
-                                <li><strong>SuccessPilot:</strong> Health scoring (≥85% accuracy, <2min compute)</li>
-                                <li><strong>ChurnShield:</strong> Risk detection (30+ day lead time, 15-25% reduction)</li>
-                                <li><strong>DataSentinel:</strong> Quality monitoring (≥95% quality, <1h drift detection)</li>
-                                <li><strong>Uptime SLA:</strong> >99.9% agent availability</li>
-                            </ul>
+                            <button class="tech-details-toggle" data-target="layer3-details">
+                                <span>View Technical Details</span>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M6 9l6 6 6-6"/>
+                                </svg>
+                            </button>
+                            <div class="tech-details-content" id="layer3-details">
+                                <ul>
+                                    <li><strong>SuccessPilot:</strong> Health scoring (≥85% accuracy, <2min compute)</li>
+                                    <li><strong>ChurnShield:</strong> Risk detection (30+ day lead time, 15-25% reduction)</li>
+                                    <li><strong>DataSentinel:</strong> Quality monitoring (≥95% quality, <1h drift detection)</li>
+                                    <li><strong>Uptime SLA:</strong> >99.9% agent availability</li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1191,6 +1235,193 @@
                     </div>
                 </div>
                 <p class="saas-note">All SaaS tiers include: SSL encryption, SOC 2 compliance, 30-day data retention, API access. Enterprise pricing available for 10,000+ accounts.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Competitor Comparison Section -->
+    <section class="comparison-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">How We Compare</span>
+                <h2 class="section-title">Not another CS platform. <span class="highlight">A different approach.</span></h2>
+                <p class="section-subtitle">
+                    See how IntegrateWise differs from traditional Customer Success platforms and iPaaS tools.
+                </p>
+            </div>
+
+            <div class="comparison-table-wrapper">
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Feature</th>
+                            <th>Gainsight / Vitally</th>
+                            <th>Zapier / Make / iPaaS</th>
+                            <th class="comparison-us">IntegrateWise</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Platform Approach</strong></td>
+                            <td>Full CS platform (must adopt their interface)</td>
+                            <td>Point-to-point integrations</td>
+                            <td class="comparison-us"><strong>Platform-agnostic integration spine</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Data Model</strong></td>
+                            <td>Proprietary schema</td>
+                            <td>No normalization</td>
+                            <td class="comparison-us"><strong>Canonical PostgreSQL schema</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Tool Flexibility</strong></td>
+                            <td>Locked into their platform</td>
+                            <td>Rebuild when tools change</td>
+                            <td class="comparison-us"><strong>Render in any tool (Notion, Coda, Sheets, etc.)</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Integration Durability</strong></td>
+                            <td>N/A (single platform)</td>
+                            <td>Brittle (rebuild on change)</td>
+                            <td class="comparison-us"><strong>Future-proof (change tools without rebuilding)</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>AI Agents</strong></td>
+                            <td>Rules-based workflows</td>
+                            <td>Manual automation setup</td>
+                            <td class="comparison-us"><strong>7 autonomous LLM-powered agents</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Churn Prediction</strong></td>
+                            <td>Basic health scoring</td>
+                            <td>Not available</td>
+                            <td class="comparison-us"><strong>30+ day lead time, 15-25% reduction</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Deployment Time</strong></td>
+                            <td>3-6 months</td>
+                            <td>Ongoing maintenance</td>
+                            <td class="comparison-us"><strong>2-week MVP, 90-day outcomes</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Data Governance</strong></td>
+                            <td>Limited</td>
+                            <td>None</td>
+                            <td class="comparison-us"><strong>≥95% quality, <1h drift detection</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Pricing Model</strong></td>
+                            <td>Per-seat SaaS</td>
+                            <td>Per-action pricing</td>
+                            <td class="comparison-us"><strong>Outcome-tied (assessment → implementation → retainer)</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="comparison-key-diff">
+                <h3>Key Differentiator</h3>
+                <p><strong>Never rebuild integrations again.</strong> When you change tools, your data stays normalized. IntegrateWise's canonical schema means your integrations are future-proof—unlike iPaaS tools that require rebuilding, or CS platforms that lock you into their interface.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Visual Flow Diagram -->
+    <section class="visual-flow-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">The Transformation</span>
+                <h2 class="section-title">From fragmented data to <span class="highlight">unified intelligence</span></h2>
+            </div>
+
+            <div class="transformation-diagram">
+                <div class="transform-stage transform-before">
+                    <div class="transform-label">Before</div>
+                    <div class="transform-visual">
+                        <div class="tool-icon tool-fragmented">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="3" y="3" width="7" height="7" rx="1"/>
+                                <rect x="14" y="3" width="7" height="7" rx="1"/>
+                                <rect x="3" y="14" width="7" height="7" rx="1"/>
+                                <rect x="14" y="14" width="7" height="7" rx="1"/>
+                            </svg>
+                            <span>Fragmented Tools</span>
+                        </div>
+                        <div class="tool-icon tool-fragmented">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                            </svg>
+                            <span>No Single Source</span>
+                        </div>
+                        <div class="tool-icon tool-fragmented">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"/>
+                                <line x1="12" y1="8" x2="12" y2="12"/>
+                                <line x1="12" y1="16" x2="12.01" y2="16"/>
+                            </svg>
+                            <span>Late Churn Signals</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="transform-arrow">
+                    <svg viewBox="0 0 60 40" fill="none">
+                        <path d="M10 20h35M45 20l-8-6M45 20l-8 6" stroke="#10B981" stroke-width="3" stroke-linecap="round"/>
+                    </svg>
+                </div>
+
+                <div class="transform-stage transform-spine">
+                    <div class="transform-label">IntegrateWise Spine</div>
+                    <div class="transform-visual">
+                        <div class="spine-visual">
+                            <div class="spine-layer">
+                                <div class="spine-icon">🔄</div>
+                                <span>n8n Orchestrator</span>
+                            </div>
+                            <div class="spine-layer spine-core">
+                                <div class="spine-icon">💾</div>
+                                <span>PostgreSQL Canonical Schema</span>
+                            </div>
+                            <div class="spine-layer">
+                                <div class="spine-icon">🤖</div>
+                                <span>7 AI Agents</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="transform-arrow">
+                    <svg viewBox="0 0 60 40" fill="none">
+                        <path d="M10 20h35M45 20l-8-6M45 20l-8 6" stroke="#10B981" stroke-width="3" stroke-linecap="round"/>
+                    </svg>
+                </div>
+
+                <div class="transform-stage transform-after">
+                    <div class="transform-label">After</div>
+                    <div class="transform-visual">
+                        <div class="tool-icon tool-unified">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                                <polyline points="22 4 12 14.01 9 11.01"/>
+                            </svg>
+                            <span>Unified Health Scores</span>
+                        </div>
+                        <div class="tool-icon tool-unified">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                            </svg>
+                            <span>30+ Day Churn Alerts</span>
+                        </div>
+                        <div class="tool-icon tool-unified">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="3" y="3" width="18" height="18" rx="2"/>
+                                <line x1="3" y1="9" x2="21" y2="9"/>
+                                <line x1="9" y1="21" x2="9" y2="9"/>
+                            </svg>
+                            <span>Real-time Dashboards</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>

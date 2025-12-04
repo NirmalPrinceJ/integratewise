@@ -359,6 +359,28 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
+    // Technical details toggle functionality
+    const techDetailsToggles = document.querySelectorAll('.tech-details-toggle');
+    
+    techDetailsToggles.forEach(toggle => {
+        toggle.addEventListener('click', () => {
+            const targetId = toggle.getAttribute('data-target');
+            const content = document.getElementById(targetId);
+            
+            if (content) {
+                const isActive = toggle.classList.contains('active');
+                
+                if (isActive) {
+                    toggle.classList.remove('active');
+                    content.classList.remove('active');
+                } else {
+                    toggle.classList.add('active');
+                    content.classList.add('active');
+                }
+            }
+        });
+    });
+
     console.log('IntegrateWise landing page loaded successfully');
 });
 
