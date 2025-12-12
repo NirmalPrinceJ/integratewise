@@ -164,14 +164,14 @@ function getProviderConfig(env: Env): Record<Provider, ProviderConfig> {
       name: 'HubSpot',
       category: 'crm',
       requiresSignature: true,
-      allowedDomains: ['xyz'] // HubSpot on .xyz
+      allowedDomains: ['online']
     },
     linkedin: {
       enabled: env.ENABLE_LINKEDIN === 'true',
       name: 'LinkedIn',
       category: 'marketing',
       requiresSignature: false, // Uses OAuth
-      allowedDomains: ['xyz']
+      allowedDomains: ['online']
     },
     canva: {
       enabled: env.ENABLE_CANVA === 'true',
@@ -213,7 +213,7 @@ function getProviderConfig(env: Env): Record<Provider, ProviderConfig> {
       name: 'AI Relay',
       category: 'internal',
       requiresSignature: true,
-      allowedDomains: ['online', 'xyz']
+      allowedDomains: ['online']
     },
     razorpay: {
       enabled: env.ENABLE_RAZORPAY === 'true',
@@ -234,21 +234,21 @@ function getProviderConfig(env: Env): Record<Provider, ProviderConfig> {
       name: 'Salesforce',
       category: 'crm',
       requiresSignature: false,
-      allowedDomains: ['xyz']
+      allowedDomains: ['online']
     },
     pipedrive: {
       enabled: env.ENABLE_PIPEDRIVE === 'true',
       name: 'Pipedrive',
       category: 'crm',
       requiresSignature: true,
-      allowedDomains: ['xyz']
+      allowedDomains: ['online']
     },
     google_ads: {
       enabled: env.ENABLE_GOOGLE_ADS === 'true',
       name: 'Google Ads',
       category: 'marketing',
       requiresSignature: false,
-      allowedDomains: ['xyz']
+      allowedDomains: ['online']
     },
     meta: {
       enabled: env.ENABLE_META === 'true',

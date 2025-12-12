@@ -18,64 +18,34 @@ routes = [
 ENVIRONMENT = "production"
 ENV_DOMAIN = "online"
 
-# Provider Enable Switches (accounts exist)
-ENABLE_HUBSPOT = "false"  # HubSpot on .xyz only
-ENABLE_LINKEDIN = "false" # LinkedIn on .xyz only
+# Provider Enable Switches - .online domain
 ENABLE_CANVA = "true"
+ENABLE_HUBSPOT = "true"
+ENABLE_LINKEDIN = "true"
 ENABLE_GITHUB = "true"
 ENABLE_VERCEL = "true"
 ENABLE_TODOIST = "true"
 ENABLE_NOTION = "true"
 ENABLE_AI_RELAY = "true"
+ENABLE_META = "true"
 
-# Not available yet on .online
-ENABLE_SALESFORCE = "false"
-ENABLE_PIPEDRIVE = "false"
-ENABLE_GOOGLE_ADS = "false"
-ENABLE_META = "false"
+# Disabled providers
 ENABLE_WHATSAPP = "false"
 ENABLE_RAZORPAY = "false"
 ENABLE_STRIPE = "false"
+ENABLE_GOOGLE_ADS = "false"
+ENABLE_PIPEDRIVE = "false"
+ENABLE_SALESFORCE = "false"
 
 # Notification Channels
 ENABLE_DISCORD = "false"
 ENABLE_TELEGRAM = "false"
 
 # ============================================================================
-# Production Environment - .xyz domain (Marketing/CRM)
+# .xyz domain - NOT USED FOR WEBHOOKS
+# .xyz is for marketing website only
+# All webhooks route through webhooks.integratewise.online
 # ============================================================================
-[env.production_xyz]
-name = "integratewise-webhooks-xyz"
-routes = [
-  { pattern = "webhooks.integratewise.xyz/*", zone_name = "integratewise.xyz" }
-]
-
-[env.production_xyz.vars]
-ENVIRONMENT = "production"
-ENV_DOMAIN = "xyz"
-
-# Provider Enable Switches for .xyz (CRM/Marketing focused)
-ENABLE_HUBSPOT = "true"
-ENABLE_LINKEDIN = "true"
-ENABLE_CANVA = "false"  # Canva on .online only
-ENABLE_GITHUB = "false" # GitHub on .online only
-ENABLE_VERCEL = "false" # Vercel on .online only
-ENABLE_TODOIST = "false"
-ENABLE_NOTION = "false"
-ENABLE_AI_RELAY = "true"
-
-# CRM providers on .xyz
-ENABLE_SALESFORCE = "false"
-ENABLE_PIPEDRIVE = "false"
-ENABLE_GOOGLE_ADS = "false"
-ENABLE_META = "false"
-ENABLE_WHATSAPP = "false"
-ENABLE_RAZORPAY = "false"
-ENABLE_STRIPE = "false"
-
-# Notification Channels
-ENABLE_DISCORD = "false"
-ENABLE_TELEGRAM = "false"
 
 # ============================================================================
 # Secrets (set via wrangler secret put --env production)
