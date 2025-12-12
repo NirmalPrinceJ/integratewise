@@ -586,4 +586,148 @@ app.get('/api/webhooks/providers', async (c) => {
   return c.json(providers);
 });
 
+// ============ Notion Integration ============
+import * as notion from './notion';
+
+// List Notion databases
+app.get('/api/notion/databases', async (c) => {
+  if (!c.env.NOTION_API_KEY) {
+    return c.json({ error: 'Notion API key not configured' }, 500);
+  }
+  try {
+    const databases = await notion.listDatabases(c.env.NOTION_API_KEY);
+    return c.json(databases);
+  } catch (err) {
+    return c.json({ error: String(err) }, 500);
+  }
+});
+
+// Query a specific Notion database
+app.get('/api/notion/databases/:id', async (c) => {
+  if (!c.env.NOTION_API_KEY) {
+    return c.json({ error: 'Notion API key not configured' }, 500);
+  }
+  try {
+    const databaseId = c.req.param('id');
+    const database = await notion.getDatabase(c.env.NOTION_API_KEY, databaseId);
+    return c.json(database);
+  } catch (err) {
+    return c.json({ error: String(err) }, 500);
+  }
+});
+
+// Query pages from a Notion database
+app.get('/api/notion/databases/:id/pages', async (c) => {
+  if (!c.env.NOTION_API_KEY) {
+    return c.json({ error: 'Notion API key not configured' }, 500);
+  }
+  try {
+    const databaseId = c.req.param('id');
+    const { results, has_more } = await notion.queryDatabase(c.env.NOTION_API_KEY, databaseId);
+    const pages = results.map(p => notion.notionPageToEntity(p));
+    return c.json({ pages, has_more });
+  } catch (err) {
+    return c.json({ error: String(err) }, 500);
+  }
+});
+
+// Get a specific Notion page
+app.get('/api/notion/pages/:id', async (c) => {
+  if (!c.env.NOTION_API_KEY) {
+    return c.json({ error: 'Notion API key not configured' }, 500);
+  }
+  try {
+    const pageId = c.req.param('id');
+    const page = await notion.getPage(c.env.NOTION_API_KEY, pageId);
+    const blocks = await notion.getPageBlocks(c.env.NOTION_API_KEY, pageId);
+    return c.json({ page: notion.notionPageToEntity(page), blocks });
+  } catch (err) {
+    return c.json({ error: String(err) }, 500);
+  }
+});
+
+// Search Notion
+app.get('/api/notion/search', async (c) => {
+  if (!c.env.NOTION_API_KEY) {
+    return c.json({ error: 'Notion API key not configured' }, 500);
+  }
+  try {
+    const query = c.req.query('q') || '';
+    const results = await notion.searchNotion(c.env.NOTION_API_KEY, query);
+    return c.json(results);
+  } catch (err) {
+    return c.json({ error: String(err) }, 500);
+  }
+});
+
+// Sync Notion database to Hub
+app.post('/api/notion/sync/:databaseId', async (c) => {
+  if (!c.env.NOTION_API_KEY) {
+    return c.json({ error: 'Notion API key not configured' }, 500);
+  }
+  try {
+    const databaseId = c.req.param('databaseId');
+    const { entityType } = await c.req.json().catch(() => ({ entityType: 'document' }));
+    const result = await notion.syncNotionDatabase(c.env, databaseId, entityType);
+
+    await db.logActivity(c.env.DB, {
+      action: 'notion_sync',
+      details: { database_id: databaseId, synced: result.synced, errors: result.errors.length }
+    });
+
+    return c.json(result);
+  } catch (err) {
+    return c.json({ error: String(err) }, 500);
+  }
+});
+
+// Create page in Notion
+app.post('/api/notion/databases/:id/pages', async (c) => {
+  if (!c.env.NOTION_API_KEY) {
+    return c.json({ error: 'Notion API key not configured' }, 500);
+  }
+  try {
+    const databaseId = c.req.param('id');
+    const { properties, children } = await c.req.json();
+    const page = await notion.createPage(c.env.NOTION_API_KEY, databaseId, properties, children);
+    return c.json(notion.notionPageToEntity(page), 201);
+  } catch (err) {
+    return c.json({ error: String(err) }, 500);
+  }
+});
+
+// Update Notion page
+app.patch('/api/notion/pages/:id', async (c) => {
+  if (!c.env.NOTION_API_KEY) {
+    return c.json({ error: 'Notion API key not configured' }, 500);
+  }
+  try {
+    const pageId = c.req.param('id');
+    const { properties } = await c.req.json();
+    const page = await notion.updatePage(c.env.NOTION_API_KEY, pageId, properties);
+    return c.json(notion.notionPageToEntity(page));
+  } catch (err) {
+    return c.json({ error: String(err) }, 500);
+  }
+});
+
+// Notion status endpoint
+app.get('/api/notion/status', async (c) => {
+  const configured = !!c.env.NOTION_API_KEY;
+  let connected = false;
+  let databases: string[] = [];
+
+  if (configured) {
+    try {
+      const dbs = await notion.listDatabases(c.env.NOTION_API_KEY!);
+      connected = true;
+      databases = dbs.map((d: any) => notion.extractPlainText(d.title));
+    } catch {
+      connected = false;
+    }
+  }
+
+  return c.json({ configured, connected, databases });
+});
+
 export default app;

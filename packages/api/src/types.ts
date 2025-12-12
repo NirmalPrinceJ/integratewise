@@ -3,6 +3,11 @@ export interface Env {
   AI: Ai;
   ANTHROPIC_API_KEY?: string;
   ENVIRONMENT: string;
+
+  // Notion integration
+  NOTION_API_KEY?: string;
+  NOTION_DATABASE_IDS?: string; // JSON string of database IDs
+
   // Webhook secrets
   HUBSPOT_CLIENT_SECRET?: string;
   LINKEDIN_CLIENT_SECRET?: string;
