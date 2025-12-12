@@ -17,15 +17,48 @@ routes = [
 ENVIRONMENT = "production"
 
 # ============================================================================
+# Provider Enable Switches (set to "true" to activate)
+# ============================================================================
+# Available providers (accounts exist)
+ENABLE_HUBSPOT = "true"
+ENABLE_LINKEDIN = "true"
+ENABLE_CANVA = "true"
+ENABLE_GITHUB = "true"
+ENABLE_VERCEL = "true"
+ENABLE_TODOIST = "true"
+ENABLE_NOTION = "true"
+ENABLE_AI_RELAY = "true"
+
+# Not available yet (set to "true" when accounts are created)
+ENABLE_SALESFORCE = "false"
+ENABLE_PIPEDRIVE = "false"
+ENABLE_GOOGLE_ADS = "false"
+ENABLE_META = "false"
+ENABLE_WHATSAPP = "false"
+ENABLE_RAZORPAY = "false"
+ENABLE_STRIPE = "false"
+
+# ============================================================================
 # Secrets (set via wrangler secret put --env production)
 # ============================================================================
+# Database
 # wrangler secret put NEON_CONNECTION_STRING --env production
-# wrangler secret put RAZORPAY_WEBHOOK_SECRET --env production
-# wrangler secret put STRIPE_ENDPOINT_SECRET --env production
+
+# Available provider secrets
+# wrangler secret put HUBSPOT_CLIENT_SECRET --env production
+# wrangler secret put LINKEDIN_CLIENT_SECRET --env production
+# wrangler secret put CANVA_WEBHOOK_SECRET --env production
 # wrangler secret put GITHUB_WEBHOOK_SECRET --env production
 # wrangler secret put VERCEL_WEBHOOK_SECRET --env production
 # wrangler secret put AI_RELAY_SECRET --env production
-# wrangler secret put CODA_API_TOKEN --env production
+
+# Future provider secrets (add when accounts created)
+# wrangler secret put RAZORPAY_WEBHOOK_SECRET --env production
+# wrangler secret put STRIPE_ENDPOINT_SECRET --env production
+# wrangler secret put SALESFORCE_SECURITY_TOKEN --env production
+# wrangler secret put PIPEDRIVE_WEBHOOK_TOKEN --env production
+# wrangler secret put META_VERIFY_TOKEN --env production
+# wrangler secret put WHATSAPP_VERIFY_TOKEN --env production
 
 # ============================================================================
 # Observability

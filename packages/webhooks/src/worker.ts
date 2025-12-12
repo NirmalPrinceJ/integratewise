@@ -5,13 +5,14 @@
 
 export interface Env {
   NEON_CONNECTION_STRING: string;
+
+  // Provider secrets
   RAZORPAY_WEBHOOK_SECRET: string;
   STRIPE_ENDPOINT_SECRET: string;
   GITHUB_WEBHOOK_SECRET: string;
   VERCEL_WEBHOOK_SECRET: string;
   AI_RELAY_SECRET: string;
   CODA_API_TOKEN: string;
-  // New webhook secrets
   HUBSPOT_CLIENT_SECRET: string;
   LINKEDIN_CLIENT_SECRET: string;
   CANVA_WEBHOOK_SECRET: string;
@@ -19,6 +20,50 @@ export interface Env {
   PIPEDRIVE_WEBHOOK_TOKEN: string;
   META_VERIFY_TOKEN: string;
   WHATSAPP_VERIFY_TOKEN: string;
+
+  // Provider enable switches (set to "true" to enable)
+  ENABLE_HUBSPOT: string;
+  ENABLE_LINKEDIN: string;
+  ENABLE_CANVA: string;
+  ENABLE_GITHUB: string;
+  ENABLE_VERCEL: string;
+  ENABLE_TODOIST: string;
+  ENABLE_NOTION: string;
+  ENABLE_AI_RELAY: string;
+  ENABLE_RAZORPAY: string;
+  ENABLE_STRIPE: string;
+  ENABLE_SALESFORCE: string;
+  ENABLE_PIPEDRIVE: string;
+  ENABLE_GOOGLE_ADS: string;
+  ENABLE_META: string;
+  ENABLE_WHATSAPP: string;
+}
+
+// Provider configuration
+interface ProviderConfig {
+  enabled: boolean;
+  name: string;
+  category: 'crm' | 'marketing' | 'payments' | 'dev' | 'productivity' | 'communication' | 'internal';
+}
+
+function getProviderConfig(env: Env): Record<Provider, ProviderConfig> {
+  return {
+    hubspot: { enabled: env.ENABLE_HUBSPOT === 'true', name: 'HubSpot', category: 'crm' },
+    linkedin: { enabled: env.ENABLE_LINKEDIN === 'true', name: 'LinkedIn', category: 'marketing' },
+    canva: { enabled: env.ENABLE_CANVA === 'true', name: 'Canva', category: 'marketing' },
+    github: { enabled: env.ENABLE_GITHUB === 'true', name: 'GitHub', category: 'dev' },
+    vercel: { enabled: env.ENABLE_VERCEL === 'true', name: 'Vercel', category: 'dev' },
+    todoist: { enabled: env.ENABLE_TODOIST === 'true', name: 'Todoist', category: 'productivity' },
+    notion: { enabled: env.ENABLE_NOTION === 'true', name: 'Notion', category: 'productivity' },
+    ai_relay: { enabled: env.ENABLE_AI_RELAY === 'true', name: 'AI Relay', category: 'internal' },
+    razorpay: { enabled: env.ENABLE_RAZORPAY === 'true', name: 'Razorpay', category: 'payments' },
+    stripe: { enabled: env.ENABLE_STRIPE === 'true', name: 'Stripe', category: 'payments' },
+    salesforce: { enabled: env.ENABLE_SALESFORCE === 'true', name: 'Salesforce', category: 'crm' },
+    pipedrive: { enabled: env.ENABLE_PIPEDRIVE === 'true', name: 'Pipedrive', category: 'crm' },
+    google_ads: { enabled: env.ENABLE_GOOGLE_ADS === 'true', name: 'Google Ads', category: 'marketing' },
+    meta: { enabled: env.ENABLE_META === 'true', name: 'Meta', category: 'marketing' },
+    whatsapp: { enabled: env.ENABLE_WHATSAPP === 'true', name: 'WhatsApp', category: 'communication' },
+  };
 }
 
 interface WebhookEvent {
@@ -335,12 +380,43 @@ export default {
 
     // Health check
     if (path === '/health' || path === '/') {
+      const config = getProviderConfig(env);
+      const enabled = Object.entries(config).filter(([_, c]) => c.enabled).map(([k, c]) => ({ id: k, ...c }));
+      const disabled = Object.entries(config).filter(([_, c]) => !c.enabled).map(([k, c]) => ({ id: k, ...c }));
+
       return new Response(JSON.stringify({
         status: 'healthy',
         service: 'integratewise-webhooks',
-        version: '1.0.0',
+        version: '2.0.0',
         timestamp: new Date().toISOString(),
-        db_configured: !!env.NEON_CONNECTION_STRING
+        db_configured: !!env.NEON_CONNECTION_STRING,
+        providers: {
+          enabled: enabled.map(p => p.name),
+          disabled: disabled.map(p => p.name),
+          total: { enabled: enabled.length, disabled: disabled.length }
+        }
+      }), {
+        headers: { 'Content-Type': 'application/json' }
+      });
+    }
+
+    // Providers status endpoint
+    if (path === '/providers') {
+      const config = getProviderConfig(env);
+      const providers = Object.entries(config).map(([id, c]) => ({
+        id,
+        name: c.name,
+        category: c.category,
+        enabled: c.enabled,
+        endpoint: `/webhooks/${id.replace('_', '-')}`
+      }));
+
+      return new Response(JSON.stringify({
+        providers,
+        summary: {
+          enabled: providers.filter(p => p.enabled).length,
+          disabled: providers.filter(p => !p.enabled).length
+        }
       }), {
         headers: { 'Content-Type': 'application/json' }
       });
@@ -383,6 +459,18 @@ export default {
     if (request.method === 'POST') {
       const provider = routes[path];
       if (provider) {
+        // Check if provider is enabled
+        const config = getProviderConfig(env);
+        if (!config[provider].enabled) {
+          return new Response(JSON.stringify({
+            error: 'Provider not enabled',
+            provider: config[provider].name,
+            message: `${config[provider].name} webhook is currently disabled. Enable it by setting ENABLE_${provider.toUpperCase()} to "true" in environment variables.`
+          }), {
+            status: 503,
+            headers: { 'Content-Type': 'application/json' }
+          });
+        }
         return handleWebhook(request, env, provider);
       }
     }
