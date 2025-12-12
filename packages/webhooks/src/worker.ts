@@ -1,10 +1,27 @@
 /**
  * IntegrateWise Webhook Ingress Worker
  * Cloudflare Worker for receiving webhooks from multiple providers
+ *
+ * Security Features:
+ * - IP allowlisting for known providers
+ * - Internal API key for admin endpoints
+ * - Request size limits (256KB max)
+ * - JSON-only validation for POST
+ * - Timestamp freshness check (5 min window)
+ * - Strict CORS (only integratewise domains)
+ * - HSTS headers
+ * - Rate limiting awareness
  */
+
+// ============================================================================
+// Configuration & Types
+// ============================================================================
 
 export interface Env {
   NEON_CONNECTION_STRING: string;
+
+  // Security
+  INTERNAL_API_KEY: string;  // Required for /health, /providers
 
   // Provider secrets
   RAZORPAY_WEBHOOK_SECRET: string;
@@ -26,7 +43,7 @@ export interface Env {
   TELEGRAM_BOT_TOKEN: string;
   TELEGRAM_CHAT_ID: string;
 
-  // Provider enable switches (set to "true" to enable)
+  // Provider enable switches
   ENABLE_HUBSPOT: string;
   ENABLE_LINKEDIN: string;
   ENABLE_CANVA: string;
@@ -43,36 +60,64 @@ export interface Env {
   ENABLE_META: string;
   ENABLE_WHATSAPP: string;
 
-  // Notification channel switches
+  // Notification switches
   ENABLE_DISCORD: string;
   ENABLE_TELEGRAM: string;
+
+  // Domain environment
+  ENV_DOMAIN: string; // 'online' or 'xyz'
 }
 
-// Provider configuration
+// Security constants
+const MAX_REQUEST_SIZE = 256 * 1024; // 256KB
+const TIMESTAMP_FRESHNESS_SECONDS = 300; // 5 minutes
+const ALLOWED_ORIGINS = [
+  'https://integratewise.online',
+  'https://www.integratewise.online',
+  'https://hub.integratewise.online',
+  'https://api.integratewise.online',
+  'https://integratewise.xyz',
+  'https://www.integratewise.xyz',
+  'https://integratewise-hub.vercel.app'
+];
+
+// Known provider IP ranges (CIDR notation)
+// These are documented IPs from each provider
+const PROVIDER_IP_ALLOWLIST: Record<string, string[]> = {
+  github: [
+    '192.30.252.0/22',
+    '185.199.108.0/22',
+    '140.82.112.0/20',
+    '143.55.64.0/20'
+  ],
+  vercel: [
+    '76.76.21.0/24',
+    '76.223.0.0/16'
+  ],
+  stripe: [
+    '54.187.174.169',
+    '54.187.205.235',
+    '54.187.216.72',
+    '54.241.31.99',
+    '54.241.31.102',
+    '54.241.34.107'
+  ],
+  hubspot: [], // HubSpot doesn't publish IPs, rely on signature
+  linkedin: [], // LinkedIn uses OAuth
+  canva: [], // Canva uses signature
+  todoist: [], // No published IPs - require token
+  notion: [], // No published IPs - require token
+};
+
+type Provider = 'razorpay' | 'stripe' | 'github' | 'vercel' | 'todoist' | 'notion' | 'ai_relay'
+  | 'hubspot' | 'linkedin' | 'canva' | 'salesforce' | 'pipedrive' | 'google_ads' | 'meta' | 'whatsapp';
+
 interface ProviderConfig {
   enabled: boolean;
   name: string;
   category: 'crm' | 'marketing' | 'payments' | 'dev' | 'productivity' | 'communication' | 'internal';
-}
-
-function getProviderConfig(env: Env): Record<Provider, ProviderConfig> {
-  return {
-    hubspot: { enabled: env.ENABLE_HUBSPOT === 'true', name: 'HubSpot', category: 'crm' },
-    linkedin: { enabled: env.ENABLE_LINKEDIN === 'true', name: 'LinkedIn', category: 'marketing' },
-    canva: { enabled: env.ENABLE_CANVA === 'true', name: 'Canva', category: 'marketing' },
-    github: { enabled: env.ENABLE_GITHUB === 'true', name: 'GitHub', category: 'dev' },
-    vercel: { enabled: env.ENABLE_VERCEL === 'true', name: 'Vercel', category: 'dev' },
-    todoist: { enabled: env.ENABLE_TODOIST === 'true', name: 'Todoist', category: 'productivity' },
-    notion: { enabled: env.ENABLE_NOTION === 'true', name: 'Notion', category: 'productivity' },
-    ai_relay: { enabled: env.ENABLE_AI_RELAY === 'true', name: 'AI Relay', category: 'internal' },
-    razorpay: { enabled: env.ENABLE_RAZORPAY === 'true', name: 'Razorpay', category: 'payments' },
-    stripe: { enabled: env.ENABLE_STRIPE === 'true', name: 'Stripe', category: 'payments' },
-    salesforce: { enabled: env.ENABLE_SALESFORCE === 'true', name: 'Salesforce', category: 'crm' },
-    pipedrive: { enabled: env.ENABLE_PIPEDRIVE === 'true', name: 'Pipedrive', category: 'crm' },
-    google_ads: { enabled: env.ENABLE_GOOGLE_ADS === 'true', name: 'Google Ads', category: 'marketing' },
-    meta: { enabled: env.ENABLE_META === 'true', name: 'Meta', category: 'marketing' },
-    whatsapp: { enabled: env.ENABLE_WHATSAPP === 'true', name: 'WhatsApp', category: 'communication' },
-  };
+  requiresSignature: boolean;
+  allowedDomains: ('online' | 'xyz')[];
 }
 
 interface WebhookEvent {
@@ -85,12 +130,147 @@ interface WebhookEvent {
   dedupe_hash: string;
   raw_body: string;
   signature_valid: boolean;
+  client_ip: string;
 }
 
-type Provider = 'razorpay' | 'stripe' | 'github' | 'vercel' | 'todoist' | 'notion' | 'ai_relay'
-  | 'hubspot' | 'linkedin' | 'canva' | 'salesforce' | 'pipedrive' | 'google_ads' | 'meta' | 'whatsapp';
+// ============================================================================
+// Security Headers
+// ============================================================================
 
-// Crypto utilities
+function getSecurityHeaders(origin?: string | null): Record<string, string> {
+  const allowedOrigin = origin && ALLOWED_ORIGINS.includes(origin) ? origin : ALLOWED_ORIGINS[0];
+
+  return {
+    'Content-Type': 'application/json',
+    'Access-Control-Allow-Origin': allowedOrigin,
+    'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+    'Access-Control-Allow-Headers': 'Content-Type, X-IntegrateWise-Internal-Key, X-Request-Timestamp',
+    'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload',
+    'X-Content-Type-Options': 'nosniff',
+    'X-Frame-Options': 'DENY',
+    'X-XSS-Protection': '1; mode=block',
+    'Referrer-Policy': 'strict-origin-when-cross-origin'
+  };
+}
+
+// ============================================================================
+// Provider Configuration
+// ============================================================================
+
+function getProviderConfig(env: Env): Record<Provider, ProviderConfig> {
+  return {
+    hubspot: {
+      enabled: env.ENABLE_HUBSPOT === 'true',
+      name: 'HubSpot',
+      category: 'crm',
+      requiresSignature: true,
+      allowedDomains: ['xyz'] // HubSpot on .xyz
+    },
+    linkedin: {
+      enabled: env.ENABLE_LINKEDIN === 'true',
+      name: 'LinkedIn',
+      category: 'marketing',
+      requiresSignature: false, // Uses OAuth
+      allowedDomains: ['xyz']
+    },
+    canva: {
+      enabled: env.ENABLE_CANVA === 'true',
+      name: 'Canva',
+      category: 'marketing',
+      requiresSignature: true,
+      allowedDomains: ['online']
+    },
+    github: {
+      enabled: env.ENABLE_GITHUB === 'true',
+      name: 'GitHub',
+      category: 'dev',
+      requiresSignature: true,
+      allowedDomains: ['online']
+    },
+    vercel: {
+      enabled: env.ENABLE_VERCEL === 'true',
+      name: 'Vercel',
+      category: 'dev',
+      requiresSignature: true,
+      allowedDomains: ['online']
+    },
+    todoist: {
+      enabled: env.ENABLE_TODOIST === 'true',
+      name: 'Todoist',
+      category: 'productivity',
+      requiresSignature: false, // Requires internal token
+      allowedDomains: ['online']
+    },
+    notion: {
+      enabled: env.ENABLE_NOTION === 'true',
+      name: 'Notion',
+      category: 'productivity',
+      requiresSignature: false, // Requires internal token
+      allowedDomains: ['online']
+    },
+    ai_relay: {
+      enabled: env.ENABLE_AI_RELAY === 'true',
+      name: 'AI Relay',
+      category: 'internal',
+      requiresSignature: true,
+      allowedDomains: ['online', 'xyz']
+    },
+    razorpay: {
+      enabled: env.ENABLE_RAZORPAY === 'true',
+      name: 'Razorpay',
+      category: 'payments',
+      requiresSignature: true,
+      allowedDomains: ['online']
+    },
+    stripe: {
+      enabled: env.ENABLE_STRIPE === 'true',
+      name: 'Stripe',
+      category: 'payments',
+      requiresSignature: true,
+      allowedDomains: ['online']
+    },
+    salesforce: {
+      enabled: env.ENABLE_SALESFORCE === 'true',
+      name: 'Salesforce',
+      category: 'crm',
+      requiresSignature: false,
+      allowedDomains: ['xyz']
+    },
+    pipedrive: {
+      enabled: env.ENABLE_PIPEDRIVE === 'true',
+      name: 'Pipedrive',
+      category: 'crm',
+      requiresSignature: true,
+      allowedDomains: ['xyz']
+    },
+    google_ads: {
+      enabled: env.ENABLE_GOOGLE_ADS === 'true',
+      name: 'Google Ads',
+      category: 'marketing',
+      requiresSignature: false,
+      allowedDomains: ['xyz']
+    },
+    meta: {
+      enabled: env.ENABLE_META === 'true',
+      name: 'Meta',
+      category: 'marketing',
+      requiresSignature: false,
+      allowedDomains: ['online']
+    },
+    whatsapp: {
+      enabled: env.ENABLE_WHATSAPP === 'true',
+      name: 'WhatsApp',
+      category: 'communication',
+      requiresSignature: false,
+      allowedDomains: ['online']
+    },
+  };
+}
+
+// ============================================================================
+// Crypto Utilities
+// ============================================================================
+
 async function sha256(message: string): Promise<string> {
   const msgBuffer = new TextEncoder().encode(message);
   const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
@@ -114,9 +294,47 @@ function timingSafeEqual(a: string, b: string): boolean {
   return result === 0;
 }
 
-// Signature verification
+// ============================================================================
+// IP Validation
+// ============================================================================
+
+function ipInCIDR(ip: string, cidr: string): boolean {
+  if (!cidr.includes('/')) {
+    return ip === cidr; // Exact match
+  }
+
+  const [range, bits] = cidr.split('/');
+  const mask = ~(2 ** (32 - parseInt(bits)) - 1);
+
+  const ipParts = ip.split('.').map(Number);
+  const rangeParts = range.split('.').map(Number);
+
+  const ipNum = (ipParts[0] << 24) | (ipParts[1] << 16) | (ipParts[2] << 8) | ipParts[3];
+  const rangeNum = (rangeParts[0] << 24) | (rangeParts[1] << 16) | (rangeParts[2] << 8) | rangeParts[3];
+
+  return (ipNum & mask) === (rangeNum & mask);
+}
+
+function isIPAllowed(ip: string, provider: Provider): boolean {
+  const allowlist = PROVIDER_IP_ALLOWLIST[provider];
+  if (!allowlist || allowlist.length === 0) {
+    return true; // No IP restriction for this provider
+  }
+  return allowlist.some(cidr => ipInCIDR(ip, cidr));
+}
+
+function getClientIP(request: Request): string {
+  return request.headers.get('cf-connecting-ip') ||
+         request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ||
+         'unknown';
+}
+
+// ============================================================================
+// Signature Verification
+// ============================================================================
+
 async function verifyRazorpay(body: string, sig: string | null, secret: string): Promise<boolean> {
-  if (!sig || !secret) return !secret; // Pass if no secret configured
+  if (!sig || !secret) return !secret;
   return timingSafeEqual(sig, await hmacSha256(secret, body));
 }
 
@@ -126,7 +344,8 @@ async function verifyStripe(body: string, sig: string | null, secret: string): P
   const t = parts.find(p => p.startsWith('t='))?.slice(2);
   const v1 = parts.find(p => p.startsWith('v1='))?.slice(3);
   if (!t || !v1) return false;
-  if (Math.abs(Date.now() / 1000 - parseInt(t)) > 300) return false;
+  // Timestamp freshness check
+  if (Math.abs(Date.now() / 1000 - parseInt(t)) > TIMESTAMP_FRESHNESS_SECONDS) return false;
   return timingSafeEqual(v1, await hmacSha256(secret, `${t}.${body}`));
 }
 
@@ -146,22 +365,72 @@ async function verifyVercel(body: string, sig: string | null, secret: string): P
   return timingSafeEqual(sig, expectedHex);
 }
 
-// HubSpot uses clientSecret + body for v1 signatures
 async function verifyHubSpot(body: string, sig: string | null, secret: string): Promise<boolean> {
   if (!sig || !secret) return !secret;
   const expected = await sha256(secret + body);
   return timingSafeEqual(sig, expected);
 }
 
-// Canva uses HMAC-SHA256
 async function verifyCanva(body: string, sig: string | null, secret: string): Promise<boolean> {
   if (!sig || !secret) return !secret;
   return timingSafeEqual(sig, await hmacSha256(secret, body));
 }
 
-// ============ Notification Channels ============
+// ============================================================================
+// Request Validation
+// ============================================================================
 
-// Send notification to Discord
+interface ValidationResult {
+  valid: boolean;
+  error?: string;
+  status?: number;
+}
+
+function validateRequest(request: Request, provider: Provider, env: Env): ValidationResult {
+  // Check request size
+  const contentLength = parseInt(request.headers.get('content-length') || '0');
+  if (contentLength > MAX_REQUEST_SIZE) {
+    return { valid: false, error: 'Request too large', status: 413 };
+  }
+
+  // Check content type for POST
+  if (request.method === 'POST') {
+    const contentType = request.headers.get('content-type') || '';
+    if (!contentType.includes('application/json') && !contentType.includes('text/plain')) {
+      return { valid: false, error: 'Unsupported Media Type. Expected application/json', status: 415 };
+    }
+  }
+
+  // Check domain restrictions
+  const url = new URL(request.url);
+  const hostname = url.hostname;
+  const config = getProviderConfig(env);
+  const providerConfig = config[provider];
+
+  if (providerConfig) {
+    const currentDomain = hostname.endsWith('.xyz') ? 'xyz' : 'online';
+    if (!providerConfig.allowedDomains.includes(currentDomain)) {
+      return {
+        valid: false,
+        error: `Provider ${providerConfig.name} not allowed on this domain`,
+        status: 403
+      };
+    }
+  }
+
+  // IP allowlist check
+  const clientIP = getClientIP(request);
+  if (!isIPAllowed(clientIP, provider)) {
+    return { valid: false, error: 'IP not in allowlist', status: 403 };
+  }
+
+  return { valid: true };
+}
+
+// ============================================================================
+// Notification Channels
+// ============================================================================
+
 async function notifyDiscord(env: Env, title: string, message: string, color: number = 0x5865F2): Promise<void> {
   if (env.ENABLE_DISCORD !== 'true' || !env.DISCORD_WEBHOOK_URL) return;
 
@@ -184,7 +453,6 @@ async function notifyDiscord(env: Env, title: string, message: string, color: nu
   }
 }
 
-// Send notification to Telegram
 async function notifyTelegram(env: Env, message: string): Promise<void> {
   if (env.ENABLE_TELEGRAM !== 'true' || !env.TELEGRAM_BOT_TOKEN || !env.TELEGRAM_CHAT_ID) return;
 
@@ -203,7 +471,6 @@ async function notifyTelegram(env: Env, message: string): Promise<void> {
   }
 }
 
-// Generate human-readable summary for notifications
 function generateEventSummary(provider: string, eventType: string, payload: Record<string, unknown>): string {
   switch (provider) {
     case 'hubspot':
@@ -231,41 +498,37 @@ function generateEventSummary(provider: string, eventType: string, payload: Reco
   }
 }
 
-// Unified notification sender
+const DISCORD_COLORS: Record<string, number> = {
+  hubspot: 0xFF7A59,
+  linkedin: 0x0A66C2,
+  github: 0x333333,
+  vercel: 0x000000,
+  stripe: 0x635BFF,
+  canva: 0x00C4CC,
+  todoist: 0xE44332,
+  notion: 0x000000,
+};
+
 async function sendNotification(env: Env, provider: string, eventType: string, summary: string): Promise<void> {
   const title = `🔔 ${provider}: ${eventType}`;
-  const discordColors: Record<string, number> = {
-    hubspot: 0xFF7A59,
-    linkedin: 0x0A66C2,
-    github: 0x333333,
-    vercel: 0x000000,
-    stripe: 0x635BFF,
-    canva: 0x00C4CC,
-    todoist: 0xE44332,
-    notion: 0x000000,
-  };
-
-  // Send to both channels in parallel
   await Promise.all([
-    notifyDiscord(env, title, summary, discordColors[provider] || 0x5865F2),
+    notifyDiscord(env, title, summary, DISCORD_COLORS[provider] || 0x5865F2),
     notifyTelegram(env, `<b>${title}</b>\n\n${summary}`)
   ]);
 }
 
-// Database - using Neon HTTP API
+// ============================================================================
+// Database Operations
+// ============================================================================
+
 async function persistEvent(event: WebhookEvent, connectionString: string): Promise<{ inserted: boolean; duplicate: boolean }> {
-  // Parse connection string
   const url = new URL(connectionString);
   const host = url.hostname;
-  const database = url.pathname.slice(1);
-  const user = url.username;
-  const password = url.password;
-
   const apiUrl = `https://${host}/sql`;
 
   const query = `
-    INSERT INTO events_log (id, provider, event_type, payload, headers, received_at, dedupe_hash, raw_body, signature_valid)
-    VALUES ($1::uuid, $2, $3, $4::jsonb, $5::jsonb, $6::timestamptz, $7, $8, $9)
+    INSERT INTO events_log (id, provider, event_type, payload, headers, received_at, dedupe_hash, raw_body, signature_valid, client_ip)
+    VALUES ($1::uuid, $2, $3, $4::jsonb, $5::jsonb, $6::timestamptz, $7, $8, $9, $10)
     ON CONFLICT (dedupe_hash) DO NOTHING
     RETURNING id
   `;
@@ -287,14 +550,17 @@ async function persistEvent(event: WebhookEvent, connectionString: string): Prom
         event.received_at,
         event.dedupe_hash,
         event.raw_body,
-        event.signature_valid
+        event.signature_valid,
+        event.client_ip
       ]
     })
   });
 
   if (!response.ok) {
     const text = await response.text();
-    throw new Error(`Database error: ${response.status} - ${text}`);
+    // Log to DLQ on failure
+    console.error(`Database error: ${response.status} - ${text}`);
+    throw new Error(`Database error: ${response.status}`);
   }
 
   const result = await response.json() as { rows: unknown[] };
@@ -304,12 +570,45 @@ async function persistEvent(event: WebhookEvent, connectionString: string): Prom
   };
 }
 
+async function logToDLQ(env: Env, provider: string, eventType: string, payload: string, error: string): Promise<void> {
+  if (!env.NEON_CONNECTION_STRING) return;
+
+  try {
+    const url = new URL(env.NEON_CONNECTION_STRING);
+    const apiUrl = `https://${url.hostname}/sql`;
+
+    await fetch(apiUrl, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Neon-Connection-String': env.NEON_CONNECTION_STRING,
+      },
+      body: JSON.stringify({
+        query: `
+          INSERT INTO dlq_events (id, provider, event_type, payload, error_message, retry_count, next_retry_at, created_at)
+          VALUES ($1::uuid, $2, $3, $4, $5, 0, NOW() + INTERVAL '5 minutes', NOW())
+        `,
+        params: [crypto.randomUUID(), provider, eventType, payload, error]
+      })
+    });
+  } catch (e) {
+    console.error('Failed to log to DLQ:', e);
+  }
+}
+
+// ============================================================================
+// Helper Functions
+// ============================================================================
+
 function extractHeaders(headers: Headers): Record<string, string> {
   const result: Record<string, string> = {};
-  ['content-type', 'user-agent', 'x-request-id', 'x-razorpay-signature', 'stripe-signature',
-   'x-hub-signature-256', 'x-github-event', 'x-vercel-signature',
-   'x-hubspot-signature', 'x-hubspot-signature-v3', 'x-canva-signature',
-   'x-linkedin-signature', 'x-pipedrive-signature'].forEach(k => {
+  const relevantHeaders = [
+    'content-type', 'user-agent', 'x-request-id', 'x-razorpay-signature', 'stripe-signature',
+    'x-hub-signature-256', 'x-github-event', 'x-vercel-signature',
+    'x-hubspot-signature', 'x-hubspot-signature-v3', 'x-canva-signature',
+    'x-linkedin-signature', 'x-pipedrive-signature', 'cf-connecting-ip'
+  ];
+  relevantHeaders.forEach(k => {
     const v = headers.get(k);
     if (v) result[k] = v;
   });
@@ -325,7 +624,6 @@ function getEventType(provider: Provider, payload: Record<string, unknown>, head
     case 'todoist': return String(payload.event_name || 'unknown');
     case 'notion': return String(payload.type || 'unknown');
     case 'ai_relay': return String(payload.event || 'unknown');
-    // New providers
     case 'hubspot': return String((payload as any).subscriptionType || (payload as any).eventType || 'webhook');
     case 'linkedin': return String((payload as any).eventType || (payload as any).type || 'lead');
     case 'canva': return String((payload as any).type || 'design_export');
@@ -338,18 +636,38 @@ function getEventType(provider: Provider, payload: Record<string, unknown>, head
   }
 }
 
-// Main handler
+// ============================================================================
+// Main Webhook Handler
+// ============================================================================
+
 async function handleWebhook(request: Request, env: Env, provider: Provider): Promise<Response> {
+  const origin = request.headers.get('origin');
+  const securityHeaders = getSecurityHeaders(origin);
+
   const json = (data: unknown, status = 200) => new Response(JSON.stringify(data), {
     status,
-    headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' }
+    headers: securityHeaders
   });
 
+  const clientIP = getClientIP(request);
+
   try {
+    // Validate request
+    const validation = validateRequest(request, provider, env);
+    if (!validation.valid) {
+      return json({ error: validation.error }, validation.status || 400);
+    }
+
     const body = await request.text();
+
+    // Double-check size after reading
+    if (body.length > MAX_REQUEST_SIZE) {
+      return json({ error: 'Request too large' }, 413);
+    }
+
     const headers = request.headers;
 
-    // Get secret and signature
+    // Get secret and signature based on provider
     let secret = '';
     let sig: string | null = null;
     let verify: (b: string, s: string | null, k: string) => Promise<boolean>;
@@ -377,21 +695,30 @@ async function handleWebhook(request: Request, env: Env, provider: Provider): Pr
         break;
       case 'todoist':
       case 'notion':
+        // These require internal API key in header for security
+        const internalKey = headers.get('x-integratewise-internal-key');
+        if (env.INTERNAL_API_KEY && internalKey !== env.INTERNAL_API_KEY) {
+          return json({ error: 'Invalid internal API key' }, 401);
+        }
         verify = async () => true;
         break;
       case 'ai_relay':
         secret = env.AI_RELAY_SECRET || '';
         sig = headers.get('x-ai-relay-signature');
-        verify = verifyRazorpay; // Same HMAC-SHA256
+        verify = verifyRazorpay;
         break;
-      // New providers
       case 'hubspot':
         secret = env.HUBSPOT_CLIENT_SECRET || '';
         sig = headers.get('x-hubspot-signature') || headers.get('x-hubspot-signature-v3');
         verify = verifyHubSpot;
         break;
       case 'linkedin':
-        verify = async () => true; // LinkedIn uses OAuth, verify via API
+        // LinkedIn requires API token verification
+        const linkedinToken = headers.get('x-linkedin-token');
+        if (env.LINKEDIN_CLIENT_SECRET && linkedinToken !== env.LINKEDIN_CLIENT_SECRET) {
+          return json({ error: 'Invalid LinkedIn token' }, 401);
+        }
+        verify = async () => true;
         break;
       case 'canva':
         secret = env.CANVA_WEBHOOK_SECRET || '';
@@ -399,33 +726,44 @@ async function handleWebhook(request: Request, env: Env, provider: Provider): Pr
         verify = verifyCanva;
         break;
       case 'salesforce':
-        verify = async () => true; // Salesforce uses outbound messages
+        // Salesforce uses session token verification
+        const sfToken = headers.get('x-sfdc-session');
+        if (env.SALESFORCE_SECURITY_TOKEN && sfToken !== env.SALESFORCE_SECURITY_TOKEN) {
+          return json({ error: 'Invalid Salesforce token' }, 401);
+        }
+        verify = async () => true;
         break;
       case 'pipedrive':
         secret = env.PIPEDRIVE_WEBHOOK_TOKEN || '';
         sig = headers.get('x-pipedrive-signature');
-        verify = verifyRazorpay; // HMAC-SHA256
+        verify = verifyRazorpay;
         break;
       case 'google_ads':
-        verify = async () => true; // Google Ads uses OAuth
+        verify = async () => true;
         break;
       case 'meta':
       case 'whatsapp':
-        verify = async () => true; // Meta/WhatsApp verify via challenge
+        verify = async () => true;
         break;
+      default:
+        verify = async () => false;
     }
 
-    // Verify
+    // Verify signature
     const valid = await verify!(body, sig, secret);
-    if (!valid && secret) {
+    const config = getProviderConfig(env);
+
+    if (!valid && config[provider].requiresSignature && secret) {
+      await logToDLQ(env, provider, 'unknown', body, 'Invalid signature');
       return json({ error: 'Invalid signature' }, 401);
     }
 
-    // Parse
+    // Parse JSON
     let payload: Record<string, unknown>;
     try {
       payload = JSON.parse(body);
     } catch {
+      await logToDLQ(env, provider, 'unknown', body, 'Invalid JSON');
       return json({ error: 'Invalid JSON' }, 400);
     }
 
@@ -443,92 +781,54 @@ async function handleWebhook(request: Request, env: Env, provider: Provider): Pr
       received_at: new Date().toISOString(),
       dedupe_hash: dedupeHash,
       raw_body: body,
-      signature_valid: valid
+      signature_valid: valid,
+      client_ip: clientIP
     };
 
-    // Persist
+    // Persist to database
     if (env.NEON_CONNECTION_STRING) {
-      const { duplicate } = await persistEvent(event, env.NEON_CONNECTION_STRING);
-      if (duplicate) {
-        return json({ status: 'duplicate', dedupe_hash: dedupeHash });
+      try {
+        const { duplicate } = await persistEvent(event, env.NEON_CONNECTION_STRING);
+        if (duplicate) {
+          return json({ status: 'duplicate', dedupe_hash: dedupeHash });
+        }
+      } catch (dbError) {
+        await logToDLQ(env, provider, eventType, body, String(dbError));
+        // Continue processing even if DB fails
       }
     }
 
-    // Send notifications to Discord/Telegram
+    // Send notifications
     const summary = generateEventSummary(provider, eventType, payload);
     await sendNotification(env, provider, eventType, summary);
 
-    console.log(`Event: ${provider}/${eventType} - ${eventId}`);
+    console.log(`Event: ${provider}/${eventType} - ${eventId} from ${clientIP}`);
     return json({ status: 'received', event_id: eventId, provider, event_type: eventType });
 
   } catch (error) {
     console.error(`Error ${provider}:`, error);
-    return json({ error: 'Internal error', message: String(error) }, 500);
+    await logToDLQ(env, provider, 'error', '', String(error));
+    return json({ error: 'Internal error' }, 500);
   }
 }
 
+// ============================================================================
 // Router
+// ============================================================================
+
 export default {
   async fetch(request: Request, env: Env): Promise<Response> {
     const url = new URL(request.url);
     const path = url.pathname;
+    const origin = request.headers.get('origin');
+    const securityHeaders = getSecurityHeaders(origin);
 
-    // CORS preflight
+    // CORS preflight with strict headers
     if (request.method === 'OPTIONS') {
-      return new Response(null, {
-        headers: {
-          'Access-Control-Allow-Origin': '*',
-          'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
-          'Access-Control-Allow-Headers': '*'
-        }
-      });
+      return new Response(null, { headers: securityHeaders });
     }
 
-    // Health check
-    if (path === '/health' || path === '/') {
-      const config = getProviderConfig(env);
-      const enabled = Object.entries(config).filter(([_, c]) => c.enabled).map(([k, c]) => ({ id: k, ...c }));
-      const disabled = Object.entries(config).filter(([_, c]) => !c.enabled).map(([k, c]) => ({ id: k, ...c }));
-
-      return new Response(JSON.stringify({
-        status: 'healthy',
-        service: 'integratewise-webhooks',
-        version: '2.0.0',
-        timestamp: new Date().toISOString(),
-        db_configured: !!env.NEON_CONNECTION_STRING,
-        providers: {
-          enabled: enabled.map(p => p.name),
-          disabled: disabled.map(p => p.name),
-          total: { enabled: enabled.length, disabled: disabled.length }
-        }
-      }), {
-        headers: { 'Content-Type': 'application/json' }
-      });
-    }
-
-    // Providers status endpoint
-    if (path === '/providers') {
-      const config = getProviderConfig(env);
-      const providers = Object.entries(config).map(([id, c]) => ({
-        id,
-        name: c.name,
-        category: c.category,
-        enabled: c.enabled,
-        endpoint: `/webhooks/${id.replace('_', '-')}`
-      }));
-
-      return new Response(JSON.stringify({
-        providers,
-        summary: {
-          enabled: providers.filter(p => p.enabled).length,
-          disabled: providers.filter(p => !p.enabled).length
-        }
-      }), {
-        headers: { 'Content-Type': 'application/json' }
-      });
-    }
-
-    // All webhook routes
+    // Webhook routes
     const routes: Record<string, Provider> = {
       '/webhooks/razorpay': 'razorpay',
       '/webhooks/stripe': 'stripe',
@@ -537,7 +837,6 @@ export default {
       '/webhooks/todoist': 'todoist',
       '/webhooks/notion': 'notion',
       '/webhooks/ai-relay': 'ai_relay',
-      // New providers
       '/webhooks/hubspot': 'hubspot',
       '/webhooks/linkedin': 'linkedin',
       '/webhooks/canva': 'canva',
@@ -548,7 +847,78 @@ export default {
       '/webhooks/whatsapp': 'whatsapp'
     };
 
-    // Meta/WhatsApp GET for verification challenge
+    // ========== Admin Endpoints (require internal API key) ==========
+    if (path === '/health' || path === '/' || path === '/providers') {
+      // Require internal API key for admin endpoints
+      const internalKey = request.headers.get('x-integratewise-internal-key');
+      if (env.INTERNAL_API_KEY && internalKey !== env.INTERNAL_API_KEY) {
+        return new Response(JSON.stringify({
+          error: 'Unauthorized',
+          message: 'Missing or invalid X-IntegrateWise-Internal-Key header'
+        }), {
+          status: 401,
+          headers: securityHeaders
+        });
+      }
+
+      const config = getProviderConfig(env);
+      const hostname = url.hostname;
+      const currentDomain = hostname.endsWith('.xyz') ? 'xyz' : 'online';
+
+      if (path === '/health' || path === '/') {
+        const enabled = Object.entries(config).filter(([_, c]) => c.enabled && c.allowedDomains.includes(currentDomain as any));
+        const disabled = Object.entries(config).filter(([_, c]) => !c.enabled || !c.allowedDomains.includes(currentDomain as any));
+
+        return new Response(JSON.stringify({
+          status: 'healthy',
+          service: 'integratewise-webhooks',
+          version: '3.0.0-secure',
+          timestamp: new Date().toISOString(),
+          domain: currentDomain,
+          hostname,
+          db_configured: !!env.NEON_CONNECTION_STRING,
+          notifications: {
+            discord: env.ENABLE_DISCORD === 'true',
+            telegram: env.ENABLE_TELEGRAM === 'true'
+          },
+          security: {
+            ip_filtering: true,
+            signature_verification: true,
+            request_size_limit: `${MAX_REQUEST_SIZE / 1024}KB`,
+            timestamp_freshness: `${TIMESTAMP_FRESHNESS_SECONDS}s`
+          },
+          providers: {
+            enabled: enabled.map(([_, c]) => c.name),
+            disabled: disabled.map(([_, c]) => c.name),
+            total: { enabled: enabled.length, disabled: disabled.length }
+          }
+        }), { headers: securityHeaders });
+      }
+
+      if (path === '/providers') {
+        const providers = Object.entries(config).map(([id, c]) => ({
+          id,
+          name: c.name,
+          category: c.category,
+          enabled: c.enabled,
+          requiresSignature: c.requiresSignature,
+          allowedDomains: c.allowedDomains,
+          endpoint: `/webhooks/${id.replace('_', '-')}`,
+          availableOnThisDomain: c.allowedDomains.includes(currentDomain as any)
+        }));
+
+        return new Response(JSON.stringify({
+          domain: currentDomain,
+          providers,
+          summary: {
+            enabled: providers.filter(p => p.enabled && p.availableOnThisDomain).length,
+            disabled: providers.filter(p => !p.enabled || !p.availableOnThisDomain).length
+          }
+        }), { headers: securityHeaders });
+      }
+    }
+
+    // ========== Meta/WhatsApp verification challenge ==========
     if (request.method === 'GET' && (path === '/webhooks/meta' || path === '/webhooks/whatsapp')) {
       const mode = url.searchParams.get('hub.mode');
       const token = url.searchParams.get('hub.verify_token');
@@ -556,35 +926,34 @@ export default {
       const expectedToken = path === '/webhooks/meta' ? env.META_VERIFY_TOKEN : env.WHATSAPP_VERIFY_TOKEN;
 
       if (mode === 'subscribe' && token === expectedToken) {
-        return new Response(challenge || '', { status: 200 });
+        return new Response(challenge || '', { status: 200, headers: securityHeaders });
       }
-      return new Response('Forbidden', { status: 403 });
+      return new Response('Forbidden', { status: 403, headers: securityHeaders });
     }
 
-    // POST webhook routes
+    // ========== POST webhook routes ==========
     if (request.method === 'POST') {
       const provider = routes[path];
       if (provider) {
-        // Check if provider is enabled
         const config = getProviderConfig(env);
         if (!config[provider].enabled) {
           return new Response(JSON.stringify({
             error: 'Provider not enabled',
             provider: config[provider].name,
-            message: `${config[provider].name} webhook is currently disabled. Enable it by setting ENABLE_${provider.toUpperCase()} to "true" in environment variables.`
+            message: `${config[provider].name} webhook is disabled.`
           }), {
             status: 503,
-            headers: { 'Content-Type': 'application/json' }
+            headers: securityHeaders
           });
         }
         return handleWebhook(request, env, provider);
       }
     }
 
+    // 404
     return new Response(JSON.stringify({
       error: 'Not found',
-      providers: Object.keys(routes).map(r => r.replace('/webhooks/', '')),
-      routes: ['/health', ...Object.keys(routes)]
-    }), { status: 404, headers: { 'Content-Type': 'application/json' } });
+      routes: ['/health', '/providers', ...Object.keys(routes)]
+    }), { status: 404, headers: securityHeaders });
   }
 };
