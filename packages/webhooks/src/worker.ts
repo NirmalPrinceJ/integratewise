@@ -11,7 +11,13 @@
  * - Strict CORS (only integratewise domains)
  * - HSTS headers
  * - Rate limiting awareness
+ *
+ * AI Orchestration:
+ * - AI Relay endpoint receives AI-generated payloads
+ * - Orchestrates to downstream apps (Todoist, Notion, GitHub, HubSpot)
  */
+
+import { orchestrate, validateAIPayload, type AIPayload } from './orchestrator';
 
 // ============================================================================
 // Configuration & Types
@@ -66,6 +72,18 @@ export interface Env {
 
   // Domain environment
   ENV_DOMAIN: string; // 'online' or 'xyz'
+
+  // Orchestrator - downstream app credentials
+  TODOIST_API_TOKEN: string;
+  TODOIST_PROJECT_ID: string;
+  NOTION_API_KEY: string;
+  NOTION_DATABASE_ID: string;
+  GITHUB_TOKEN: string;
+  GITHUB_OWNER: string;
+  GITHUB_REPO: string;
+  HUBSPOT_ACCESS_TOKEN: string;
+  LINEAR_API_KEY: string;
+  LINEAR_TEAM_ID: string;
 }
 
 // Security constants
@@ -801,6 +819,35 @@ async function handleWebhook(request: Request, env: Env, provider: Provider): Pr
     // Send notifications
     const summary = generateEventSummary(provider, eventType, payload);
     await sendNotification(env, provider, eventType, summary);
+
+    // AI Relay Orchestration - route to downstream apps
+    if (provider === 'ai_relay') {
+      const validation = validateAIPayload(payload);
+      if (validation.valid && validation.payload) {
+        const orchestrationResult = await orchestrate(validation.payload, {
+          TODOIST_API_TOKEN: env.TODOIST_API_TOKEN,
+          TODOIST_PROJECT_ID: env.TODOIST_PROJECT_ID,
+          NOTION_API_KEY: env.NOTION_API_KEY,
+          NOTION_DATABASE_ID: env.NOTION_DATABASE_ID,
+          GITHUB_TOKEN: env.GITHUB_TOKEN,
+          GITHUB_OWNER: env.GITHUB_OWNER,
+          GITHUB_REPO: env.GITHUB_REPO,
+          HUBSPOT_ACCESS_TOKEN: env.HUBSPOT_ACCESS_TOKEN,
+          LINEAR_API_KEY: env.LINEAR_API_KEY,
+          LINEAR_TEAM_ID: env.LINEAR_TEAM_ID
+        });
+
+        console.log(`AI Relay orchestrated: ${orchestrationResult.summary.success} success, ${orchestrationResult.summary.failed} failed`);
+
+        return json({
+          status: 'orchestrated',
+          event_id: eventId,
+          provider,
+          event_type: eventType,
+          orchestration: orchestrationResult
+        });
+      }
+    }
 
     console.log(`Event: ${provider}/${eventType} - ${eventId} from ${clientIP}`);
     return json({ status: 'received', event_id: eventId, provider, event_type: eventType });
