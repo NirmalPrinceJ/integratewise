@@ -39,6 +39,13 @@ ENABLE_RAZORPAY = "false"
 ENABLE_STRIPE = "false"
 
 # ============================================================================
+# Notification Channels (Discord & Telegram - replaces Slack)
+# ============================================================================
+# Set to "true" once you configure the webhook URLs/tokens
+ENABLE_DISCORD = "false"
+ENABLE_TELEGRAM = "false"
+
+# ============================================================================
 # Secrets (set via wrangler secret put --env production)
 # ============================================================================
 # Database
@@ -59,6 +66,11 @@ ENABLE_STRIPE = "false"
 # wrangler secret put PIPEDRIVE_WEBHOOK_TOKEN --env production
 # wrangler secret put META_VERIFY_TOKEN --env production
 # wrangler secret put WHATSAPP_VERIFY_TOKEN --env production
+
+# Notification channel secrets
+# wrangler secret put DISCORD_WEBHOOK_URL --env production
+# wrangler secret put TELEGRAM_BOT_TOKEN --env production
+# wrangler secret put TELEGRAM_CHAT_ID --env production
 
 # ============================================================================
 # Observability

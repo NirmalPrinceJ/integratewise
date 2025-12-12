@@ -21,6 +21,11 @@ export interface Env {
   META_VERIFY_TOKEN: string;
   WHATSAPP_VERIFY_TOKEN: string;
 
+  // Notification channels
+  DISCORD_WEBHOOK_URL: string;
+  TELEGRAM_BOT_TOKEN: string;
+  TELEGRAM_CHAT_ID: string;
+
   // Provider enable switches (set to "true" to enable)
   ENABLE_HUBSPOT: string;
   ENABLE_LINKEDIN: string;
@@ -37,6 +42,10 @@ export interface Env {
   ENABLE_GOOGLE_ADS: string;
   ENABLE_META: string;
   ENABLE_WHATSAPP: string;
+
+  // Notification channel switches
+  ENABLE_DISCORD: string;
+  ENABLE_TELEGRAM: string;
 }
 
 // Provider configuration
@@ -148,6 +157,99 @@ async function verifyHubSpot(body: string, sig: string | null, secret: string): 
 async function verifyCanva(body: string, sig: string | null, secret: string): Promise<boolean> {
   if (!sig || !secret) return !secret;
   return timingSafeEqual(sig, await hmacSha256(secret, body));
+}
+
+// ============ Notification Channels ============
+
+// Send notification to Discord
+async function notifyDiscord(env: Env, title: string, message: string, color: number = 0x5865F2): Promise<void> {
+  if (env.ENABLE_DISCORD !== 'true' || !env.DISCORD_WEBHOOK_URL) return;
+
+  try {
+    await fetch(env.DISCORD_WEBHOOK_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        embeds: [{
+          title,
+          description: message,
+          color,
+          timestamp: new Date().toISOString(),
+          footer: { text: 'IntegrateWise Webhooks' }
+        }]
+      })
+    });
+  } catch (e) {
+    console.error('Discord notification failed:', e);
+  }
+}
+
+// Send notification to Telegram
+async function notifyTelegram(env: Env, message: string): Promise<void> {
+  if (env.ENABLE_TELEGRAM !== 'true' || !env.TELEGRAM_BOT_TOKEN || !env.TELEGRAM_CHAT_ID) return;
+
+  try {
+    await fetch(`https://api.telegram.org/bot${env.TELEGRAM_BOT_TOKEN}/sendMessage`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        chat_id: env.TELEGRAM_CHAT_ID,
+        text: message,
+        parse_mode: 'HTML'
+      })
+    });
+  } catch (e) {
+    console.error('Telegram notification failed:', e);
+  }
+}
+
+// Generate human-readable summary for notifications
+function generateEventSummary(provider: string, eventType: string, payload: Record<string, unknown>): string {
+  switch (provider) {
+    case 'hubspot':
+      return `Contact/Deal updated: ${(payload as any).propertyName || eventType}`;
+    case 'linkedin':
+      return `Lead received: ${(payload as any).formName || 'LinkedIn Lead Gen'}`;
+    case 'github':
+      const repo = (payload as any).repository?.full_name || 'unknown';
+      const action = (payload as any).action || eventType;
+      return `${repo}: ${action}`;
+    case 'vercel':
+      const project = (payload as any).payload?.deployment?.name || (payload as any).name || 'Project';
+      return `${project}: ${eventType}`;
+    case 'stripe':
+      const amount = (payload as any).data?.object?.amount;
+      return amount ? `Payment: $${(amount / 100).toFixed(2)}` : eventType;
+    case 'todoist':
+      return `Task: ${(payload as any).event_data?.content || eventType}`;
+    case 'notion':
+      return `Page updated: ${(payload as any).page?.id || eventType}`;
+    case 'canva':
+      return `Design: ${(payload as any).design?.name || 'Export ready'}`;
+    default:
+      return `Event: ${eventType}`;
+  }
+}
+
+// Unified notification sender
+async function sendNotification(env: Env, provider: string, eventType: string, summary: string): Promise<void> {
+  const title = `🔔 ${provider}: ${eventType}`;
+  const discordColors: Record<string, number> = {
+    hubspot: 0xFF7A59,
+    linkedin: 0x0A66C2,
+    github: 0x333333,
+    vercel: 0x000000,
+    stripe: 0x635BFF,
+    canva: 0x00C4CC,
+    todoist: 0xE44332,
+    notion: 0x000000,
+  };
+
+  // Send to both channels in parallel
+  await Promise.all([
+    notifyDiscord(env, title, summary, discordColors[provider] || 0x5865F2),
+    notifyTelegram(env, `<b>${title}</b>\n\n${summary}`)
+  ]);
 }
 
 // Database - using Neon HTTP API
@@ -351,6 +453,10 @@ async function handleWebhook(request: Request, env: Env, provider: Provider): Pr
         return json({ status: 'duplicate', dedupe_hash: dedupeHash });
       }
     }
+
+    // Send notifications to Discord/Telegram
+    const summary = generateEventSummary(provider, eventType, payload);
+    await sendNotification(env, provider, eventType, summary);
 
     console.log(`Event: ${provider}/${eventType} - ${eventId}`);
     return json({ status: 'received', event_id: eventId, provider, event_type: eventType });
