@@ -104,33 +104,33 @@ async function createNotionPage(
   }
 
   try {
+    // Simple page creation with just title and content
     const body: Record<string, unknown> = {
-      parent: env.NOTION_DATABASE_ID
-        ? { database_id: env.NOTION_DATABASE_ID }
-        : { page_id: env.NOTION_DATABASE_ID },
+      parent: { database_id: env.NOTION_DATABASE_ID },
       properties: {
-        title: {
+        'Doc name': {
           title: [{ text: { content: payload.content.title } }]
-        },
-        Source: {
-          select: { name: payload.source }
-        },
-        Priority: {
-          select: { name: payload.content.priority || 'medium' }
-        },
-        Status: {
-          select: { name: 'New' }
         }
       },
-      children: payload.content.body ? [
+      children: [
         {
           object: 'block',
-          type: 'paragraph',
-          paragraph: {
-            rich_text: [{ type: 'text', text: { content: payload.content.body } }]
+          type: 'callout',
+          callout: {
+            rich_text: [{ type: 'text', text: { content: `Source: ${payload.source} | Priority: ${payload.content.priority || 'medium'}` } }],
+            icon: { emoji: '🤖' }
           }
-        }
-      ] : []
+        },
+        ...(payload.content.body ? [
+          {
+            object: 'block',
+            type: 'paragraph',
+            paragraph: {
+              rich_text: [{ type: 'text', text: { content: payload.content.body } }]
+            }
+          }
+        ] : [])
+      ]
     };
 
     const response = await fetch('https://api.notion.com/v1/pages', {
