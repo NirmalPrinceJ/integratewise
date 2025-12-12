@@ -1,34 +1,90 @@
 # IntegrateWise
 
-Normalize once. Render anywhere. IntegrateWise is a static marketing and documentation site for the IntegrateWise platform: a unified customer hub that syncs Salesforce, HubSpot, Dynamics, or Zoho into the tools teams use (Notion, Airtable, Asana, ClickUp, Monday, Google Sheets).
+Unified business operations platform. Normalize once. Render anywhere.
 
-## Live URL
-- https://integratewise.co/
+## Live Services
 
-## Run locally
-```bash
-npm install -g wrangler
-wrangler dev --local
+| Service | URL | Platform |
+|---------|-----|----------|
+| Marketing Site | https://integratewise.co | Cloudflare Pages |
+| Hub Dashboard | https://integratewise-hub.vercel.app | Vercel |
+| Webhook Ingress | https://webhooks.integratewise.online | Cloudflare Workers |
+| Hub API | https://hub-controller-api.workers.dev | Cloudflare Workers |
+
+## Monorepo Structure
+
 ```
-The site is static; `wrangler dev` serves the current directory.
-
-## Deploy (Cloudflare Pages/Workers via Wrangler)
-```bash
-wrangler publish
+packages/
+├── website/      # Marketing site (Cloudflare Pages)
+├── hub/          # Hub Dashboard (Next.js on Vercel)
+├── api/          # Hub API (Hono on Cloudflare Workers)
+└── webhooks/     # Webhook Ingress (Cloudflare Workers)
 ```
-- Ensure `wrangler.jsonc` uses the correct environment name (default: `integratewise`).
-- Set repository homepage to https://integratewise.co/.
-- Protect the `main` branch before deploying.
 
-## Environment
-- No secrets required for static build.
-- Optional analytics or forms can post to your chosen endpoint; add env vars via `wrangler secret put` if used.
+## Webhook Providers (15 total)
 
-## Site map
-- Marketing: `index`, `platform`, `agents`, `services`, `solutions`, `pricing`, `resources`, `about`, `contact`, `sitemap.xml`, `robots.txt`
-- Docs: `/docs/index.html`, `/docs/data-model.html`, `/docs/agents/*.html`, `/docs/measurement.html`, `/docs/security.html`, `/docs/architecture.html`
-- Policy: `MEASUREMENT.md`, `SECURITY.md`
+| Provider | Endpoint | Category |
+|----------|----------|----------|
+| HubSpot | `/webhooks/hubspot` | CRM |
+| Salesforce | `/webhooks/salesforce` | CRM |
+| Pipedrive | `/webhooks/pipedrive` | Sales |
+| LinkedIn | `/webhooks/linkedin` | Marketing |
+| Canva | `/webhooks/canva` | Design |
+| Google Ads | `/webhooks/google-ads` | Marketing |
+| Meta | `/webhooks/meta` | Marketing |
+| WhatsApp | `/webhooks/whatsapp` | Communication |
+| Razorpay | `/webhooks/razorpay` | Payments |
+| Stripe | `/webhooks/stripe` | Payments |
+| GitHub | `/webhooks/github` | Dev |
+| Vercel | `/webhooks/vercel` | Dev |
+| Todoist | `/webhooks/todoist` | Productivity |
+| Notion | `/webhooks/notion` | Productivity |
+| AI Relay | `/webhooks/ai-relay` | Internal |
 
-## Release
-- Tag deployments with `site-v1.0.0` (created via `git tag site-v1.0.0`).
-- Suggested CI checks: HTML validation, link checking, sitemap verification.
+## Development
+
+```bash
+# Website (static)
+cd packages/website && wrangler dev
+
+# Hub Dashboard
+cd packages/hub && npm install && npm run dev
+
+# API
+cd packages/api && npm install && wrangler dev
+
+# Webhooks
+cd packages/webhooks && npm install && wrangler dev
+```
+
+## Deployment
+
+```bash
+# Website
+cd packages/website && wrangler publish
+
+# Hub (auto-deploys via Vercel on push)
+
+# API
+cd packages/api && wrangler deploy
+
+# Webhooks
+cd packages/webhooks && wrangler deploy
+```
+
+## Required Secrets
+
+Add via `wrangler secret put SECRET_NAME`:
+
+- `NEON_CONNECTION_STRING` - Postgres database
+- `HUBSPOT_CLIENT_SECRET` - HubSpot webhook verification
+- `LINKEDIN_CLIENT_SECRET` - LinkedIn API
+- `CANVA_WEBHOOK_SECRET` - Canva webhook verification
+- `SALESFORCE_SECURITY_TOKEN` - Salesforce API
+- `PIPEDRIVE_WEBHOOK_TOKEN` - Pipedrive API
+- `META_VERIFY_TOKEN` - Meta/Facebook verification
+- `WHATSAPP_VERIFY_TOKEN` - WhatsApp verification
+- `RAZORPAY_WEBHOOK_SECRET` - Razorpay payments
+- `STRIPE_ENDPOINT_SECRET` - Stripe payments
+- `GITHUB_WEBHOOK_SECRET` - GitHub events
+- `VERCEL_WEBHOOK_SECRET` - Vercel deployments

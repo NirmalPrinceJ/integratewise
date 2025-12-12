@@ -1,0 +1,40 @@
+# IntegrateWise Webhook Ingress Worker
+name = "integratewise-webhooks"
+main = "src/worker.ts"
+compatibility_date = "2024-12-01"
+compatibility_flags = ["nodejs_compat"]
+
+# ============================================================================
+# Production Environment
+# ============================================================================
+[env.production]
+name = "integratewise-webhooks"
+routes = [
+  { pattern = "webhooks.integratewise.online/*", zone_name = "integratewise.online" }
+]
+
+[env.production.vars]
+ENVIRONMENT = "production"
+
+# ============================================================================
+# Secrets (set via wrangler secret put --env production)
+# ============================================================================
+# wrangler secret put NEON_CONNECTION_STRING --env production
+# wrangler secret put RAZORPAY_WEBHOOK_SECRET --env production
+# wrangler secret put STRIPE_ENDPOINT_SECRET --env production
+# wrangler secret put GITHUB_WEBHOOK_SECRET --env production
+# wrangler secret put VERCEL_WEBHOOK_SECRET --env production
+# wrangler secret put AI_RELAY_SECRET --env production
+# wrangler secret put CODA_API_TOKEN --env production
+
+# ============================================================================
+# Observability
+# ============================================================================
+[observability]
+enabled = true
+
+[observability.logs]
+enabled = true
+head_sampling_rate = 1
+
+# Note: CPU limits require paid plan
