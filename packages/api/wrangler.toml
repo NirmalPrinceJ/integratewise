@@ -19,10 +19,13 @@ database_id = "b8aca43f-82dc-4f7d-a92c-bed84a78f30b"
 [ai]
 binding = "AI"
 
-# ============ Webhook Secrets ============
+# ============ Secrets ============
 # Add these secrets using: wrangler secret put SECRET_NAME
 #
-# Required for webhook integrations:
+# Notion Integration:
+# - NOTION_API_KEY            : Notion.so > Settings > Integrations > Create
+#
+# Webhook integrations:
 # - HUBSPOT_CLIENT_SECRET     : HubSpot Developer Portal > App > Auth
 # - LINKEDIN_CLIENT_SECRET    : LinkedIn Developer Portal > App
 # - CANVA_WEBHOOK_SECRET      : Canva App Settings
@@ -31,4 +34,4 @@ binding = "AI"
 # - META_VERIFY_TOKEN         : Facebook App Dashboard (you create this)
 # - WHATSAPP_VERIFY_TOKEN     : WhatsApp Business API (you create this)
 #
-# Example: wrangler secret put HUBSPOT_CLIENT_SECRET
+# Example: wrangler secret put NOTION_API_KEY
