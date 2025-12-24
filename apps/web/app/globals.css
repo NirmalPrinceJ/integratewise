@@ -1,0 +1,133 @@
+@import "tailwindcss";
+/* Removed tw-animate-css import that was causing parsing errors */
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* Attio-style light theme with green as primary instead of black */
+  --background: 255 255 255;
+  --foreground: 10 32 28;
+  --card: 250 253 252;
+  --card-foreground: 10 32 28;
+  --popover: 255 255 255;
+  --popover-foreground: 10 32 28;
+  --primary: 27 167 132;
+  --primary-foreground: 255 255 255;
+  --secondary: 240 253 250;
+  --secondary-foreground: 10 32 28;
+  --muted: 245 250 249;
+  --muted-foreground: 100 116 120;
+  --accent: 27 167 132;
+  --accent-foreground: 255 255 255;
+  --destructive: 239 68 68;
+  --destructive-foreground: 255 255 255;
+  --border: 230 240 238;
+  --input: 230 240 238;
+  --ring: 27 167 132;
+  --chart-1: 27 167 132;
+  --chart-2: 16 120 95;
+  --chart-3: 52 211 153;
+  --chart-4: 110 231 183;
+  --chart-5: 167 243 208;
+  --radius: 0.625rem;
+  --sidebar: 250 253 252;
+  --sidebar-foreground: 10 32 28;
+  --sidebar-primary: 27 167 132;
+  --sidebar-primary-foreground: 255 255 255;
+  --sidebar-accent: 240 253 250;
+  --sidebar-accent-foreground: 10 32 28;
+  --sidebar-border: 230 240 238;
+  --sidebar-ring: 27 167 132;
+}
+
+.dark {
+  --background: 10 32 28;
+  --foreground: 250 253 252;
+  --card: 15 45 38;
+  --card-foreground: 250 253 252;
+  --popover: 15 45 38;
+  --popover-foreground: 250 253 252;
+  --primary: 52 211 153;
+  --primary-foreground: 10 32 28;
+  --secondary: 20 55 48;
+  --secondary-foreground: 250 253 252;
+  --muted: 20 55 48;
+  --muted-foreground: 156 180 175;
+  --accent: 52 211 153;
+  --accent-foreground: 10 32 28;
+  --destructive: 220 38 38;
+  --destructive-foreground: 250 253 252;
+  --border: 30 70 60;
+  --input: 30 70 60;
+  --ring: 52 211 153;
+  --chart-1: 52 211 153;
+  --chart-2: 110 231 183;
+  --chart-3: 167 243 208;
+  --chart-4: 27 167 132;
+  --chart-5: 16 120 95;
+  --sidebar: 10 32 28;
+  --sidebar-foreground: 250 253 252;
+  --sidebar-primary: 52 211 153;
+  --sidebar-primary-foreground: 10 32 28;
+  --sidebar-accent: 20 55 48;
+  --sidebar-accent-foreground: 250 253 252;
+  --sidebar-border: 30 70 60;
+  --sidebar-ring: 52 211 153;
+}
+
+@theme inline {
+  --font-sans: "Inter", "Inter Fallback", system-ui, sans-serif;
+  --font-mono: "Geist Mono", "Geist Mono Fallback", monospace;
+  --color-background: rgb(var(--background));
+  --color-foreground: rgb(var(--foreground));
+  --color-card: rgb(var(--card));
+  --color-card-foreground: rgb(var(--card-foreground));
+  --color-popover: rgb(var(--popover));
+  --color-popover-foreground: rgb(var(--popover-foreground));
+  --color-primary: rgb(var(--primary));
+  --color-primary-foreground: rgb(var(--primary-foreground));
+  --color-secondary: rgb(var(--secondary));
+  --color-secondary-foreground: rgb(var(--secondary-foreground));
+  --color-muted: rgb(var(--muted));
+  --color-muted-foreground: rgb(var(--muted-foreground));
+  --color-accent: rgb(var(--accent));
+  --color-accent-foreground: rgb(var(--accent-foreground));
+  --color-destructive: rgb(var(--destructive));
+  --color-destructive-foreground: rgb(var(--destructive-foreground));
+  --color-border: rgb(var(--border));
+  --color-input: rgb(var(--input));
+  --color-ring: rgb(var(--ring));
+  --color-chart-1: rgb(var(--chart-1));
+  --color-chart-2: rgb(var(--chart-2));
+  --color-chart-3: rgb(var(--chart-3));
+  --color-chart-4: rgb(var(--chart-4));
+  --color-chart-5: rgb(var(--chart-5));
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: rgb(var(--sidebar));
+  --color-sidebar-foreground: rgb(var(--sidebar-foreground));
+  --color-sidebar-primary: rgb(var(--sidebar-primary));
+  --color-sidebar-primary-foreground: rgb(var(--sidebar-primary-foreground));
+  --color-sidebar-accent: rgb(var(--sidebar-accent));
+  --color-sidebar-accent-foreground: rgb(var(--sidebar-accent-foreground));
+  --color-sidebar-border: rgb(var(--sidebar-border));
+  --color-sidebar-ring: rgb(var(--sidebar-ring));
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}

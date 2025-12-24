@@ -1,0 +1,268 @@
+/**
+ * IntegrateWise OS Proxy (Next.js 16+)
+ * 
+ * Route gating based on role capabilities and authentication
+ * - Blocks unauthorized access to protected routes
+ * - Redirects to login if not authenticated
+ * - Redirects to overview if missing required capability
+ * - Integrates with Supabase session management
+ */
+
+import type { ProxyHandler } from 'next/server';
+import { proxy } from 'next/server';
+
+// Public routes that don't require authentication
+const PUBLIC_ROUTES = [
+  "/",
+  "/auth/login",
+  "/auth/sign-up",
+  "/auth/sign-up-success",
+  "/auth/error"
+];
+
+/**
+ * Determine which capability is needed for a given path
+ */
+function getRequiredCapability(pathname: string): string | null {
+  if (pathname.startsWith("/overview")) return "view.overview";
+  if (pathname.startsWith("/tasks")) return "view.tasks";
+  if (pathname.startsWith("/insights")) return "view.ai_insights";
+  if (pathname.startsWith("/normalize")) return "view.normalize";
+  if (pathname.startsWith("/os")) return "view.os_pages";
+  
+  // Legacy routes - map to overview for now
+  if (pathname.startsWith("/brainstorming")) return "view.overview";
+  if (pathname.startsWith("/campaigns")) return "view.overview";
+  if (pathname.startsWith("/clients")) return "view.overview";
+  if (pathname.startsWith("/content")) return "view.overview";
+  if (pathname.startsWith("/data-sources")) return "view.overview";
+  if (pathname.startsWith("/deals")) return "view.overview";
+  if (pathname.startsWith("/env")) return "view.overview";
+  if (pathname.startsWith("/integrations")) return "view.overview";
+  if (pathname.startsWith("/knowledge")) return "view.overview";
+  if (pathname.startsWith("/leads")) return "view.overview";
+  if (pathname.startsWith("/metrics")) return "view.overview";
+  if (pathname.startsWith("/onboarding")) return "view.overview";
+  if (pathname.startsWith("/pipeline")) return "view.overview";
+  if (pathname.startsWith("/products")) return "view.overview";
+  if (pathname.startsWith("/projects")) return "view.overview";
+  if (pathname.startsWith("/sales")) return "view.overview";
+  if (pathname.startsWith("/services")) return "view.overview";
+  if (pathname.startsWith("/sessions")) return "view.overview";
+  if (pathname.startsWith("/settings")) return "view.overview";
+  if (pathname.startsWith("/strategy")) return "view.overview";
+  if (pathname.startsWith("/website")) return "view.overview";
+  
+  return null;
+}
+
+/**
+ * Extract session from cookies
+ * TODO: Replace with actual auth provider (Clerk/Auth0/StackAuth)
+ */
+function getSession(cookies: Record<string, string>) {
+  // Check for demo session or auth token
+  const hasDemo = cookies['demo_session'] === 'true';
+  const hasAuthToken = Boolean(cookies['auth_token']);
+  const hasRole = Boolean(cookies['role']);
+  
+  const isAuthenticated = hasDemo || hasAuthToken || hasRole;
+  
+  if (!isAuthenticated) {
+    return null;
+  }
+  
+  // For capability-based routing
+  const role = cookies['role'] ?? 'viewer';
+  const capsString = cookies['caps'] ?? '';
+  const capabilities = capsString.split(',').filter(Boolean);
+  
+  return {
+    role,
+    capabilities,
+    isAuthenticated: true
+  };
+}
+
+export default proxy<ProxyHandler>({
+  // Public routes - allow access
+  '/': async ({ cookies, setCookie }) => {
+    // Auto-set demo session cookie if not present
+    if (!cookies['demo_session']) {
+      setCookie('demo_session', 'true', {
+        path: '/',
+        maxAge: 60 * 60 * 24 * 365, // 1 year
+        httpOnly: false,
+      });
+    }
+    return { type: 'next' };
+  },
+
+  '/auth/:path*': async ({ cookies }) => {
+    const session = getSession(cookies);
+    
+    // If already authenticated, redirect to overview
+    if (session?.isAuthenticated) {
+      return {
+        type: 'redirect',
+        destination: '/overview',
+        statusCode: 302,
+      };
+    }
+    
+    // Allow access to auth pages when not authenticated
+    return { type: 'next' };
+  },
+
+  // Overview page - requires view.overview capability
+  '/overview/:path*': async ({ cookies }) => {
+    const session = getSession(cookies);
+    
+    if (!session) {
+      return {
+        type: 'redirect',
+        destination: '/auth/login',
+        statusCode: 302,
+      };
+    }
+    
+    const requiredCap = 'view.overview';
+    if (!session.capabilities.includes(requiredCap) && session.capabilities.length > 0) {
+      return {
+        type: 'redirect',
+        destination: '/',
+        statusCode: 302,
+      };
+    }
+    
+    return { type: 'next' };
+  },
+
+  // Tasks page - requires view.tasks capability
+  '/tasks/:path*': async ({ cookies }) => {
+    const session = getSession(cookies);
+    
+    if (!session) {
+      return {
+        type: 'redirect',
+        destination: '/auth/login',
+        statusCode: 302,
+      };
+    }
+    
+    const requiredCap = 'view.tasks';
+    if (!session.capabilities.includes(requiredCap) && session.capabilities.length > 0) {
+      return {
+        type: 'redirect',
+        destination: '/overview',
+        statusCode: 302,
+      };
+    }
+    
+    return { type: 'next' };
+  },
+
+  // Insights page - requires view.ai_insights capability
+  '/insights/:path*': async ({ cookies }) => {
+    const session = getSession(cookies);
+    
+    if (!session) {
+      return {
+        type: 'redirect',
+        destination: '/auth/login',
+        statusCode: 302,
+      };
+    }
+    
+    const requiredCap = 'view.ai_insights';
+    if (!session.capabilities.includes(requiredCap) && session.capabilities.length > 0) {
+      return {
+        type: 'redirect',
+        destination: '/overview',
+        statusCode: 302,
+      };
+    }
+    
+    return { type: 'next' };
+  },
+
+  // Normalize page - requires view.normalize capability
+  '/normalize/:path*': async ({ cookies }) => {
+    const session = getSession(cookies);
+    
+    if (!session) {
+      return {
+        type: 'redirect',
+        destination: '/auth/login',
+        statusCode: 302,
+      };
+    }
+    
+    const requiredCap = 'view.normalize';
+    if (!session.capabilities.includes(requiredCap) && session.capabilities.length > 0) {
+      return {
+        type: 'redirect',
+        destination: '/overview',
+        statusCode: 302,
+      };
+    }
+    
+    return { type: 'next' };
+  },
+
+  // OS pages - requires view.os_pages capability
+  '/os/:path*': async ({ cookies }) => {
+    const session = getSession(cookies);
+    
+    if (!session) {
+      return {
+        type: 'redirect',
+        destination: '/auth/login',
+        statusCode: 302,
+      };
+    }
+    
+    const requiredCap = 'view.os_pages';
+    if (!session.capabilities.includes(requiredCap) && session.capabilities.length > 0) {
+      return {
+        type: 'redirect',
+        destination: '/overview',
+        statusCode: 302,
+      };
+    }
+    
+    return { type: 'next' };
+  },
+
+  // Legacy and other routes - require authentication, default to view.overview capability
+  '/:path*': async ({ cookies, pathname }) => {
+    // Allow API routes to pass through
+    if (pathname.startsWith('/api/')) {
+      return { type: 'next' };
+    }
+    
+    // Check authentication for all other routes
+    const session = getSession(cookies);
+    
+    if (!session) {
+      return {
+        type: 'redirect',
+        destination: '/auth/login',
+        statusCode: 302,
+      };
+    }
+    
+    // Check if route requires specific capability
+    const requiredCap = getRequiredCapability(pathname);
+    
+    if (requiredCap && session.capabilities.length > 0 && !session.capabilities.includes(requiredCap)) {
+      return {
+        type: 'redirect',
+        destination: '/overview',
+        statusCode: 302,
+      };
+    }
+    
+    return { type: 'next' };
+  },
+});
