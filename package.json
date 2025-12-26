@@ -1,0 +1,29 @@
+{
+  "name": "integratewise-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "IntegrateWise - Unified business operations platform",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "dev:hub": "npm run dev --workspace=packages/hub",
+    "dev:api": "npm run dev --workspace=packages/api",
+    "dev:webhooks": "npm run dev --workspace=packages/webhooks",
+    "dev:portal": "npm run dev --workspace=packages/portal",
+    "build:hub": "npm run build --workspace=packages/hub",
+    "deploy:api": "npm run deploy --workspace=packages/api",
+    "deploy:webhooks": "npm run deploy --workspace=packages/webhooks",
+    "install:all": "npm install --workspaces",
+    "clean": "rm -rf node_modules packages/*/node_modules"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/NirmalPrinceJ/integratewise-1bf6b8e4.git"
+  },
+  "author": "IntegrateWise",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

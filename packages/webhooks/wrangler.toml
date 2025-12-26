@@ -1,0 +1,96 @@
+# IntegrateWise Webhook Ingress Worker
+# Version: 3.0.0-secure
+name = "integratewise-webhooks"
+main = "src/worker.ts"
+compatibility_date = "2024-12-01"
+compatibility_flags = ["nodejs_compat"]
+
+# ============================================================================
+# Production Environment - .online domain (Internal/Dev)
+# ============================================================================
+[env.production]
+name = "integratewise-webhooks"
+routes = [
+  { pattern = "webhooks.integratewise.online/*", zone_name = "integratewise.online" }
+]
+
+[env.production.vars]
+ENVIRONMENT = "production"
+ENV_DOMAIN = "online"
+
+# Provider Enable Switches - .online domain
+ENABLE_CANVA = "true"
+ENABLE_HUBSPOT = "true"
+ENABLE_LINKEDIN = "true"
+ENABLE_GITHUB = "true"
+ENABLE_VERCEL = "true"
+ENABLE_TODOIST = "true"
+ENABLE_NOTION = "true"
+ENABLE_AI_RELAY = "true"
+ENABLE_META = "true"
+
+# Disabled providers
+ENABLE_WHATSAPP = "false"
+ENABLE_RAZORPAY = "false"
+ENABLE_STRIPE = "false"
+ENABLE_GOOGLE_ADS = "false"
+ENABLE_PIPEDRIVE = "false"
+ENABLE_SALESFORCE = "false"
+
+# Notification Channels
+ENABLE_DISCORD = "false"
+ENABLE_TELEGRAM = "false"
+
+# ============================================================================
+# .xyz domain - NOT USED FOR WEBHOOKS
+# .xyz is for marketing website only
+# All webhooks route through webhooks.integratewise.online
+# ============================================================================
+
+# ============================================================================
+# Secrets (set via wrangler secret put --env production)
+# ============================================================================
+# Security - REQUIRED
+# wrangler secret put INTERNAL_API_KEY --env production
+# wrangler secret put INTERNAL_API_KEY --env production_xyz
+
+# Database
+# wrangler secret put NEON_CONNECTION_STRING --env production
+# wrangler secret put NEON_CONNECTION_STRING --env production_xyz
+
+# .online provider secrets
+# wrangler secret put GITHUB_WEBHOOK_SECRET --env production
+# wrangler secret put VERCEL_WEBHOOK_SECRET --env production
+# wrangler secret put CANVA_WEBHOOK_SECRET --env production
+# wrangler secret put TODOIST_API_TOKEN --env production
+# wrangler secret put NOTION_API_KEY --env production
+# wrangler secret put AI_RELAY_SECRET --env production
+
+# .xyz provider secrets
+# wrangler secret put HUBSPOT_CLIENT_SECRET --env production_xyz
+# wrangler secret put LINKEDIN_CLIENT_SECRET --env production_xyz
+# wrangler secret put SALESFORCE_SECURITY_TOKEN --env production_xyz
+# wrangler secret put PIPEDRIVE_WEBHOOK_TOKEN --env production_xyz
+
+# Notification channel secrets (both envs)
+# wrangler secret put DISCORD_WEBHOOK_URL --env production
+# wrangler secret put TELEGRAM_BOT_TOKEN --env production
+# wrangler secret put TELEGRAM_CHAT_ID --env production
+
+# Future provider secrets
+# wrangler secret put RAZORPAY_WEBHOOK_SECRET --env production
+# wrangler secret put STRIPE_ENDPOINT_SECRET --env production
+# wrangler secret put META_VERIFY_TOKEN --env production
+# wrangler secret put WHATSAPP_VERIFY_TOKEN --env production
+
+# ============================================================================
+# Observability
+# ============================================================================
+[observability]
+enabled = true
+
+[observability.logs]
+enabled = true
+head_sampling_rate = 1
+
+# Note: CPU limits and advanced rate limiting require paid plan
